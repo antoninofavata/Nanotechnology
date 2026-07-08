@@ -1,0 +1,492 @@
+\setcounter{chapter}{0}
+\chapter{Elements of algebra and tensor analysis}
+
+%\addcontentsline{toc}{chapter}{A. Richiami di algebra ed analisi} % Aggiunge il capitolo all'indice
+%\renewcommand{\theequation}{A\arabic{equation}}
+%\setcounter{equation}{0} % Reset del contatore delle equazioni
+\renewcommand{\thesection}{A.\arabic{section}}
+\setcounter{section}{0} % Reset del contatore delle sezioni
+
+
+
+% Ridefinisci la numerazione delle equazioni per questo capitolo
+\renewcommand{\theequation}{A\arabic{equation}}
+\setcounter{equation}{0} % Reset del contatore delle equazioni
+
+\section{Vectors}  
+We work in a Euclidean space $\Ec^n$ of dimension $n=1,2,3$; when $n$ is not explicitly indicated, we assume $n=3$. The elements of $\Ec$ are points $P$, $Q$, $\ldots$. The difference between two points is a vector, an element of the translation space $\Vc$ associated with $\Ec$:
+\begin{equation}
+	P-Q=\vb \in \Vc.
+\end{equation}
+$\Vc$ is a \textit{vector space}.
+
+We will denote vectors with bold lowercase letters, generally Latin, but sometimes, when needed, we will also use Greek characters, $\ab, \bb, \ldots \boldsymbol{\alpha}, \boldsymbol{\beta}, \ldots$
+
+Given a point $O$ in $\Ec^n$, the \textit{position vector} of $X$ with respect to $O$ can be written as
+\begin{equation}
+	P-O=\overrightarrow{OP}=\pb\in \Vc^n.
+\end{equation}
+For simplicity, we will sometimes refer to the point $\pb\in \Vc$, thinking of its position with respect to the origin.
+
+We endow $\Vc$ with a \textit{scalar product}, denoted by $\ub\cdot \vb$, $\ub$, $\vb\in\Vc$.  
+The \textit{norm} of a vector $\ub$ is $|\ub|\coloneqq \sqrt{\ub\cdot\ub}$. Let $\vartheta$ be the angle formed between two vectors $\ub$, $\vb$; we then have
+\begin{equation}
+	\ub \cdot \vb =|\ub||\vb|\cos \vartheta.
+\end{equation}
+
+A unit vector, or \textit{versor}, is a vector of norm 1, while two nonzero vectors are said to be \textit{orthogonal} if their scalar product is zero.
+
+If $\Vc$ has dimension $n$, it is always possible to find an orthonormal system of $n$ vectors, which we will identify as a \textit{basis} of $\Vc$; we will choose one and denote it by $\eb_1, \eb_2, \ldots \eb_n$. We then have
+\begin{equation}
+	\eb_i \cdot \eb_j=\delta_{ij}, \qquad \forall i,j=1,2,\ldots, n,
+\end{equation}
+where $\delta_{ij}$ is the \textit{Kronecker delta} ($\delta=1$ if $i=j$ and 0 otherwise).
+
+The components of a vector $\ub$ with respect to the basis $\{\eb_i\}$ are the scalars
+\begin{equation}
+	u_i=(\ub)_i\coloneqq \ub \cdot \eb_i.
+\end{equation}
+and therefore
+\begin{equation}
+	\ub =u_1 \eb_1+ u_2\eb_2+\ldots+u_n \eb_n=\sum_{i=1}^n u_i \eb_i.
+\end{equation}
+We will use the \textit{Einstein convention}: any index repeated twice in an expression is summed over all the possible values the index can take; thus, we can simply write
+\begin{equation}
+	\ub=u_i \eb_i
+\end{equation}
+
+If $n=3$, we can define the \textit{vector product} between two vectors $\ub$ and $\vb$:
+\begin{equation}
+	\ub \times \vb =(\ub \times \vb)_k \eb_k, \qquad (\ub \times \vb)_k=(u_i \eb_i)\times (b_j\eb_j)\cdot \eb_k=\epsilon_{ijk}a_i b_j,
+\end{equation}
+where 
+\begin{equation}\label{Ricci}
+	\epsilon_{ijk}=
+	\begin{cases}
+		\begin{aligned}
+			&1 \qquad &&\text{if }(i,j,k)\text{ is an even permutation of }(1,2,3);\\
+			&-1  &&\text{if }(i,j,k)\text{ is an odd permutation of }(1,2,3);\\
+			&0 &&\text{if two indices are equal,}&
+		\end{aligned}
+	\end{cases}
+\end{equation}
+is the \textit{Ricci symbol}.
+
+The Ricci symbol and the Kronecker delta are related by the equation
+\begin{equation}\label{epsdel}
+	\epsilon_{ijk}\epsilon_{ipq}=\delta_{jp}\delta_{kq}-\delta_{jq}\delta_{kp}.
+\end{equation}
+
+The product $\ub\times \vb$ is a vector orthogonal to both $\ub$ and $\vb$, with magnitude equal to the area of the parallelogram with sides $\ub$ and $\vb$, that is,
+\begin{equation}
+	|\ub \times \vb|=|\ub||\vb|\sin\vartheta,
+\end{equation}
+with direction determined by the right-hand rule.
+
+
+\section{Second-order tensors}
+A second-order tensor is a linear map from $\Vc$ to $\Vc$. We will denote tensors with bold uppercase letters $\Ab, \Bb, \ldots$. The set of second-order tensors will be denoted by $\Lin$.
+
+Thus,
+\begin{equation}
+	\mathbf{A}\in\mathrm{Lin~}\Longleftrightarrow\mathbf{~A}(\alpha\mathbf{u}+\beta\mathbf{v})=\alpha\mathbf{A}\mathbf{u}+\beta\mathbf{A}\mathbf{v}\quad\forall\mathbf{u},\mathbf{v}\in\mathcal{V},\mathrm{~}\forall \alpha, \beta\in\mathbb{R}.
+\end{equation}
+We can define the \textit{sum} and the \textit{scalar multiplication}:
+\begin{equation}
+	(\mathbf{A}+\mathbf{B})\mathbf{v}=\mathbf{A}\mathbf{v}+\mathbf{B}\mathbf{v},\quad(c\mathbf{A})\mathbf{v}=c(\mathbf{A}\mathbf{v})=:c\mathbf{A}\mathbf{v}
+\end{equation}
+for every $\Ab, \Bb \in \Lin$, $\vb \in \Vc$ and $c\in \Ro$.
+
+\subsubsection{Dyadic product}
+Given two vectors $\ab$, $\bb$, the \textit{dyadic product} (or \textit{tensor product}) $\ab \otimes \bb$ is a second-order tensor that acts as follows:
+\begin{equation}
+	(\ab \otimes \bb)\,\vb =(\bb \cdot \vb)\,\ab, \qquad \forall \vb \in \Vc.
+\end{equation}
+All vectors in $\Vc$ are thus mapped by $\ab \otimes \bb$ to the line generated by $a$.
+Any linear combination of dyads is a linear transformation from $\Vc$ to itself.
+
+\subsubsection{Basis for Lin}
+Starting from the orthonormal basis chosen for $\Vc$, we can build a basis for Lin.
+
+Let us consider, to begin with, the dyad $\eb_1\otimes \eb_2$. We have
+\begin{equation}
+	(\eb_1\otimes \eb_2)\vb=(\eb_2\cdot \vb)\eb_1=v_2\,\eb_1,
+\end{equation}
+that is, using a matrix representation,
+\begin{equation}
+	\begin{bmatrix}&&\\&\eb_{1}\otimes\eb_{2}&\\&&\end{bmatrix}\begin{bmatrix}v_{1}\\v_{2}\\v_{3}\end{bmatrix}=\begin{bmatrix}v_{2}\\0\\0\end{bmatrix},\quad\forall\vb\in \Vc;
+\end{equation}
+given the arbitrariness of $\vb$, we conclude that the matrix representation of $\eb_{1}\otimes\eb_2$ has the form
+\begin{equation}
+	[\eb_{1}\otimes\eb_2]=	\begin{bmatrix}0&1&0\\0&0&0\\0&0&0\end{bmatrix}.
+\end{equation}
+In general, the only non-zero entry of the matrix associated with $\eb_i \otimes \eb_j$ is in the $i$-th row and $j$-th column and is equal to 1. A linear combination of the 9 dyads built from the orthonormal basis vectors of $\Vc$ yields any $3\times 3$ matrix:
+\begin{equation}
+	[\mathbf{M}]=M_{ij}[\eb_i\otimes \eb_j].
+\end{equation}
+
+In order to show that the dyads $\eb_i\otimes \eb_j$ form an orthonormal basis, we introduce the scalar product between dyads:
+\begin{equation}
+	\ab \otimes \bb \cdot \cb \otimes \db \coloneqq (\ab \cdot \cb)(\bb\cdot \db).
+\end{equation}
+Then,
+\begin{equation}
+	\eb_i\otimes\eb_j \cdot\eb_h \otimes \eb_k=(\eb_i\cdot\eb_h)(\eb_j\cdot\eb_k)=\delta_{ih}\delta_{jk},
+\end{equation}
+so each of the dyads $\eb_i\otimes \eb_j$ has unit norm and is orthogonal to the others.
+
+We can also define the scalar product between a second-order tensor $\Vb$ and a dyad $\ab \otimes\bb$:
+\begin{equation}
+	\Vb \cdot(\ab \otimes \bb)\coloneqq (\Vb\bb)\cdot \ab,
+\end{equation}
+and give the resulting representation
+\begin{equation}
+	\Vb = V_{ij}\, \eb_i \otimes \eb_j, \qquad V_{ij}\coloneqq \Vb \cdot \eb_{i}\otimes\eb_j=\Vb \eb_j \cdot \eb_i.
+\end{equation}
+The real numbers $V_{ij}$ are the \textit{components} of $\Vb$ in the orthonormal basis chosen for $\Lin$ and coincide with the entries of the matrix associated with $\Vb$ in the same basis. For the \textit{identity tensor} $\Ib$, we have
+\begin{equation}
+	\Ib = \eb_i \otimes \eb_i, \qquad I_{ij}=\delta_{ij}.
+\end{equation}
+
+\subsubsection{Transpose tensor}
+Given $\Ab \in \Lin$, the \textit{transpose tensor} $\Ab^\top$ is the unique tensor satisfying the following identity:
+\begin{equation}
+	\Ab \ub \cdot \vb =\ub \cdot \Ab^\top \vb, \qquad \forall \ub, \vb \in \Vc.
+\end{equation}
+From the definition it follows that $(\Ab^\top)_{ij}=(\Ab)_{ji}$, i.e., the matrix representing $\Ab^\top$ is the transpose of the matrix representing $\Ab$. It is straightforward to verify that
+\begin{equation}
+	(\ab \otimes \bb)^\top =\bb \otimes \ab, \qquad \forall \ab, \bb \in \Vc.
+\end{equation}
+
+\subsubsection{Composition of tensors}
+We define the \textit{composition} of tensors:
+\begin{equation}
+	(\mathbf{AB})\mathbf{v}=\mathbf{A}(\mathbf{B}\mathbf{v})=:\mathbf{A}\mathbf{B}\mathbf{v},
+\end{equation}
+for every $\Ab, \Bb \in \Lin$, $\vb \in \Vc$. We can write the composition in components:
+\begin{equation}
+	(\Ab\Bb)_{ij}=A_{ik}B_{kj}.
+\end{equation}
+In the index notation used here, we note that the free indices on the left-hand side match those on the right-hand side, since the repeated (dummy) index $k$ on the right must be summed over according to Einstein’s convention:
+\begin{equation}
+	A_{ik}B_{kj}=A_{i1}B_{1j}+A_{i2}B_{2j}+A_{i3}B_{3j}.
+\end{equation}
+
+The following identities hold and are easy to verify:
+\begin{equation}
+	\begin{aligned}
+		& (\ab \otimes \bb)\Ab =\ab \otimes (\Ab ^\top \bb)=\ab \otimes \Ab ^\top \bb,\\
+		& (\Ab ^\top)^\top =\Ab,\\
+		& (\Ab \Bb)^\top= \Bb ^\top \Ab ^\top.
+	\end{aligned}
+\end{equation}
+
+\subsubsection{Symmetric and skew-symmetric tensors}
+
+A tensor $\Ab$ is called \textit{symmetric} if $\Ab =\Ab ^\top$ and \textit{skew-symmetric} (or \textit{antisymmetric}) if  $\Ab =-\Ab ^\top$. We denote by Sym and Skw the space of symmetric and skew-symmetric tensors:
+\begin{equation}
+	\mathrm{Sym}:=\{\mathbf{A}\in\mathrm{Lin}:\mathbf{A}=\mathbf{A}^\top\}\quad\mathrm{and}\quad\mathrm{Skw}:=\{\mathbf{A}\in\mathrm{Lin}:\mathbf{A}=-\mathbf{A}^\top\}.
+\end{equation}
+We also denote by
+\begin{equation}
+	\sym \Ab\coloneqq \frac12 (\Ab+\Ab^\top), \qquad  \skw \Ab\coloneqq \frac12 (\Ab-\Ab^\top)
+\end{equation}
+the \textit{symmetric part} and the \textit{skew-symmetric part} of a tensor $\Ab \in \Lin$.
+
+To every skew-symmetric tensor $\Wb$ we can associate a vector $\wb$, called the axial vector, such that
+\begin{equation}\label{Ww}
+	\Wb\ab = \wb \times \ab, \qquad\forall \ab \in \Vc. 
+\end{equation}
+
+\subsubsection{Trace of a tensor. Scalar product. Norm}
+
+The \textit{trace} of a dyad is the linear operator $\operatorname{tr}\,:\, Lin \to \Ro$ defined as:
+\begin{equation}
+	\operatorname{tr}(\ub \otimes \vb)\coloneqq \ub \cdot \vb, \qquad \forall \ub, \vb \in \Vc.
+\end{equation}
+Since any second-order tensor can be represented as a linear combination of dyads, we have
+\begin{equation}
+	\operatorname{tr}\Ab =\operatorname{tr}(A_{ij}\eb_i\otimes \eb_j)=A_{ij}\operatorname{tr}(\eb_i\otimes \eb_j)=A_{ij}\delta_{ij}=A_{ii}.
+\end{equation}
+We conclude that the trace of $\Ab$ is the sum of the diagonal entries of the matrix representing $\Ab$. 
+
+The scalar product on $\Vc$ induces on $\Lin$ a notion of scalar product via the trace operator. In particular, for $\Ab$ and $\Bb\in \Lin$, the scalar product $\Ab \cdot \Bb$ is defined as:
+\begin{equation}
+	\Ab \cdot \Bb \coloneqq \operatorname{tr}(\Ab ^\top \Bb).
+\end{equation}
+We thus have
+\begin{equation}
+	\Ab \cdot \Bb = (\Ab ^\top \Bb)_{jj}=(\Ab ^\top)_{ji}B_{ij}=A_{ij}B_{ij}=\Ab \cdot \Ib;
+\end{equation}
+the scalar product between two tensors is therefore equal to the sum of the products of the corresponding entries of their representative matrices. Of course, the identity
+\begin{equation}
+	\Ab \cdot \Bb =\Ab ^\top \cdot \Bb ^\top.
+\end{equation}
+also holds.
+
+Given the scalar product, we can define the \textit{norm} of a tensor $\Ab$:
+\begin{equation}
+	|\Ab|\coloneqq \sqrt{\Ab \cdot \Ab}=\sqrt{A_{ij}A_{ij}}=\sqrt{\sum_{i,j=1}^n A_{ij}^2};
+\end{equation}
+the norm of a tensor is therefore the square root of the sum of the squares of the corresponding entries.
+
+\vspace{.5cm}
+
+\noindent The following properties hold:
+\begin{enumerate}
+	\item If $\Ab \cdot \Bb=0, \quad \forall \Bb \in \Lin$, then $\Ab =\mathbf{0}$.
+	\item If $\Ab \in \Sym$ and $\Wb \in \Skw$, then $\Ab \cdot \Wb =0$.
+	\item If $\Ab \cdot \Bb=0, \quad \forall \Bb \in \Sym$, then $\Ab \in \Skw$.
+\end{enumerate}
+
+Property 1 follows immediately by choosing $\Bb =\mathbf{0}$:
+\begin{equation}
+	0=|\Ab|^2 \qquad \Longrightarrow\qquad \Ab =\mathbf{0}.
+\end{equation}
+Property 2 is easily obtained by applying the transpose operator:
+\begin{equation}
+	\Ab \cdot \Wb =\Ab^\top \cdot \Wb^\top=-\Ab^\top \cdot \Wb, \qquad \Ab \cdot \Wb=0.
+\end{equation}
+Property 3 follows by noting that for any tensor $\Bb \in \Lin$, $\Bb + \Bb ^\top\in \Sym$, and therefore, for any $\Bb \in \Lin$,
+\begin{equation}
+	0=\Ab \cdot (\Bb +\Bb ^\top)=\Ab \cdot \Bb + \Ab ^\top \cdot \Bb =(\Ab + \Ab ^\top)\cdot \Bb.
+\end{equation}
+Using result 1., it follows that $\Ab + \Ab ^\top=0$, i.e., the thesis.
+
+Property 2 allows us to observe that $\Lin$ can be decomposed as a direct sum of the subspaces of symmetric and skew-symmetric tensors:
+\begin{equation}
+	\Lin = \Sym \oplus \Skw. 
+\end{equation}
+
+\begin{exercise}
+	Prove the following identities:
+	\begin{equation}
+		\begin{aligned}
+			%	&\mathbf{I}\cdot\mathbf{A}=\operatorname{tr}\mathbf{A}; \\
+			&\mathbf{A}\cdot\mathbf{B}\mathbf{C}=\mathbf{B}^\mathsf{T}\mathbf{A}\cdot\mathbf{C}=\mathbf{A}\mathbf{C}^\mathsf{T}\cdot\mathbf{B}; \\
+			&\mathbf{u}\cdot\mathbf{A}\mathbf{v}=\mathbf{A}\cdot\mathbf{u}\otimes\mathbf{v}; \\
+			&\mathbf{a\otimes b\cdot c\otimes d=(a\cdot c)(b\cdot d).}
+		\end{aligned}
+	\end{equation}
+	\begin{svolgimento}
+		For the first one, we have:
+		\begin{equation}
+			\mathbf{A}\cdot\mathbf{B}\mathbf{C}=A_{ij}B_{ik}C_{kj}=B^\top_{ki}A_{ij}C_{kj}=\Bb ^\top \Ab \cdot \Cb =A_{ij}C^\top_{jk}B_{ik}=\mathbf{A}\mathbf{C}^\mathsf{T}\cdot\mathbf{B}.
+		\end{equation}
+		For the second:
+		\begin{equation}
+			\mathbf{u}\cdot\mathbf{A}\mathbf{v}=u_i A_{ij}v_j=A_{ij}(u_iv_j)=\Ab \cdot(\ub \otimes \vb).
+		\end{equation}
+		For the third:
+		\begin{equation}
+			\mathbf{a\otimes b\cdot c\otimes d}=a_i b_j c_i d_j=(a_i c_i)(b_j d_j)=(\ab\cdot \cb)(\bb\cdot \db).
+		\end{equation}
+	\end{svolgimento}
+\end{exercise}
+
+\subsubsection{Inverse tensor}
+A tensor $\Ab$ is said to be \textit{invertible} if there exists a tensor $\Ab ^{-1}$, called the inverse of $\Ab$, such that
+\begin{equation}
+	\Ab \Ab ^{-1}=\Ab ^{-1}\Ab =\Ib.
+\end{equation} 
+Given a tensor $\Ab \in \Lin$, the following conditions are equivalent:
+\begin{enumerate}
+	\item $\Ab$ is invertible.
+	\item For every $\ub \in \Vc$, $\Ab \ub=\mathbf{0} $ implies that $\ub = \mathbf{0}$.
+	\item For every basis $\{ \ub, \vb, \wb \}$, the triplet $\{\Ab \ub, \Ab \vb, \Ab \wb\}$ is a basis.
+	\item For every pair of vectors $\ub$ and $\vb$, $\ub \times \vb \neq \mathbf{0}$ implies that $\Ab\ub \times \Ab\vb\neq \mathbf{0}$.
+\end{enumerate}
+
+The following properties hold and are immediately verifiable:
+\begin{enumerate}
+	\item $(\Ab \Bb)^{-1}= \Bb^{-1}\Ab^{-1}$;
+	\item $(\Ab^{-1})^\top=(\Ab ^\top)^{-1}=:\Ab^{-\top}$.
+\end{enumerate}
+
+\subsubsection{Determinant}
+The \textit{determinant} is an operator that assigns to every tensor $\Ab\in \Lin$ the scalar $\det \Ab$, defined as:
+\begin{equation}
+	\det \Ab \coloneqq 	\frac{\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})}{\mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})}
+\end{equation}
+for every basis $\{\ub, \vb, \wb\}$. Thus, $|\det\Ab|$ represents the ratio between the volume of the parallelepiped defined by the vectors $\Ab \ub$, $\Ab\vb$, $\Ab \wb$ and the volume of the parallelepiped defined by the vectors $\ub$, $\vb$, $\wb$. An immediate consequence is that two bases $\{\ub, \vb, \wb\}$ and $\{\Ab \ub$, $\Ab\vb$, $\Ab \wb\}$ have the same orientation if and only if
+\begin{equation}
+	\det \Ab >0.
+\end{equation}
+We also observe that $\det \Sb \neq 0$ if and only if  $\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})\neq 0$ and thus if and only if $\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})$ is a basis. We conclude that $\Ab$ is invertible if and only if $\det \Ab \neq 0$.
+
+The following properties hold:
+\begin{enumerate}
+	\item $\det \Ab =\det \Ab ^\top$;
+	\item $\det (\Ab \Bb)=\det (\Bb \Ab)=(\det \Ab)(\det \Bb)$;
+	\item $\det(\alpha \Ab)=\alpha^3 \det \Ab$
+	\item $\det (\Ab^{-1})=(\det \Ab)^{-1}$.
+\end{enumerate}
+
+\subsubsection{Orthogonal tensors}
+A tensor $\Qb$ is said to be \textit{orthogonal} if 
+\begin{equation}
+	\Qb \ub \cdot \Qb \vb =\ub \cdot \vb
+\end{equation}
+for every $\ub$ and $\vb \in \Vc$.
+Choosing $\vb =\ub$, we have
+\begin{equation}
+	|\Qb \ub|^2 =\Qb \ub\cdot\Qb \ub =\ub \cdot\ub =|\ub|^2,
+\end{equation}
+and therefore
+\begin{equation}
+	|\Qb \ub|=|\ub|.
+\end{equation}
+Thus, the action of an orthogonal tensor $\Qb$ on a vector $\ub$ leaves its length unchanged. Now consider two vectors $\ub$ and $\vb$ that form an angle $\vartheta$:
+\begin{equation}
+	\cos\vartheta=\frac{\ub \cdot \vb}{|\ub||\vb|}=\frac{\Qb \ub \cdot \Qb \vb}{|\Qb \ub ||\Qb \vb |};
+\end{equation}
+Thus, the angle between two vectors is also preserved. Orthogonal tensors preserve lengths and angles.
+
+A necessary and sufficient condition for $\Qb$ to be orthogonal is that
+\begin{equation}
+	\Qb^\top = \Qb ^{-1}.
+\end{equation}
+Indeed,
+\begin{equation}
+	\ub \cdot \vb =\Qb \ub \cdot\Qb \vb =\Qb ^\top \Qb \ub \cdot \vb;
+\end{equation}
+since the identity holds for every $\vb \in \Vc$, we deduce that $\ub = \Qb ^\top \Qb \ub$, from which, given the arbitrariness of $\ub$,
+\begin{equation}
+	\Qb ^\top \Qb =\Qb \Qb ^\top =\Ib.
+\end{equation}
+Moreover, since $\det (\Qb^\top \Qb)=(\det \Qb)^2$, we have $\det \Qb=\pm 1$.
+
+We can thus characterize the space of orthogonal tensors as:
+\begin{equation}
+	\operatorname{Orth}\coloneqq \{\Qb \in \Lin \,:\, \Qb ^\top \Qb =\Qb \Qb ^\top =\Ib\}.
+\end{equation}
+
+An orthogonal tensor is a \textit{rotation} if $\det \Qb =1$, a \textit{reflection} otherwise.
+We denote by
+\begin{equation}
+	\operatorname{\Rot}\coloneqq \{\Rb \in \operatorname{Orth}\,:\; \det \Rb =1  \}.
+\end{equation}
+the space of rotations.
+
+\subsubsection{Eigenvalues and eigenvectors. Spectral Theorem}
+Given $\Ab\in\Lin$, we say that the scalar $\lambda$ is an \textit{eigenvalue} of $\Ab$ if there exists a non-zero unit vector $\vb$, called an \textit{eigenvector}, such that
+\begin{equation}
+	\Ab \vb =\lambda \vb.
+\end{equation}
+Since we can rewrite the eigenvalue-eigenvector relation as $(\Ab -\lambda\Ib)\vb =\mathbf{0}$ and $\vb \neq \mathbf{0}$, then necessarily
+\begin{equation}
+	\det (\Ab -\lambda \Ib)=0.
+\end{equation}
+The roots of this equation, called the \textit{characteristic polynomial}, are the eigenvalues of $\Ab$.
+
+The following result is a central theorem in linear algebra and is widely used in our context; it goes by the name of the \textit{Spectral Theorem}:
+Let $\Ab$ be a symmetric tensor. Then there exists an orthonormal basis $\{\ab_i\}$ of eigenvectors of $\Ab$, and $\Ab$ admits the following \textit{spectral decomposition}:
+\begin{equation}
+	\Ab=\sum_{i=1}^3 \lambda_i \ab_i\otimes\ab_i,
+\end{equation}
+where, for each $i$, $\lambda_i$ is an eigenvalue of $\Ab$ and $\ab_i$ the corresponding eigenvector.
+
+It can also be shown that all eigenvalues of $\Ab$ are real, and that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+
+\section{Vector and Tensor Analysis}
+Let $\fb \, :\, \Ro^n\to \Ro ^n$, with $n$ a positive integer greater than 1, be a generic field. We say that $\fb$ is differentiable at $\xb_0$ along the direction $\hb$ if the following limit exists:
+\begin{equation}
+	\lim_{\varepsilon\to 0} \frac{\fb (\xb_0+\varepsilon\hb)-\fb(\xb_0)}{\varepsilon}=: \partial_\hb \fb (\xb_0).
+\end{equation} 
+We denote by 
+\begin{equation}
+	\fb,_i\coloneqq \partial_{\eb_i}\fb,
+\end{equation}
+the partial derivative with respect to the variable $x_i$. If all the partial derivatives along the directions $\eb_i$ exist, we define the \textit{gradient} of $\fb$ at $\xb_0$ as
+\begin{equation}
+	\nabla \fb (\xb_0)\coloneqq \fb,_i(\xb_0)\otimes \eb_i.
+\end{equation}
+
+If $\fb$ is differentiable at $\xb_0$, then for every vector $\hb$
+\begin{equation}
+	\partial_{\hb}\fb (\xb_0)=\nabla\fb (\xb_0)\, \hb.
+\end{equation}
+
+The \textit{divergence} of $\fb$ is defined as
+\begin{equation}
+	\Div \fb \coloneqq \operatorname{tr}\nabla \fb.
+\end{equation}
+Since
+\begin{equation}
+	\Div \fb=\nabla\fb \cdot \Ib =\nabla \fb \cdot \eb_i \otimes \eb_i =\eb_i \cdot \nabla \fb \,\eb_i =\eb_i\cdot \fb,_i= f_{i,i}
+\end{equation}
+it follows that $\Div \fb$ is equal to the sum of the derivatives of the components $f_i$ with respect to the variable $x_i$.
+
+We define the \textit{curl} of $\fb$ as
+\begin{equation}
+	\wb \cdot \Curl \fb = \Wb \cdot \nabla \fb,
+\end{equation}
+for every constant vector $\wb$, associated with the antisymmetric tensor $\Wb$, according to the correspondence \eqref{Ww}.
+
+The components of $\Curl \fb$ are:
+\begin{equation}
+	(\Curl \fb)_i\coloneqq\epsilon_{ijk}f_{k,j},
+\end{equation}
+where $\epsilon_{ijk}$ is the Ricci symbol \eqref{Ricci}, so that
+\begin{equation}
+	\Curl \fb=(f_{3,2}-f_{2,3})\,\eb_{1}+(f_{1,3}-f_{3,1})\,\eb_2 + (f_{2,1}-f_{1,2})\,\eb_3.
+\end{equation}
+
+The divergence of a tensor field $\Tb$ is the unique vector field $\Div \Tb$ that satisfies the equality
+\begin{equation}
+	\Div \Tb \cdot \ab =(\Div \Tb ^\top \ab)
+\end{equation}
+for every constant vector $\ab$. Choosing $\ab = \eb_i$, we have
+\begin{equation}
+	(\Div \Tb)_i=\Div \Tb \cdot\eb_i =\Div (\Tb^\top \eb_i)=(\Tb^\top \eb_i)_{j,j}=\Big((\Tb ^\top)_{ji}\Big),_{j}=T_{ij,j}.
+\end{equation}
+
+The curl of a tensor field $\Tb$ is the unique tensor field $\Curl \Tb$ that satisfies
+\begin{equation}\label{RotT}
+	(\Curl \Tb) \ab =\Curl (\Tb ^\top \ab)
+\end{equation} 
+for every constant vector $\ab$. Its components are
+\begin{equation}
+	(\Curl \Tb)_{ij}=\epsilon_{ipq}T_{jq,p}.
+\end{equation}
+
+
+Given a scalar field $\varphi$, two vector fields $\ub$, $\vb$, and a tensor field $\Tb$ that are sufficiently regular, the following identities hold:
+\begin{equation}\label{identitadiff}
+	\begin{aligned}
+		&\nabla(\varphi\mathbf{v})=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi,\\
+		& \nabla(\mathbf{u}\cdot\mathbf{v})=(\nabla\mathbf{u})^\top\mathbf{v}+(\nabla\mathbf{v})^\top\mathbf{u},\\
+		&\Div(\varphi\mathbf{v})=\varphi\Div\mathbf{v}+\mathbf{v}\cdot\nabla\varphi,\\
+		&\Div(\mathbf{u}\otimes\mathbf{v})=(\Div \vb)\mathbf{u}+(\nabla\mathbf{u})\mathbf{v},\\
+		&\Div(\mathbf{T}^{\top}\mathbf{v})=\mathbf{T}\cdot\nabla\mathbf{v}+\mathbf{v}\cdot\Div\mathbf{T},\\
+		& \Div(\varphi\mathbf{T})=\varphi\Div\mathbf{T}+\Tb\cdot\nabla\varphi,\\
+		&\Curl(\varphi\mathbf{v})=\varphi\Curl\vb+(\nabla\varphi)\times\mathbf{v},\\
+		& \operatorname{tr}(\Curl \Tb)=0 \; {\rm if}\; \Tb \in \Sym,\\
+		&\Curl \Tb =(\Div \wb)\Ib-\nabla \wb \; \textrm{if $\Tb\in \Skw$ and $\wb$ is the axial tensor of $\Tb$}.
+	\end{aligned}
+\end{equation}
+
+For a scalar field $\varphi$ and a vector field $\vb$, we define the Laplace operator, or Laplacian, as
+\begin{equation}
+	\Delta\varphi\coloneqq \Div \nabla\varphi, \qquad \Delta \vb \coloneqq \Div \nabla \vb;
+\end{equation}
+for a tensor field $\Tb$, $\Delta \Tb$ is the unique tensor field such that
+\begin{equation}
+	(\Delta \Tb)\ab =\Delta(\Tb \ab),
+\end{equation}
+for every constant vector $\ab$. Using the components:
+\begin{equation}
+	\Delta T_{ij}= T_{ij, kk}.
+\end{equation}
+
+
+We conclude by recalling the \textit{Divergence Theorem}:
+Let $\Omega$ be a bounded region with boundary $\partial\Omega$. Assume that a scalar field $\varphi$, a vector field $\vb$, and a tensor field $\Tb$ are given, with $\Omega$ being the domain of each of these fields. Let $\nb$ be the outward normal unit vector to the boundary $\partial\Omega$ of $\Omega$. Then
+\begin{equation}\label{theodiv}
+	\begin{aligned}
+		&\int_{\partial \Omega}\varphi\mathbf{n}=\int_\Omega\nabla\varphi, \\
+		&\int_{\partial \Omega}\mathbf{v}\cdot\mathbf{n}  =\int_\Omega\Div \vb, \\
+		&	\int_{\partial\Omega}\mathbf{Tn} =\int_\Omega\Div\mathbf{T}. 
+	\end{aligned}
+\end{equation}
+

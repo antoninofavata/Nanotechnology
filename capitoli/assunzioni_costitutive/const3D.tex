@@ -1,0 +1,1123 @@
+\chapter{Continuo tridimensionale}
+
+
+
+%
+%\section{Processi dinamici, equazioni costitutive}
+%La descrizione geometrica dei cambiamenti di configurazione (cinematica) e il bilancio 
+%delle forze (dinamica) hanno carattere generale, in quanto riguardano le proprietà comuni a tutti i corpi continui. Le restrizioni su forze o cambiamenti di configurazione dettate dai differenti materiali che costituiscono i corpi sono oggetto della \textit{teoria costitutiva}. In termini un po' imprecisi, in un contesto privo di apporti multifisici (come la variazione di temperatura, il campo magnetico, il campo elettrico, etc.) pensa alle forze come la \textit{causa} che produce una certa variazione di configurazione, la quale differisce a seconda della natura del corpo.
+%
+%
+%Per comprendere come un certo corpo risponde all'applicazione delle forze occorre osservarlo nella sua evoluzione temporale. Introduciamo dunque il parametro tempo $t\in T\subset\Ro $ e definiamo un \textit{moto}  $\fb(\xb, t)$come l'assegnazione ad ogni istante di tempo di un piazzamento del punto $\xb$ e dunque di una configurazione del corpo $\Omega(t)=\fb(\Bc, t)$.  In ogni punto $\xb$ di quella configurazione, il tensore di sforzo $\Tb (\xb, t)$ determina la tensione su ogni superficie che è la frontiera di una qualche parte $\Pi(t)$ di $\Omega(t)$. La coppia $(\fb, \Tb)$ rappresenta un \textit{processo dinamico} se $\fb$ e $\Tb$ sono legati in modo da soddisfare i principi di bilancio.
+%
+%In un moto possiamo definire la \textit{velocità} del punto $\xb$ come 
+%\begin{equation}
+%	\vb (\xb , t)\coloneqq \partial_t \fb (\xb, t)=: \dot{\fb}(\xb,t).
+%\end{equation}
+%
+%Un'\textit{assunzione costitutiva} è la prescrizione di una classe di processi dinamici o, se vogliamo, la prescrizione di una classe di moti e del sistema di forze bilanciato che lo accompagna. Già la scelta della classe di continui che risponde alle forze come prescrive la teoria di Cauchy è una prima assunzione costitutiva, così come lo è la scelta della forma che assume il lavoro delle forze.
+%
+%Vediamo due esempi di assunzioni costitutive, una che limita i possibili moti, l'altra che invece limita il tipo di campo di sforzo che compone il processo dinamico:
+%\begin{enumerate}
+%	\item i corpi \textit{incomprimibili} possono solo effettuare moti \textit{isocori} (ovvero che preservano il volume); ad esempio, per un corpo di Cauchy incomprimibile i possibili moti devono soddisfare la relazione $\det(\nabla\fb (\xb,t))=1$ in ogni punto $\xb$ e in ogni istante $t$. 
+%	\item il campo di sforzo in un \textit{fluido perfetto} può essere solo una pressione, ovvero $\Tb(\xb, t)=-\pi(\xb, t)\Ib$ per ogni $(\xb,t)$ appartenente al moto ammissibile.
+%\end{enumerate}
+%
+%Un altro esempio di assunzione costitutiva che limita il tipo di moti ammessi, che abbiamo analizzato in dettaglio, è quello della trave: in quel caso, infatti, le deformazioni possibili e dunque il moto conseguente devono essere tali da preservare la rigidità delle sezioni trasversali.
+%
+%In quanto in un processo dinamico le forze che accompagnano $\Tb$ possono compiere lavoro, un processo dinamico è accompagnato e caratterizzato da scambi di \textit{energia}, una quantità estensiva definita in ogni parte  $\Pi$ di $\Omega$:
+%\begin{equation}
+%\Psi(\Pi)=\int_{\Pi}\psi
+%\end{equation}
+%essendo $\psi$ la \textit{densità di energia}. In un contesto puramente meccanico, in cui dunque ignoriamo apporti energetici di natura diversa da quella meccanica, l'unica sorgente di energia è data dalla \textit{potenza} spesa dalle forze esterne durante il moto:
+%\begin{equation}
+%\Wc_e(\Pi)\coloneqq \int_{\Pi}\bb \cdot \vb + \int_{\partial \Pi} \tb \cdot \vb.
+%\end{equation}
+%Se, come abbiamo fatto finora, ci limitiamo a considerare corpi continui \textit{à la} Cauchy, è immediato verificare che
+%\begin{equation}
+%\Wc_e(\Pi)=\int_{\Pi}(\bb+\Div \Tb)\cdot \vb+\int_{\Pi} \Tb\cdot \nabla \vb=\int_{\Pi} \Tb\cdot \dot \Eb=:\Wc_i(\Pi)
+%\end{equation}
+%dove abbiamo usato le condizioni di bilancio \eqref{pstat} e introdotto la \textit{velocità di deformazione}
+%\begin{equation}
+%\dot \Eb = \sym \nabla \vb
+%\end{equation}
+%e definito la \textit{potenza interna} o \textit{potenza dello sforzo} $\Wc_i(\Pi)$.
+%
+%In un generico processo, non è detto che la variazione di energia sia necessariamente bilanciata dall'energia proveniente dall'esterno, quindi $\Wc_e(\Pi)$; questo perché durante un generico processo parte dell'energia potrebbe essere dissipata. Definiamo dunque la \textit{dissipazione} della parte $\Pi$:
+%\begin{definition}
+%	\begin{equation}
+%\Delta(\Pi)\coloneqq \Wc_e(\Pi)-\dot \Psi (\Pi)=\Wc_i(\Pi)-\dot \Psi (\Pi).
+%\end{equation}
+%
+%\end{definition}
+%
+%Assumiamo che, in un processo, la dissipazione sia positiva:
+%\begin{equation}
+%\Delta(\Pi)\geq 0.
+%\end{equation}
+%Ne consegue che
+%\begin{equation}
+%\dot \Psi (\Pi)\leq \Wc_i(\Pi),
+%\end{equation}
+%la quale, valendo per ogni parte $\Pi$, può essere localizzata per dar luogo a 
+%\begin{definition}
+%	\begin{equation}\label{disspos}
+%\dot \psi \leq \Tb\cdot \dot\Eb.
+%\end{equation}
+%\end{definition}
+%Richiederemo che la \textit{disuguaglianza di dissipazione}  \eqref{disspos} restringa la classe dei processi ammissibili, in una teoria puramente meccanica. 
+%
+%
+%\begin{remark}
+%La disuguaglianza \eqref{disspos} rappresenta una versione puramente meccanica della seconda legge della termodinamica, nota come disuguaglianza di Clausius-Duhem. Assunzioni costitutive rispettose di questa disuguaglianza vengono dette \textit{termodinamicamente compatibili}, ancorché nel nostro contesto la parte termica è ignorata. Non è difficile dare della  \eqref{disspos} una versione estesa, partendo dal presupposto che la variazione di energia non sia dovuta soltanto da sorgenti di natura meccanica, ma anche da fenomeni termici, considerando così dei \textit{processi termodinamici}. Analogamente, considerando altre sorgenti di energia, una disuguaglianza tipo la  \eqref{disspos} viene generalmente adoperata per limitare la classe dei processi ammissibili, secondo una modalità nota come \textit{procedura di Coleman-Noll}.\footnote{Si veda B.D. Coleman,  W. Noll, The thermodynamics of elastic materials with heat conduction and viscosity, Arch. Rational Mech. Anal., 13 (1963), pp. 167-178.}
+%\end{remark}
+%
+%La \eqref{disspos} suggerisce anche quali siano i campi che necessitano dell'assegnazione di un'\textit{equazione costitutiva}: l'energia $\psi$ e lo sforzo $\Tb$.
+%
+%Tipicamente, un'equazione costitutiva fornisce i valori di un certo campo $\Phi$ in termini dei valori di un altro, o una lista di altri, campi $\Sc$:
+%\begin{equation}
+%	\Phi(\xb)=\widehat{\Phi}(\Sc(\xb),\xb).
+%\end{equation}
+%La funzione $\widehat{\Phi}$ è detta \textit{mappa di risposta costitutiva}. la dipendenza esplicita di $\widehat{\Phi}$ da $\xb$ consente una dipendenza dal punto in questione; se questa dipendenza è assente, il materiale è \textit{omogeneo}. In maniera sintetica scriveremo 
+%\begin{equation}
+%	\Phi=\widehat{\Phi}(\Sc).
+%\end{equation}
+%%In generale, le mappe costitutive riguardano campi quali le azioni interne, il flusso di calore, l'energia interna, la densità di entropia. 
+%
+%Una teoria costitutiva si basa essenzialmente su tre assiomi (formalizzati da W. Noll nel 1958):
+%\begin{enumerate}[label=(A\arabic*)]
+%	\item \textit{Principio di determinismo}: tutte le mappe costitutive sono completamente determinate dalle storie del moto (e dalla temperatura) fino all'istante corrente.
+%	\item \textit{Principio di azione locale}: nel determinare la risposta costitutiva in un dato punto, il cambiamento di configurazione in un arbitrario intorno di quel punto è ininfluente.
+%	\item \textit{Principio  di  indifferenza  del  riferimento  materiale}: due  osservatori  devono  poter  determinare la stessa risposta costitutiva, indipendentemente dal riferimento in cui si pongono.
+%\end{enumerate}
+
+
+La disuguaglianza di dissipazione ridotta \eqref{DDR} limita la classe dei processi possibili. Per comprenderne il ruolo, in questo capitolo affronteremo, nel contesto della meccanica dei continui tridimensionali, l'analisi di alcune classi di materiali:
+\begin{enumerate}
+	\item \textit{Materiali elastici}, isolanti termici, per cui la lista delle variabili di stato è $\Sc=\{\Eb\}$ e per i quali $\qb =\mathbf{0}$ e $\dot{\vartheta}=0$;
+	\item\textit{ Conduttori rigidi}, per cui $\Eb=\mathbf{0}$ e per cui $\Sc=\{  \vartheta, \nabla\vartheta\}$;
+	\item \textit{Condutttori elastici},  per cui $\Sc=\{ \Eb, \vartheta, \nabla\vartheta\}$.
+\end{enumerate}
+
+
+\section{Materiali elastici}
+Un materiale è elastico se
+\begin{enumerate}
+	\item  L'energia $\psi$ e lo sforzo $\Tb$ dipendono soltanto dal valore corrente della deformazione e non dalla sua storia passata, né dalla velocità con cui la deformazione varia. Di conseguenza le equazioni costitutive per l'energia e lo sforzo sono del tipo
+	\begin{equation}\label{constel}
+		\psi= \widehat{\psi}(\Eb), \qquad \Tb=\widehat{\Tb}(\Eb).
+	\end{equation}
+\item  Non dissipa energia:
+\begin{equation}\label{gammael}
+\gamma=	\Tb \cdot \dot \Eb-\dot{\psi}=0.
+\end{equation}
+\end{enumerate}
+
+
+Per comprendere quali siano le conseguenze, adoperiamo un ragionamento, che va sotto il nome di \textit{Procedura di Coleman-Noll}.\footnote{Si veda B.D. Coleman,  W. Noll, The thermodynamics of elastic materials with heat conduction and viscosity, Arch. Rational Mech. Anal., 13 (1963), pp. 167-178.}
+
+Poiché, un processo, $\psi=\widehat{\psi}(\Eb)$ e $\Tb=\widehat{\Tb}(\Eb)$, la \eqref{gammael} può essere riscritta come
+\begin{equation}
+	\widehat{\Tb}(\Eb)\cdot \dot{\Eb}-\Big(\widehat{\psi}(\Eb)\Big)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}=0,
+\end{equation}
+ovvero, utilizzando la regola di catena
+\begin{equation}\label{Tepsi}
+	\Big( 	\widehat{\Tb}(\Eb)-\partial_\Eb\widehat{\psi} \Big)\cdot\dot{\Eb}=0.
+\end{equation}
+
+Questa condizione deve essere soddisfatta per ogni continuazione locale di ciascun processo concepibile; in particolare, assumiamo che la geometria dello spazio degli stati sia tale da avere accessibile una continuazione locale di ogni traiettoria nello spazio.
+
+In altri termini, per ogni coppia $(\Sc, \dot{\Sc})$ assumiamo che esiste una traiettoria $t\mapsto\Sc(t)$ e un istante di tempo $t_0$ tale che $\Sc(t_0)=\Sc$ e $\dot{\Sc}(t_0)=\dot{\Sc}$. 
+
+Nel presente contesto, ciò significa che la \eqref{Tepsi} deve essere valida \textit{per ogni} $\dot{\Eb}$ e dunque 
+\begin{definition}
+	\begin{equation}\label{Tdevpsi}
+\widehat{\Tb}(\Eb)=\partial_\Eb\widehat{\psi}(\Eb).
+\end{equation}
+\end{definition}
+Un materiale siffatto è detto \textit{iperelastico}.
+
+Per materiali elastici \textit{lineari} consideriamo un'espansione della funzione di risposta costitutiva dello sforzo attorno ad una configurazione di riferimento \textit{rilassata}, ovvero con $\Eb=\mathbf{0}$, $\psi=0$ e $\Tb=\mathbf{0}$; la richiesta che $\Tb$ sia nulla nella configurazione di riferimento non è fondamentale e può essere rimossa, dando luogo a materiali con auto-tensioni o tensioni residue. Si ha dunque
+\begin{equation}
+\widehat{\Tb}=\widehat{\Tb}(\mathbf{0})+\left(\left.\partial_\Eb\widehat{\Tb}(\Eb)\right|_{\Eb=\mathbf{0}}\right)\,\Eb +o(|\mathbf{E}|).
+\end{equation}
+Essendo la configurazione di riferimento rilassata $\widehat{\Tb}(\mathbf{0})=\mathbf{0}$. In ragione della \eqref{Tdevpsi}, possiamo scrivere
+\begin{equation}
+\left.\partial_\Eb\widehat{\Tb}(\Eb)\right|_{\Eb=\mathbf{0}}=\left.\partial^2_{\Eb \Eb}\widehat{\psi}(\Eb)\right|_{\Eb=\mathbf{0}}=:\Co,
+\end{equation}
+dove abbiamo introdotto il tensore (del quarto ordine) di elasticità $\Co$. Trascurando infinitesimi di ordine $o(|\Eb|)$ possiamo allora scrivere la mappa di risposta costitutiva per lo sforzo:
+\begin{definition}
+	\begin{equation}
+\Tb =\widehat{\Tb}(\Eb)=\Co \Eb, \qquad \qquad(T_{ij}=\Co_{ijhk}E_{kh})
+\end{equation}
+\end{definition}
+L'energia associata, in forza della  \eqref{Tdevpsi}, è data dalla seguente mappa di risposta costitutiva:
+\begin{definition}
+	\begin{equation}
+\psi =\widehat{\psi}(\Eb)=\frac{1}{2}\Co \Eb\cdot\Eb, \qquad\qquad  \left(\psi=\frac{1}{2} \Co_{ijhk}E_{ij}E_{hk}  \right)
+\end{equation}
+\end{definition}
+
+Poiché 
+\begin{equation}
+	\frac{\partial^2\widehat{\psi}(\Eb)}{\partial E_{ij}\partial E_{hk}}=\frac{\partial^2\widehat{\psi}(\Eb)}{\partial E_{hk}\partial E_{ij}},
+\end{equation}
+segue che le componenti $\Co_{ijhk}$ di $\Co$ possiedono le cosiddette \textit{simmetrie maggiori}:
+\begin{definition}
+\begin{equation}
+	\Co_{ijhk}=\Co_{hkij}.
+\end{equation}
+\end{definition}
+
+Inoltre, poiché $\Tb\in\Sym$
+\begin{equation}
+	T_{ij}=\Co_{ijhk}E_{hk}=T_{ji}=\Co_{jihk}E_{hk},
+\end{equation}
+ le componenti $\Co_{ijhk}$ di $\Co$ possiedono anche  le cosiddette \textit{simmetrie minori}:
+
+\begin{definition}
+\begin{equation}
+		\Co_{ijhk}=\Co_{jihk}.
+\end{equation}
+\end{definition}
+
+Per le simmetrie minori, le componenti di $\Co$ sono al più $6^2=36$; infatti, se consideriamo $\Co_{ijhk}$, si ha che la coppia ij, vista la simmetria, produce al più 6 componenti indipendenti, e lo stesso vale per la coppia hk.
+
+La simmetria maggiore riduce ulteriormente il numero delle componenti al più a 36-15=21.
+
+%
+%\vspace{2cm}
+%
+%Un materiale è elastico se il suo valore attuale della tensione dipende soltanto dal valore corrente della deformazione e non dalla sua storia passata. Più precisamente, il tensore degli sforzi dipende soltanto dal gradiente della deformazione:
+%\begin{equation}
+%	\Tb=\widehat{\Tb} (\Fb)=\widehat{\Tb}(\Ib+\Hb).
+%\end{equation}
+%Assumendo che la funzione di risposta costitutiva sia regolare, possiamo espanderla in serie di Taylor in $\Hb$:
+%\begin{equation}
+%	\Tb=\widehat{\Tb}(\Ib)+\partial_\Fb\widehat{\Tb}(\Ib) \Hb+o(|\Hb|).
+%\end{equation} 
+%Il termine $\widehat{\Tb}(\Ib)$ rappresenta la tensione nella configurazione di riferimento, che assumeremo ovunque nulla. L'operatore lineare $\partial_\Fb\widehat{\Tb}(\Ib) $, derivata di un tensore del secondo ordine rispetto ad un altro tensore del secondo ordine, è un tensore del quarto ordine, che indichiamo con 
+%\begin{equation}
+%	\Co \coloneqq \partial_\Fb\widehat{\Tb}(\Ib) 
+%\end{equation}
+%e dunque
+%\begin{equation}
+%	\Tb= \Co \Hb +o(|\Hb|).
+%\end{equation}
+%
+%Un materiale è \textit{elastico lineare} se il tensore degli sforzi dipende linearmente dal gradiente di spostamento:
+%\begin{equation}
+%	\Tb= \Co \Hb,
+%\end{equation}
+%ovvero, in componenti
+%\begin{equation}
+%	T_{ij}=\Co_{ijhk}H_{kl}, \qquad \Co_{ijhk}\coloneqq \Co\eb_h \otimes\eb_k\cdot \eb_i\otimes\eb_j.
+%\end{equation}
+%
+%La linearità di $\Co$ implica che
+%\begin{equation}
+%\Co \Hb=\Co\Eb +\Co \Wb.
+%\end{equation}
+%Osserviamo che una traslazione non provoca sforzo e dunque, poiché il gradiente di una traslazione è il tensore nullo $\Co \mathbf{0}=\mathbf{0}$. Possiamo anche assumere che le rotazioni non inducano sforzo e dunque $\Co \Wb=\mathbf{0}$. Ne segue allora che 
+%\begin{equation}
+%\Tb= \Co \Eb,
+%\end{equation}
+%che è l'equazione costitutiva per lo sforzo di un materiale elastico lineare.
+
+\subsection{Simmetrie materiali}
+Diciamo che $\Qb$ rappresenta una simmetria materiale se rotazioni o riflessioni del materiale di entità $\Qb$ non possono essere rilevate con degli esperimenti di deformazione-tensione.
+
+Supponiamo di avere un materiale costituito da una matrice in cui siano immerse delle fibre in direzione $\eb_1$. Immaginiamo di misurare la tensione necessaria a produrre un'estensione $\varepsilon$ in direzione $\eb_1$, ovvero imponendo una deformazione
+\begin{equation}
+	\Eb =\varepsilon\,\eb_1\otimes\eb_1.
+\end{equation}
+Successivamente immaginiamo di misurare la tensione per produrre un'estensione pari a $\varepsilon$ ma in una direzione ruotata di $\Qb=\Rb (\pi/2, \eb_3)$, ovvero di $\pi/2$ attorno ad $\eb_3$:
+\begin{equation}
+\Eb ^\Qb =\varepsilon\, \eb_2 \otimes \eb_2= \varepsilon\,\Qb \eb_1 \otimes \Qb \eb_1.
+\end{equation}
+
+Ovviamente ci aspettiamo che  la tensione misurata nel secondo esperimento sia diversa dalla prima e dunque $\Qb$ \textit{non} rappresenta una simmetria materiale. Una rotazione di $\pi$ non sarebbe stata invece rilevabile, visto che il materiale risulterebbe indistinguibile dal primo, se ruotato di $\pi$; in questo caso $\Rb(\pi, \eb_3)$ rappresenterebbe allora una simmetria materiale.
+
+Cerchiamo di precisare meglio che cosa intendiamo dicendo di misurare la stessa tensione in due esperimenti diversi, come quelli appena descritti.
+
+In una prova monoassiale, ad una deformazione $\Eb=\varepsilon\,\eb_1\otimes\eb_1$ corrisponde uno sforzo
+\begin{equation}
+	\Tb =\sigma \eb_1\otimes\eb_1.
+\end{equation}
+Supponiamo adesso di effettuare lo stesso esperimento in una direzione ruotata di $\Qb=\Rb (\pi/2, \eb_3)$, applicando una estensione $\varepsilon$ in direzione $\eb_2$, ovvero $\Eb^\Qb=\varepsilon\eb_2\otimes\eb_2$ e misuriamo la tensione che ne consegue:
+\begin{equation}
+	\Tb^\Qb =\sigma^\Qb\eb_2\otimes \eb_2.
+ \end{equation}
+Chiaramente la tensione è la stessa se
+\begin{equation}
+	\sigma=\sigma^\Qb
+\end{equation}
+e non quando $\Tb =\Tb ^\Qb$.
+
+Generalizziamo quanto esposto tramite questo esempio della trazione monoassiale. Per il teorema spettrale possiamo rappresentare $\Eb$ come
+\begin{equation}\label{espettr1}
+	\Eb=\sum_{i=1}^{3}\varepsilon_i\, \vb_i\otimes \vb_i,
+\end{equation}
+dove $(\varepsilon_i, \vb_i)$ sono le autocoppie di $\Eb$. La deformazione $\Eb^\Qb$ ruotata è data da una deformazione avente le stesse estensioni $\varepsilon_i$ ma nelle direzioni ruotate di $\Qb$:
+\begin{equation}
+\Eb^\Qb\coloneqq \sum_{i=1}^{3}\varepsilon_i\, \Qb\vb_i\otimes \Qb\vb_i,
+\end{equation}
+ovvero\footnote{Qui usiamo la proprietà valida per ogni $\Ab, \Bb\in$ Lin, $\ab, \bb \in \Vc$:
+	\begin{equation}
+		\Ab(\ab\otimes\bb)\Bb=\Ab \ab \otimes \Bb^\top \bb.
+\end{equation}}
+\begin{equation}
+\Eb^\Qb=\Qb\sum_{i=1}^{3}\varepsilon_i\, \vb_i\otimes \vb_i \Qb ^\top = \Qb \Eb \Qb^\top.
+\end{equation}
+Indichiamo con 
+\begin{equation}
+	\Tb \coloneqq\Co \Eb, \qquad \Tb^\Qb\coloneqq \Co \Eb^\Qb=\Co (\Qb \Eb \Qb^\top)
+\end{equation}
+le risposte alle deformazioni $\Eb$ e $\Eb^\Qb$. Essendo $\Tb$ e $\Tb^\Qb$ simmetrici, possiamo darne la rappresentazione spettrale:
+\begin{equation}
+	\Tb=\sum_{i=1}^{3}\sigma_i\, \tb_i\otimes \tb_i, \qquad 	\Tb^\Qb=\sum_{i=1}^{3}\sigma_i\, \tb^\Qb_i\otimes \tb^\Qb_i.
+\end{equation}
+Diremo che $\Qb\in$ Orth è una simmetria materiale se
+\begin{equation}
+\sigma_i=\sigma_i^\Qb, \qquad \tb_i^\Qb=\Qb \tb_i,
+\end{equation}
+ovvero se $\Eb$ e $\Eb^\Qb$ producono le stesse tensioni principali in direzioni ruotate di $\Qb$. 
+
+Pertanto, se $\Qb$ è una simmetria
+\begin{equation}
+\Co(\Qb\Eb \Qb^\top)=\Co \Eb^\Qb=\Tb^\Qb=\sum_{i=1}^{3}\sigma_i\, \tb^\Qb\otimes \tb^\Qb=\Qb \left(  \sum_{i=1}^{3}\sigma_i\, \tb_i\otimes \tb_i \right)\Qb^\top=\Qb \Tb \Qb^\top=\Qb\Co \Eb \Qb^\top.
+\end{equation}
+Concludiamo che $\Qb\in$ Orth è una simmetria materiale se
+\begin{definition}
+\begin{equation}
+		\Co(\Qb\Eb \Qb^\top)=\Qb \Co \Eb \Qb ^\top \qquad \forall \Eb \in \Sym,
+\end{equation}
+\end{definition}
+ovvero 
+\begin{definition}
+	\begin{equation}
+		\widehat{\Tb}(\Qb \Eb \Qb ^\top)=\Qb \widehat{\Tb}(\Eb)\Qb ^\top, \qquad \forall \Eb \in \Sym.
+	\end{equation}
+\end{definition}
+
+L'insieme
+\begin{equation}
+	\Gc =\{ \Qb \in {\rm Orth}\, :\, \widehat{\Tb}(\Qb \Eb \Qb ^\top)=\Qb \widehat{\Tb}(\Eb)\Qb ^\top, \quad \forall \Eb \in \Sym  \}
+\end{equation}
+è detto \textit{gruppo di simmetria materiale} e i suoi elementi sono le simmetrie materiali.
+
+
+
+
+\begin{exercise}
+	Sia $\mathcal{G}_{\mathbb{C}}$ il gruppo di simmetria  di un materiale elastico e $\psi=\widehat\psi(\Eb)$ la densità di energia elastica
+	\begin{equation}
+		\psi=\widehat\psi(\Eb)=\frac12 \Co\Eb\cdot\Eb.
+	\end{equation}
+	
+	Mostrare che, per ogni $\Qb\in\mathcal{G}_{\mathbb{C}}$
+	\begin{equation}
+		\widehat\psi(\Eb)=	\widehat\psi(\Qb\Eb\Qb^\top).
+	\end{equation}
+	
+	\begin{svolgimento}
+		Si ha che
+		\begin{equation}
+			\widehat{\psi}(\Eb)=\frac{1}{2}\widehat{\Tb}(\Eb)\cdot \Eb, \qquad \widehat{\psi}(\Qb\Eb\Qb^\top)=\frac{1}{2}\widehat{\Tb}(\Qb\Eb\Qb^\top)\cdot \Qb\Eb\Qb^\top.
+		\end{equation}
+		Poiché $\Qb \in \mathcal{G}_{\mathbb{C}}$
+		\begin{equation}
+			\widehat{\Tb}(\Qb\Eb\Qb^\top)=\Qb\widehat{\Tb}(\Eb)\Qb^\top,
+		\end{equation}
+		e dunque
+		\begin{equation}
+			\widehat{\psi}(\Qb\Eb\Qb^\top)=\frac12\Qb\widehat{\Tb}(\Eb)\Qb^\top\cdot  \Qb\Eb\Qb^\top=\frac12 \Qb^\top\Qb \widehat{\Tb}(\Eb)\cdot \Eb \Qb^\top\Qb=\frac{1}{2}\widehat{\Tb}(\Eb)\cdot \Eb=\widehat{\psi}(\Eb).
+		\end{equation}
+		Il risultato mostra l'ovvia invarianza dell'energia rispetto a trasformazioni di simmetria materiale.
+	\end{svolgimento}
+	
+\end{exercise}
+
+
+\subsection{Materiali isotropi}
+Un materiale è isotropo se la risposta elastica  è uguale in tutte le direzioni, ovvero
+\begin{equation}
+	\Gc ={\rm Orth},
+\end{equation}
+e dunque
+\begin{equation}
+	\widehat{\Tb}(\Qb \Eb \Qb ^\top)=\Qb \widehat{\Tb}(\Eb)\Qb ^\top, \qquad \forall \Eb \in \Sym, \Qb \in {\rm Orth}.
+\end{equation}
+
+
+
+Una proprietà rilevante di un materiale isotropo, che va sotto il nome di \textit{coassialità}, è che 
+quando  viene sottoposto a deformazioni, le direzioni in cui si verificano le massime e minime deformazioni (direzioni principali delle deformazioni) sono le stesse in cui si sviluppano le massime e minime tensioni (direzioni principali degli sforzi). In altre parole, se si osserva un materiale isotropo che subisce una sollecitazione, le direzioni lungo le quali le deformazioni sono massime (ad esempio, la dilatazione o la compressione) coincidono con quelle lungo le quali gli sforzi sono massimi. Questo è un comportamento che rispecchia l'omogeneità del materiale in tutte le direzioni spaziali. Per esempio, se un materiale si allunga lungo una direzione principale, lo sforzo che causa questa deformazione sarà orientato nella stessa direzione.
+
+Enunciamo in maniera più precisa il \textit{teorema di coassialità}:
+\begin{definition}
+Sia $\widehat{\Tb}(\Eb)$ isotropo, ovvero
+\begin{equation}
+	\widehat{\Tb}(\Qb \Eb \Qb ^\top)=\Qb \widehat{\Tb}(\Eb)\Qb ^\top, \qquad \forall \Eb \in \Sym, \Qb \in {\rm Orth},
+\end{equation}
+allora ogni autovettore di $\Eb\in \Sym$ è un autovettore di $\widehat{\Tb}(\Eb)$.
+\end{definition}
+
+
+Dimostriamo il teorema. Sia $\vb$ un autovettore di $\Eb$. Scegliamo come base
+\begin{equation}
+	\{\eb_1\equiv \vb, \eb_2, \eb_3  \},
+\end{equation}
+sicché di $\Eb$ si può dare la seguente rappresentazione spettrale:
+\begin{equation}
+	\Eb =\varepsilon_1\, \vb \otimes \vb +\varepsilon_2 \eb_2 \otimes \eb_2+ \varepsilon_3 \eb_3 \otimes \eb_3.
+\end{equation}
+Sia $\Rb_\vb\in$ Orth una riflessione rispetto ad un piano di normale $\vb$; un vettore $\ab$ parallelo a $\vb$ viene dunque mappato in $\Rb_\vb\ab=-\ab$, mentre un vettore $\bb$ perpendicolare a $\vb$ viene mappato in $\Rb_\vb\bb=\bb$. In particolare
+\begin{equation}
+	\Rb_\vb\vb =-\vb, \qquad \Rb_\vb\eb_2=\eb_2, \qquad \Rb_\vb\eb_3=\eb_3
+\end{equation}
+e dunque
+\begin{equation}\label{RvE}
+	\Rb_\vb\Eb \Rb_\vb^\top=\Eb.
+\end{equation}
+Poiché $\widehat{\Tb}$ è isotropo, scegliendo $\Qb=\Rb_\vb$, si ha
+\begin{equation}
+	\widehat{\Tb}(\Rb_\vb\Eb \Rb_\vb^\top)=\Rb_\vb\widehat{\Tb}(\Eb)\Rb_\vb^\top,
+\end{equation}
+ma, per la \eqref{RvE}, si ha che
+\begin{equation}
+	\widehat{\Tb}(\Eb)=\Rb_\vb\widehat{\Tb}(\Eb)\Rb_\vb^\top.
+\end{equation}
+Determiniamo adesso l'immagine sotto la riflessione $\Rb_\vb$ del vettore della tensione su un piano di normale $\vb$:
+\begin{equation}
+	\Rb_\vb\widehat{\Tb}(\Eb)\vb=	\Rb_\vb\widehat{\Tb}(\Eb)\Ib\vb=\Rb_\vb\widehat{\Tb}(\Eb)\Rb_\vb^\top\Rb_\vb \vb=\widehat{\Tb}(\Eb)\Rb_\vb \vb=-\widehat{\Tb}(\Eb)\vb,
+\end{equation}
+e dunque
+\begin{equation}
+\Rb_\vb\widehat{\Tb}(\Eb)\vb=-\widehat{\Tb}(\Eb)\vb.
+\end{equation}
+Questo è possibile solo se la tensione $\widehat{\Tb}(\Eb)\vb$ è parallela a $\vb$:
+\begin{equation}
+	\widehat{\Tb}(\Eb)\vb=\lambda \vb, \quad \lambda\in \Ro,
+\end{equation}
+ovvero se $\vb$ è un autovettore di $\widehat{\Tb}(\Eb)$, che era ciò che dovevamo dimostrare.
+
+\vspace{.3cm}
+
+
+Per un materiale isotropo è possibile formulare un \textit{Teorema di Rappresentazione}, che fornisce una forma esplicita di $\widehat{\Tb}(\Eb)$:
+\begin{definition}
+Un materiale elastico lineare è isotropo se e solo se esistono due costanti $\mu$ e $\lambda$ (dette costanti di Lamé) tali che
+\begin{equation}
+	\widehat{\Tb}(\Eb)=\Co \Eb =2 \mu \Eb +\lambda(\operatorname{tr} \Eb )\Ib,
+\end{equation}
+per ogni $\Eb\in\Sym$.
+\end{definition}
+
+La dimostrazione fa uso del teorema di coassialità e di una conseguenza del teorema spettrale. Poiché $\Eb\in \Sym$,  allora ammette la seguente rappresentazione spettrale:
+\begin{equation}\label{espettr}
+	\Eb=\sum_{i=1}^{3}\varepsilon_i\, \vb_i\otimes \vb_i.
+\end{equation}
+La proprietà che ci intessa è la seguente:  sia $\varepsilon_1$ l'autovalore di $\Eb\in \Sym$ associato a $\vb$, di molteplicità algebrica 1, mentre $\varepsilon_2$ l'autovalore di molteplicità algebrica 2. Allora ogni vettore ortogonale a $\vb$ è un autovettore:
+\begin{equation}
+\Eb=\varepsilon_1 \vb \otimes \vb + \varepsilon_2 (\wb_1\otimes\wb_1+\wb_2\otimes\wb_2),
+\end{equation} 
+con $\wb_1\cdot\vb = \wb_2\cdot \vb=\wb_1\cdot\wb_2=0$.
+Ne segue che
+\begin{equation}
+\begin{aligned}
+\Eb &=\varepsilon_1 \vb \otimes \vb+\varepsilon_2(\wb_1\otimes\wb_1\wb_2\otimes\wb_2+\vb_1\otimes\vb_1)-\varepsilon_2\vb \otimes \vb,
+\end{aligned}
+\end{equation}
+ovvero 
+\begin{definition}
+\begin{equation}\label{Evv}
+	\begin{aligned}
+		\Eb  =\lambda\, \Ib +2\mu \,\vb \otimes \vb,
+	\end{aligned}
+\end{equation}
+\end{definition}
+con $\lambda\coloneqq \varepsilon_2$ e $\mu\coloneqq(\varepsilon_1-\varepsilon_2)/2$.
+
+
+\vspace{.3cm}
+
+Abbiamo a questo punto tutti gli elementi per poter dimostrare il Teorema di Rappresentazione. Osserviamo che per ogni $\vb$, con $|\vb|=1$, il tensore $\vb \otimes \vb$ ha come autovettore $\vb$ (con autovalore 1) e ogni vettore $\wb$ perpendicolare a $\vb$ (con autovalore 0); infatti
+\begin{equation}
+	(\vb \otimes \vb)\,\vb=\vb, \qquad (\vb \otimes \vb)\,\vb=\mathbf{0}.
+\end{equation}
+Per il teorema di coassialità $\mathbf{v}$ è anche un autovettore di $\widehat{\Tb}(\vb \otimes\vb)$. Allora, per la proprietà \eqref{Evv}, esistono due funzioni $\lambda(\vb)$ e $\mu (\vb)$ tali che
+\begin{equation}\label{Tbvv}
+\widehat{\Tb}(\vb \otimes \vb)=\lambda(\vb)\, \Ib+2\mu (\vb) \vb \otimes \vb.
+\end{equation}
+
+Sia $\wb =\Qb \vb$, $\Qb \in$ Orth; poiché $\widehat{\Tb}$ è isotropo
+\begin{equation}
+\Qb \widehat{\Tb}(\vb \otimes \vb)\Qb ^\top=\widehat{\Tb}(\Qb \vb \otimes \Qb \vb)=\widehat{\Tb}(\wb \otimes \wb);
+\end{equation}
+dunque
+\begin{equation}
+\Qb \widehat{\Tb}(\vb \otimes \vb)\Qb ^\top-\widehat{\Tb}(\wb \otimes \wb)=\mathbf{0}.
+\end{equation}
+Alla luce di \eqref{Tbvv}, possiamo allora  scrivere che
+\begin{equation}
+\lambda(\vb) \,\Ib+2\mu(\vb) \Qb \vb \otimes \Qb \vb -\lambda(\wb) \Ib -2\mu (\wb)\, \wb \otimes \wb =\mathbf{0},
+\end{equation}
+ovvero
+\begin{equation}
+	\Big(  \lambda(\vb)-\lambda(\wb) \Big)\,\Ib+2\Big(  \mu (\vb)-\mu (\wb) \Big)\,\wb \otimes \wb.
+\end{equation}
+Dato che $\Ib$ e $\wb \otimes \wb$ sono linearmente indipendenti, questa condizione implica che
+\begin{equation}
+	\lambda(\vb)=\lambda(\wb), \qquad \mu(\vb)=\mu(\wb), \qquad \forall \vb, \wb
+\end{equation}
+ovvero, $\lambda$ e $\mu$ sono costanti. Dunque
+\begin{equation}
+	\widehat{\Tb}(\vb \otimes \vb)=\lambda\, \Ib+2\mu (\vb \otimes \vb).
+\end{equation}
+Facciamo a questo punto uso della rappresentazione spettrale \eqref{espettr}:
+\begin{equation}
+\widehat{\Tb}(\Eb)=\sum_{i=1}^3 \varepsilon_i \widehat{\Tb}(\vb_i\otimes \vb_i)=2\mu \sum_{i=1}^3 \varepsilon_i +\lambda\sum_{i=1}^3 \varepsilon_i \Ib=2\mu \Eb +\lambda(\operatorname{tr}\Eb )\Ib,
+\end{equation}
+il che conclude la dimostrazione.
+
+
+
+
+
+
+
+\subsection{Interpretazione delle costanti elastiche}
+Nella pratica ingneristica le due costanti di Lamé sono generalmente sostituite da altre costanti equivalenti, che hanno una significativa interpretazione meccanica. 
+In particolare si introducono le costanti
+\begin{equation}
+E=\frac{(2\mu+3\lambda)\mu}{\mu+\lambda}, \qquad \nu = \frac{\lambda}{2(\mu+\lambda)};
+\end{equation}
+la costante $\mu$ è di sovente indicata con la lettera $G$ e così noi faremo; risulta allora che
+\begin{equation}
+G=\frac{E}{2(1+\nu)}.
+\end{equation}
+
+Con queste nuove costanti, il legame costitutivo diventa
+\begin{definition}
+\begin{equation}\label{const3D}
+	\mathbf{T}=\Co \Eb=\frac{E}{1+\nu}{\left(\mathbf{E}+\frac{\nu}{1-2\nu}(\operatorname{tr}\mathbf{E})\mathbf{I}\right)}.
+\end{equation}
+\end{definition}
+
+Per invertire il legme costitutivo conviene determinarne la traccia:
+\begin{equation}
+\operatorname{tr}\Tb=\frac{E}{1-2\nu} \operatorname{tr}\Eb \qquad \Longrightarrow \operatorname{tr}\Eb =\frac{1-2\nu}{E}\operatorname{tr}\Tb,
+\end{equation} 
+che può essere inserito nella \eqref{const3D} per trovare:
+e del legame costitutivo inverso:
+\begin{definition}
+\begin{equation}\label{costinv}
+	\Eb=\mathbb{C}^{-1}\mathbf{T}=\frac{1+\nu}{E}\mathbf{T}-\frac{\nu}{E}(\operatorname{tr}\mathbf{T})\mathbf{I}.
+\end{equation}
+\end{definition}
+Il ruolo dei moduli elastici si chiarisce quando si immagina di eseguire alcuni esperimenti tipici, in ognuno dei quali un modulo o l'altro interviene in modo evidente. Nei primi due esperimenti che considereremo, registriamo quale tensione accompagna una data deformazione in base alla relazione costitutiva \eqref{const3D}; nel terzo esperimento, la tensione è assegnata e la deformazione corrispondente viene calcolata utilizzando \eqref{costinv}.
+
+
+\vspace{.3cm}
+
+
+\begin{enumerate}
+	\item \textit{Scorrimento puro}\\
+	Ricordiamo da \eqref{Escor} che uno scorrimento puro ha la forma 
+	\begin{equation}
+		\Eb=\frac{\gamma}{2}(\mb\otimes \nb+\nb\otimes \mb),
+	\end{equation}
+	con $\mb$ e $\nb$ ortogonali
+	Lo sforzo che ne consegue, in virtù della \eqref{const3D} è allora
+	\begin{equation}
+		\Tb=\frac{\gamma}{2}2G(\mb\otimes \nb+\nb\otimes \mb);
+	\end{equation}
+	allora il coefficiente
+	\begin{equation}
+		2G=\frac{\nb \cdot \Tb \mb}{\nb \cdot \Eb \mb}
+	\end{equation}
+	misura lo sforzo di taglio necessario per mantenere uno scorrimento unitario; per questo motivo è detto \textit{coefficiente di scorrimento}.
+	
+	\item \textit{Dilatazione uniforme}\\
+	In questo esperimento
+	\begin{equation}
+		\Eb=\kappa \Ib,
+	\end{equation}
+	cui consegue uno sforzo
+	\begin{equation}
+		\Tb=\frac{E}{1-2\nu}\kappa \,\Ib,
+	\end{equation}
+	ovvero una trazione uniforme di intensità $\pi=\frac{E}{1-2\nu}\kappa $. Il rapporto tra questa trazione e la variazione di volume data dalla traccia di $\Eb$ definisce il \textit{modulo di comprimibilità}
+	\begin{equation}\label{compr}
+		\beta\coloneqq \frac{\pi}{\operatorname{tr}\Eb}=\frac{E}{3(1-2\nu)}.
+	\end{equation}
+	
+	\item \textit{Trazione uniforme}\\
+	In questo esperimento
+	\begin{equation}
+		\Tb = \sigma\nb \otimes \nb,
+	\end{equation}
+	cui corrisponde una deformazione che vale, alla luce di \eqref{costinv}
+	\begin{equation}
+		\Eb=\sigma\left(\frac{1+\nu}{E}\nb \otimes \nb-\frac{\nu}{E}\Ib  \right).
+	\end{equation}
+	Il rapporto tra lo sforzo nella direzione $\nb$ e l'elongazione specifica nella stessa direzione vale
+	\begin{equation}
+		\frac{\Tb \nb \cdot \nb}{\Eb \nb \cdot \nb}=E.
+	\end{equation}
+	La costante $E$ è detta \textit{modulo di Young} e misura dunque lo sforzo  necessario a causare una elongazione specifica unitaria.
+	
+	Il significato della costante $\nu$, detta \textit{coefficiente di Poisson} appare evidente misurando il rapporto tra la deformazione trasversale e assiale in un esperimento di trazione uniforme:
+	\begin{equation}
+		\nu=-\frac{\Eb \mb \cdot \mb}{\Eb \nb \cdot \nb},
+	\end{equation}
+	essendo $\mb$ perpendicolare a $\nb$.
+\end{enumerate}
+
+
+\vspace{.3cm}
+Le dimensioni fisiche delle costanti elastiche sono
+\begin{equation}
+	[E]=[G]=\frac{F}{L^2}, \quad [\nu]=-.
+\end{equation}
+Generalmente il modulo di Young e il modulo di scorrimento sono espressi in ${\rm N}/{\rm m}^2={\rm Pa}$.
+
+\vspace{.3cm}
+
+Le costanti elastiche non posso assumere valori qualunque, devono soddisfare le condizioni 
+\begin{equation}
+			E>0, \quad G>0, \qquad -1<\nu<\frac12.
+\end{equation}
+Il motivo è legato alla circostanza che l'energia elastica deve essere positiva. Osserviamo innazitutto che, grazie al legame costitutivo \eqref{const3D}, l'energia elastica può essere espressa in termini di $\Tb$:
+\begin{equation}
+\psi=\widehat\psi(\Eb)=\frac12 \Co \Eb \cdot \Eb =\frac 12 \Tb \cdot \Co^{-1}\Tb=:\widetilde{\psi}(\Tb).
+\end{equation}
+
+Decomponiamo $\Tb$ come segue:
+\begin{equation}
+\Tb=\operatorname{sph}\Tb+\operatorname{dev}\Tb, 
+\end{equation}
+dove la parte \textit{sferica}  $\operatorname{sph}\Tb$ e \textit{deviatorica} è  $\operatorname{dev}\Tb$ sono definite come
+\begin{equation}
+	\operatorname{sph}\Tb\coloneqq \frac{1}{3}(\operatorname{tr}\Tb)\, \Ib, \qquad \operatorname{dev}\Tb\coloneqq \Tb-	\operatorname{sph}\Tb.
+\end{equation}
+
+Così facendo, usando la \eqref{costinv}
+\begin{equation}
+\Eb=\Co ^{-1}\Tb =\frac{1+\nu}{E}(\operatorname{sph}\Tb+\operatorname{dev}\Tb)-\frac{\nu}{E}(3	\operatorname{sph}\Tb)\mathbf{I}=\frac{1-2\nu}{E}	\operatorname{sph}\Tb+\frac{1+\nu}{E}	\operatorname{dev}\Tb.
+\end{equation}
+L'energia elastica è allora positiva se
+\begin{equation}\label{ensf}
+\widetilde{\psi}(\Tb)=\frac{1}{2}\left( \frac{1-2\nu}{E}	|\operatorname{sph}\Tb|^2+\frac{1+\nu}{E}	|\operatorname{dev}\Tb|^2\right)>0
+\end{equation}
+ovvero se
+\begin{equation}
+\frac{1-2\nu}{E}>0 \quad \textrm{e} \quad \frac{1+\nu}{E}>0.
+\end{equation}
+
+La prima condizione è soddisfatta se
+\begin{equation}
+E>0, \quad \nu <\frac 12 \qquad \textrm{oppure} \qquad E<0, \quad \nu >\frac12.
+\end{equation}
+
+La seconda condizione è soddisfatta se
+\begin{equation}
+E>0, \quad \nu>-1 \qquad \textrm{oppure} \qquad E<0, \quad \nu <-1.
+\end{equation}
+Se $E<0$ non vi è alcuna soluzione. Allora
+\begin{equation}
+E>0, \qquad -1<\nu< \frac12.
+\end{equation}
+
+\begin{remark}
+L'espressione \eqref{ensf} mostra  che, se $\nu=1/2$, il materiale non accumula energia in presenza di pressioni (o trazioni) uniformi: si tratta dunque di un materiale \textit{incomprimibile}; in questo caso il modulo di comprimibilità \eqref{compr} tende ad  infinito.
+
+
+\end{remark}
+
+%	L'energia elastica può essere espressa agevolmente come
+%	\begin{equation}
+%		\psi=\widehat{\psi}(\Eb)=G \left(  |\Eb|^2+\frac{\nu}{1-2\nu} (\operatorname{tr}\Eb)^2\right);
+%	\end{equation}
+%	affinché questa quantità sia definita positiva, è necessario che le costanti elastiche soddisfino le condizioni
+%	\begin{equation}
+%		E>0, \quad G>0, \qquad -1<\nu<\frac12.
+%	\end{equation}
+
+
+
+\section{Conduttori Rigidi}
+In questa sezione ci occupiamo di materiali rigidi che sono in grado di condurre il calore, per cui lo stato  è difinito da
+\begin{equation}
+\Sc=\{\vartheta, \gb\}, \qquad  \gb\coloneqq \nabla\vartheta.
+\end{equation}
+In questo caso la legge di bilancio dell'energia \eqref{bilen} diventa
+\begin{equation}\label{bilrh}
+	\dot{\varepsilon} = - \Div \, \mathbf{q} + r,
+\end{equation}
+mentre la disuguaglianza di dissipazione ridotta \eqref{DDR} si riduce a 
+\begin{equation}\label{DDRq}
+\dot{\psi}+\eta \dot{\vartheta}+\frac{1}{\vartheta}\qb \cdot \nabla \vartheta\leq 0.
+\end{equation}
+
+La disuguaglianza di dissipazione ridotta è equivalente alla richiesta che il tasso di produzione di entropia all'interno del corpo sia non negativo e rappresenta l'unica restrizione imposta dalle leggi fondamentali alla risposta costitutiva  del corpo. Questo sbilancio può quindi essere interpretato come un'indicazione di quali campi fondamentali debbano essere oggetto di prescrizioni. 
+
+Pertanto consideriamo delle equazioni costitutive che forniscono l'energia libera, l'entropia e il flusso di calore, quando sia nota la temperatura e il suo gradiente:
+\begin{equation}
+\begin{aligned}
+&	\psi=\widehat{\psi}(\vartheta, \gb)\\
+&\eta=\widehat{\eta}(\vartheta, \gb)\\
+&\qb=\widehat{\qb}(\vartheta, \gb),\\
+\end{aligned}
+\end{equation}
+che forniscono un'equazione costitutiva aggiuntiva per l'energia interna:
+\begin{equation}
+\varepsilon=\widehat{\varepsilon}(\vartheta, \gb)=\widehat{\psi}(\vartheta, \gb)+\vartheta\widehat{\eta}(\vartheta, \gb).
+\end{equation}
+
+\begin{remark}
+	La presenza di $\gb$ nella lista delle variabili di stato deriva essenzialmente dall'attesa fisica che il flusso di calore dipenda dal gradiente della temperatura. In una teoria generale ci si aspetta dunque una interazione costitutiva tra $\vartheta$ e $\gb$. Un tale punto di partenza è motivato dal convincimento che la fisica sottostante debba determinare quali interazioni costitutive siano inappropriate, almeno in una teoria generale. 
+	
+Questo, in sostanza, è il \textit{principio di equipresenza di Truesdell}:  ``Una quantità presente come variabile indipendente in una equazione costitutiva dovrebbe essere presente in tutte, a meno che [\ldots] la sua presenza contraddica qualche legge della fisica o regola di invarianza''.  Truesdell e Noll  affermano: ``Questo principio ci vieta di escludere che qualsiasi delle `cause'' presenti possa interagire con le altre rispetto a un determinato `effetto'. Esso riflette, su scala macroscopica, il fatto che tutti gli effetti osservati derivano da una struttura comune, come i moti molecolari.''\footnote{Si veda Truesdell, C., Noll, W., 1965. The Nonlinear Field Theories of Mechanics. In Fl\"{u}gge, S. (Ed.), Handbuch der Physik III/3. Springer, Berlin.} È la fisica, non l'arbitrio, a dover escludere le interazioni.
+	
+
+\end{remark}
+
+%Seguendo la procedura di Coleman-Noll, richiediamo che la disuguaglianza \eqref{DDRq}
+Consideriamo un processo arbitrario; allora
+\begin{equation}
+	\dot{\psi}=\partial_\vartheta\widehat{\psi}(\vartheta,\gb)\,\dot{\vartheta}+\partial_\gb\widehat{\psi}(\vartheta,\gb)\cdot\dot{\gb}.
+\end{equation}
+
+In ogni punto ed in ogni istante è possibile determinare un campo di temperatura tale che 
+
+\begin{equation}
+\vartheta, \; \gb, \; \dot{\vartheta}, \; \dot{\gb}
+\end{equation}
+abbiano valori prescritti. I coefficienti di $\dot{\vartheta}$ e $\dot{\gb}$ devono allora annullarsi, altrimenti questi ultimi possono essere scelti in modo da violare la disuguaglianza di dissipazione ridotta, secondo la procedura di Coleman-Noll. Si hanno allora le seguenti restrizioni:
+\begin{enumerate}
+	\item L'energia libera e l'entropia sono indipendenti dal gradiente di temperatura.
+	\item L'energia libera determina l'entropia:
+	\begin{equation}\label{weta}
+	\widehat{\eta}=-\partial_\vartheta\widehat{\psi}(\vartheta).
+		\end{equation}
+	\item Il flusso di calore soddisfa la disuguaglianza
+	\begin{equation}\label{diseq}
+	\widehat{\qb}(\vartheta, \qb)\cdot\qb\leq 0
+	\end{equation}
+per ogni $(\vartheta, \qb)$; quest'ultima relazione significa che \textit{il calore diffonde dal caldo verso il freddo}.
+\end{enumerate}
+
+Dato che l'energia libera non dipende dal gradiente della temperatura, segue immediatamente che
+\begin{equation}\label{epsth}
+\varepsilon=\widehat{\varepsilon}(\vartheta)=\widehat{\psi}(\vartheta)+\vartheta\,\widehat{\eta}(\vartheta)=\widehat{\psi}(\vartheta)-\vartheta\,\partial_\vartheta\widehat{\psi}(\vartheta).
+\end{equation}
+
+Dalla \eqref{weta} segue immediatamente che 
+\begin{definition}
+	\begin{equation}\label{gibbs1}
+\dot{\psi}=-\eta \dot{\vartheta}.
+\end{equation}
+\end{definition}
+Inoltre, poiché $\dot \varepsilon=\dot\psi+\dot\vartheta \eta+\vartheta\dot \eta$, si trova che
+\begin{definition}
+	\begin{equation}\label{gibbs2}
+\dot\varepsilon=\vartheta\dot{\eta}.
+\end{equation}
+\end{definition}
+Le \eqref{gibbs1}-\eqref{gibbs2} sono note come \textit{relazioni di Gibbs}. Conseguenza immediata è che in processi isotermi l'energia libera si mantiene costante, mentre in processi isoentropici, l'energia interna è costante.
+
+Inoltre, la \eqref{gibbs2} consente di scrivere il bilancio di energia \eqref{bilrh} come un \textit{bilancio di entropia}:
+\begin{equation}\label{bilentr}
+\vartheta\,\dot{\eta}=-\Div \qb +r.
+\end{equation}
+
+La \eqref{bilentr} consente di concludere che un processo termodinamico è adiabatico ($-\Div \qb +r=0$) se e solo se è isoentropico ($\dot{\eta}=0$).
+
+
+Introduciamo una proprietà materiale, detta \textit{calore specifico},  ovvero il tasso di variazione dell'energia interna rispetto alla temperatura, assumendo che tutto il calore fornito contribuisca esclusivamente a variare l'energia interna:
+\begin{equation}
+c(\vartheta)\coloneqq \partial_\vartheta \widehat{\varepsilon}(\vartheta)
+\end{equation}
+
+Vista la \eqref{epsth} e la \eqref{weta}, risulta 
+\begin{equation}
+c(\vartheta)=\vartheta\,\partial_\vartheta\widehat{\eta}(\vartheta) \qquad\Longrightarrow \qquad \dot{\eta}=\partial_\vartheta\widehat{\eta}(\vartheta)\, \dot\vartheta=\frac{c(\vartheta)}{\vartheta}\, \dot{\vartheta}.
+\end{equation}
+
+L'equazione di bilancio di entropia \eqref{bilentr} può essere dunque riscritta come
+\begin{equation}\label{bilentr1}
+c(\vartheta)\dot{\vartheta}=-\Div \qb + r.
+\end{equation}
+
+È necessario adesso determinare l'equazione costitutiva per il flusso di calore $\qb$. Per farlo, analizziamo meglio le conseguenze della disuguaglianza residua
+\eqref{diseq}.
+
+Sia
+\begin{equation}\label{varphi}
+\varphi(\vartheta, \gb)\coloneqq \widehat{\qb}(\vartheta, \gb)\cdot \gb,
+\end{equation}
+ovvero, in componenti
+\begin{equation}\label{varcomp}
+\varphi=\widehat{q}_k \,g_k.
+\end{equation}
+
+Poiché $\varphi(\vartheta, \gb)\leq 0$ e $\varphi(\vartheta, \mathbf{0})=0$, $\varphi(\vartheta, \gb)$ come funzione di $\gb$ ha un massimo in $\gb=\mathbf{0}$ e dunque
+\begin{equation}
+\partial_\gb \varphi(\vartheta, \gb)\Big|_{\gb=\mathbf{0}}=\mathbf{0}
+\end{equation}
+Calcoliamo dunque questa derivata; usando la \eqref{varcomp}, abbiamo
+\begin{equation}\label{derf}
+\partial_{g_i}\varphi=(\partial_{g_i}\widehat{q}_{k}) \,g_k+\widehat{q}_k\,(\partial_{g_i}\,g_k)=(\partial_\gb\widehat{\qb})_{ki}\, g_k+\widehat{q}_k\delta_{ik}=(\partial_\gb\widehat{\qb})^\top_{ik}g_k+ \widehat{q}_i
+\end{equation}
+e dunque
+\begin{equation}\label{Dfg}
+\partial_{\gb}\varphi=\widehat{\qb}(\vartheta,\gb ) +\big( \partial_\gb\widehat{\qb}(\vartheta,\gb) \big)^\top \gb.
+\end{equation}
+Ne segue che
+\begin{equation}\label{q0}
+\widehat{\qb}(\vartheta, \mathbf{0})=\mathbf{0},
+\end{equation}
+che rappresenta un risultato importante: \textit{il flusso di calore è nullo quando il gradiente della temperatura è  nullo, indipendentemente dal valore della temperatura}:
+\begin{definition}
+	\begin{equation}
+	\qb =\mathbf{0} \quad \textrm{ogniqualvolta}\quad \nabla\vartheta=\mathbf{0}.
+\end{equation}
+\end{definition}
+
+Muovendoci all'interno di una teoria infinitesima, approssimiamo l'equazione costitutiva $\widehat{\qb}(\vartheta, \gb)$ attorno ad uno stato di temperatura uniforme $\vartheta_0$:
+\begin{equation}
+\widehat{\qb}(\vartheta, \gb)=\widehat{\qb}(\vartheta_0, \mathbf{0})+\partial_\vartheta\, \widehat{\qb}(\vartheta, \mathbf{0}))\left|_{\substack{ \vartheta=\vartheta_0\\ \gb=\mathbf{0}  }}\right.\,(\vartheta-\vartheta_0)+\partial_\gb\, \widehat{\qb}(\vartheta, \gb)\left|_{\substack{ \vartheta=\vartheta_0\\ \gb=\mathbf{0}  }}\right.\,\gb+o(|\gb|).
+\end{equation}
+
+
+
+Poiché vale la \eqref{q0}, i primi due termini si annullano. Inoltre, poiché la funzione $\varphi (\vartheta, \gb)$ definita in  \eqref{varphi} ha un massimo in $\gb=\mathbf{0}$ dev'essere
+\begin{equation}\label{f2}
+\partial_\gb^2\varphi(\vartheta, \gb)|_{\gb=\mathbf{0}}<0 \quad \textrm{e} \quad \partial_\gb\varphi(\vartheta, \gb)|_{\gb=\mathbf{0}}=\mathbf{0}.
+\end{equation}
+Calcoliamo la derivata seconda usando la \eqref{derf}:
+\begin{equation}
+\partial^2_\gb\varphi=\partial_{g_j}\partial_{g_i}\varphi=(\partial_{g_j}\partial_{g_i}\widehat{q}_k)\, g_k+(\partial_{g_i}\widehat{q}_k)\delta_{jk}+\partial_{g_j}\widehat{q}_k\delta_{ik}=(\partial^2_{\gb}\widehat{\qb})\,\gb
++\partial_\gb\widehat{\qb}+(\partial_\gb\widehat{\qb})^\top.
+\end{equation}
+Concludiamo allora che
+\begin{equation}
+\partial^2_\gb\varphi(\vartheta,\gb)\left|_{\substack{ \vartheta=\vartheta_0\\ \gb=\mathbf{0}  }}\right.=-(\Kb +\Kb^\top),
+\end{equation}
+dove $\mathbf{\Kb}$ è il tensore costante
+\begin{equation}
+\Kb \coloneqq -\partial_\gb\widehat{\qb}\left|_{\substack{ \vartheta=\vartheta_0\\ \gb=\mathbf{0}  }}\right..
+\end{equation}
+Per la \eqref{f2}$_{1}$ è un tensore semi-definito positivo. Concludiamo allora che, a meno di infinitesimi di ordine $o(|\gb|)$, l'equazione costitutiva del flusso di calore è data dalla \textit{legge di Fourier}:
+\begin{definition}
+\begin{equation}
+	\widehat{\qb}(\vartheta, \nabla\vartheta)=-\Kb\nabla \vartheta.
+\end{equation}
+\end{definition}
+Il tensore $\Kb$ è detto \textit{tensore di conducibilità termica}.
+
+%\subsection{L'equazione del calore}
+
+
+
+
+
+
+\section{Materiali termo-elastici}
+Per un materiale termo-elastico, la lista delle variabili di stato è data dall'unione di quelle del caso di materiali elastici e conduttori rigidi:
+\begin{equation}
+	\Sc= \{\Eb, \vartheta, \nabla\vartheta\}.
+\end{equation}
+Guidati dalla disuguaglianza di dissipazione ridotta \eqref{DDR}, che ripetiamo per comodità
+\begin{equation}
+	\dot{\psi}+\eta \dot{\vartheta}-\Tb\cdot\dot{\Eb}+\frac{1}{\vartheta}\qb \cdot \nabla \vartheta\leq 0,
+\end{equation}
+assumiamo che lo sforzo $\Tb$, l'entropia $\eta$ e il flusso di calore $\qb$ siano determinate da equazioni costitutive della forma
+\begin{equation}\label{constthe}
+\begin{aligned}
+&\psi= \widehat{\psi}(\Eb, \vartheta, \nabla\vartheta),\\
+&\Tb= \widehat{\Tb}(\Eb, \vartheta, \nabla\vartheta),\\
+&\eta= \widehat{\eta}(\Eb, \vartheta, \nabla\vartheta),\\
+&\qb= \widehat{\qb}(\Eb, \vartheta, \nabla\vartheta),\\
+\end{aligned}
+\end{equation}
+
+Applichiamo adesso la procedura di Coleman-Noll; in questo contesto un processo costitutivo è assegnato da un moto e da un campo di temperatura, insieme ai campi $\psi$, $\Tb$, $\eta$ e $\qb$, determinate tramite le equazioni costitutive  \eqref{constthe}. 
+Per semplicità di scrittura poniamo
+\begin{equation}
+\gb =\nabla \vartheta.
+\end{equation}
+ Se deriviamo rispetto al tempo l'equazione costitutiva \eqref{constthe}$_1$, troviamo 
+ \begin{equation}\label{psidot}
+ \dot\psi=\partial_\Eb \widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)\cdot \dot \Eb+\partial_\vartheta\widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)\,\dot \vartheta+\partial_\gb \widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)\cdot \dot \gb,
+ \end{equation}
+e dunque, la disuguaglianza di dissipazione ridotta diviene
+\begin{multline}\label{CNthe}
+\left( \partial_\Eb \widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)\cdot \dot \Eb- \widehat{\Tb}(\Eb, \vartheta, \nabla\vartheta \right)\cdot\dot \Eb+\left(  \partial_\vartheta\widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)+\widehat{\eta}(\Eb, \vartheta, \nabla\vartheta) \right)\,\dot\vartheta\\+\partial_\gb \widehat{\psi}(\Eb, \vartheta, \nabla\vartheta)\cdot \dot \gb+\frac{1}{\vartheta} \widehat{\qb}(\Eb, \vartheta, \nabla\vartheta)\cdot \gb \leq 0, 
+\end{multline}
+che deve essere soddisfatta in ogni processo costitutivo.
+
+Il punto cruciale nell'uso della \eqref{CNthe} per ottenere  restrizioni costitutive basate sulla termodinamica consiste nell'osservazione che, dato un qualsiasi punto del corpo e un qualsiasi istante di tempo, è possibile trovare un moto e un campo di temperatura $\vartheta$ tali che $\Eb$, $\vartheta$, $\gb$ e le loro derivate $\dot{\Eb}$, $\dot\vartheta$ e $\dot{\gb}$ abbiano valori  arbitrariamente prescritti in quel punto e in quell'istante.  Accettando questa affermazione, i coefficienti di $\dot\Eb$, $\dot \vartheta$ e $\dot\gb$ devono annullarsi, poiché altrimenti sarebbe possibile scegliere questi valori in modo da violare la disuguaglianza 
+Abbiamo quindi le restrizioni termodinamiche:
+\begin{enumerate}
+	\item l'energia libera, il tensore di sforzo e l'entropia sono indipendenti dal gradiente della temperatura;
+	\item l'energia libera determina il tensore di sforzo e l'entropia tramite 
+	\begin{equation}\label{Te}
+		\Tb =\widehat{\Tb}(\Eb, \vartheta)=\partial_\Eb \widehat{\psi}(\Eb, \vartheta), \qquad \eta= \widehat{\eta}(\Eb, \vartheta)=-\partial_\vartheta \widehat{\psi}(\Eb, \vartheta);
+	\end{equation}
+\item il flusso di calore soddisfa la disuguaglianza
+\begin{equation}\label{qthe}
+ \widehat{\qb}(\Eb, \vartheta, \nabla\vartheta)\cdot \nabla\vartheta\leq 0
+\end{equation}
+per ogni $\Eb, \vartheta, \nabla\vartheta$.
+\end{enumerate}
+Le \eqref{Te} sono le \textit{relazioni di stato}.
+
+Osserviamo che l'equazione costitutiva \eqref{Te} fornisce l'ulteriore restrizione costitutiva per l'energia interna:
+\begin{equation}\label{epsthe}
+	\varepsilon=\widehat{\psi}(\Eb, \varepsilon)=\widehat{\psi}(\Eb, \vartheta)+\vartheta\,\widehat{\eta}(\Eb, \vartheta)=\widehat{\psi}(\Eb, \vartheta)-\vartheta\,\partial_\vartheta\widehat{\psi}(\Eb, \vartheta).
+\end{equation}
+
+\subsection{Conseguenze delle restrizioni termodinamiche}
+Dalla \eqref{psidot}  e \eqref{Te} segue immediatamente la \textit{prima relazione di Gibbs}
+\begin{definition}
+\begin{equation}
+\dot\psi=\Tb \cdot \dot\Eb-\eta \dot \vartheta;
+\end{equation}
+\end{definition}
+inoltre, poiché
+\begin{equation}
+	\dot{\psi}+\eta\dot\vartheta=\dot{\varepsilon}-\vartheta\dot{\eta},
+\end{equation}
+si trova la \textit{seconda relazione di Gibbs}:
+\begin{definition}
+\begin{equation}\label{Gibbsthe2}
+\vartheta\dot{\eta}=\dot\varepsilon-\Tb\cdot\dot{\Eb}.
+\end{equation}
+\end{definition}
+Le relazioni stabiliscono che la potenza delle forze bilancia l'energia libera in un processo isotermo e l'energia interna in un processo isoentropico.
+
+Grazie alle \eqref{Gibbsthe2}, l'equazione di bilancio di energia \eqref{bilen} può essere scritta come un bilancio di entropia:
+\begin{equation}\label{bilentro}
+\vartheta\dot{\eta}= - \Div \, \mathbf{q} + r.
+\end{equation}
+
+Infine, la \eqref{Te} implica la \textit{relazione di Maxwell}
+\begin{definition}
+\begin{equation}
+\partial_\vartheta\widehat{\Tb}(\Eb, \vartheta)=-\partial_\Eb\widehat{\eta}(\Eb, \vartheta),
+\end{equation}
+\end{definition}
+ Il  termine a sinistra  descrive come la tensione interna in un materiale varia al variare della temperatura, mantenendo costante la deformazione; in altri termini rappresenta gli effetti di espansione o contrazione termica. 
+Il termine a destra  descrive come l’entropia di un materiale cambia durante una deformazione, mantenendo costante la temperatura: l’entropia, che misura il grado di disordine, varia con la deformazione.
+
+ La relazione di Maxwell collega la risposta meccanica e termica, mostrando che tensione ed entropia non sono indipendenti: quando un materiale viene deformato,  l’entropia può cambiare a causa di riarrangiamenti microstrutturali; al contrario, una variazione di temperatura può influenzare lo stato di tensione, riflettendo la redistribuzione dell’energia termica nel materiale.
+ 
+ Su scala microscopica, la relazione di Maxwell collega le vibrazioni atomiche (effetti termici) con le distorsioni del reticolo cristallino (deformazione meccanica). Ad esempio, l’aumento della temperatura amplifica le vibrazioni atomiche, influenzando le forze interatomiche che determinano lo stato di tensione; la deformazione altera la struttura atomica, modificando il modo in cui il calore (entropia) viene distribuito e immagazzinato.
+
+
+\begin{remark}
+La relazione di Maxwell  è alla base della progettazione di materiali con proprietà termo-meccaniche specifiche (ad esempio, riduzione delle tensioni termiche in componenti aerospaziali) o la conversione di energia,  visto l’accoppiamento tra effetti termici e meccanici, che è alla base di tecnologie come sensori piezoelettrici o leghe a memoria di forma; l'accoppiamento è inoltre fondamentale nelle previsioni di collasso: le interazioni tensione-temperatura aiutano a prevedere la fatica termica e il cedimento di materiali sottoposti a cicli termici e meccanici.
+\end{remark}
+
+Restano da analizzare le conseguenze della disuguaglianza \eqref{qthe}. Supponiamo che in un certo punto $\xb_0$ il gradiente $\nabla\vartheta$ sia non nullo;  sia
+\begin{equation}
+	\eb=\frac{\nabla\vartheta}{|\nabla\vartheta|}
+\end{equation}
+la direzione del gradiente. Allora, per $h>0$ sufficientemente piccolo
+\begin{equation}
+\vartheta(\xb_0+h\eb)=\vartheta(\xb_0)+h|\nabla\vartheta(\xb_0)|
+\end{equation}
+e quindi
+\begin{equation}
+\vartheta(\xb_0+h\eb)>\vartheta(\xb_0),
+\end{equation}
+ovvero il punto $\xb_0+h \eb$ è più caldo del punto $\xb_0$. La disuguaglianza \eqref{qthe} implica allora che
+\begin{equation}
+	0\geq \qb(\xb_0)\cdot\nabla\vartheta(\xb_0)=\big( \qb(\xb_0)\cdot \eb \big)\, |\nabla\vartheta(\xb_0)|  \qquad \Longrightarrow \qquad  \qb(\xb_0)\cdot\eb\leq 0.
+\end{equation}
+Pertanto la componente del flusso di calore $\qb(\xb_0)$ nella direzione $-\eb$, che è il vettore unitario che rappresenta la direzione da punto più caldo ad uno più freddo, dev'essere non negativa. Abbiamo dunque un risultato classico:\textit{ il calore fluisce dal caldo verso il freddo}.
+
+Introduciamo la funzione
+\begin{equation}
+	\varphi(\Eb, \vartheta,\gb)\coloneqq \widehat{\qb}(\Eb, \vartheta, \gb)\cdot \gb;
+\end{equation}
+poiché $	\varphi(\Eb, \vartheta,\gb)\leq 0$ e $	\varphi(\Eb, \vartheta, \mathbf{0})=\mathbf{0}$, la funzione $\varphi(\cdot, \cdot , \gb)$ ha un massimo in $\gb=\mathbf{0}$ e quindi
+\begin{equation}
+\partial_\gb \varphi(\Eb, \vartheta,\gb)\Big|_{\gb=\mathbf{0}}=\mathbf{0}.
+\end{equation}
+Ricordando \eqref{identitadiff}$_2$, otteniamo
+\begin{equation}
+\partial_\gb \varphi(\Eb, \vartheta,\gb)=\widehat{\qb}(\Eb, \vartheta, \gb)+\left( \partial_\gb \widehat{\qb}(\Eb, \vartheta,\gb)  \right)^\top\, \gb
+\end{equation} 
+e dunque, una volta valutata in $\gb=\mathbf{0}$, troviamo che
+\begin{equation}
+\widehat{\qb}(\Eb, \vartheta, \mathbf{0})=\mathbf{0},
+\end{equation}
+ovvero
+\begin{definition}
+	\begin{equation}\label{q0t}
+		\qb =\mathbf{0} \quad \textrm{ogniqualvolta}\quad \nabla\vartheta=\mathbf{0}.
+	\end{equation}
+\end{definition}
+Dunque il flusso di calore si annulla quando il gradiente di temperatura si annulla, indipendentemente dai valori che assumono la deformazione e la temperatura. Questo risultato, noto come \textit{assenza di effetto piezo-calorico}, implica che \textit{una deformazione non può indurre un flusso di calore in assenza di gradiente termico}.
+
+\subsection{Equazioni costitutive linearizzate}
+Consideriamo un materiale termo-elastico lineare, per cui sviluppiamo in serie di Taylor le mappe di risposta costitutiva attorno a $\Eb=\mathbf{0}$ e $\vartheta=\vartheta_0$.
+Per quanto riguarda a risposta costitutiva dello sforzo otteniamo, a meno di infinitesimi:
+\begin{equation}
+\widehat{\Tb}(\Eb, \vartheta)=\widehat{\Tb}(\mathbf{0}, \vartheta_0)+\left(\partial_\Eb \widehat{\Tb}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\, \Eb+\left(\partial_\vartheta \widehat{\Tb}(\Eb, \vartheta)
+\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\,(\vartheta-\vartheta_0),
+\end{equation}
+ovvero, alla luce di \eqref{Te}$_1$ e considerando nullo lo sforzo in corrispondenza di deformazioni nulle, 
+\begin{equation}
+	\widehat{\Tb}(\Eb, \vartheta)=\left(\partial^2_{\Eb\Eb} \widehat{\psi}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\, \Eb+\left(\partial^2_{\Eb\vartheta} \widehat{\psi}(\Eb, \vartheta)
+	\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\,(\vartheta-\vartheta_0).
+\end{equation}
+Introduciamo due parametri materiali: il tensore (del quarto ordine) di elasticità (isotermo)
+\begin{equation}
+\Co\coloneqq \partial^2_{\Eb\Eb} \widehat{\psi}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.,
+\end{equation}
+e il tensore (simmetrico) di \textit{accoppiamento termo-elastico}
+\begin{equation}
+\Mb\coloneqq	\partial^2_{\Eb\vartheta} \widehat{\psi}(\Eb, \vartheta)
+	\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.,
+\end{equation}
+che ci consentono di dedurre l'equazione costitutiva per lo sforzo di un materiale termo-elastico:
+\begin{definition}
+\begin{equation}\label{TTe}
+	\widehat{\Tb}(\Eb, \vartheta)=\Co\,\Eb+\Mb (\vartheta-\vartheta_0).
+\end{equation}
+\end{definition}
+
+In maniera analoga determiniamo l'equazione costitutiva linearizzata per l'entropia:
+\begin{equation}
+\widehat{\eta}(\Eb, \vartheta)=\widehat{\eta}(\mathbf{0}, \vartheta_0)+
+\left(\partial_\Eb \widehat{\eta}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\, \Eb+
+\left(\partial_\vartheta \widehat{\eta}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\, (\vartheta-\vartheta_0),
+\end{equation}
+ovvero, alla luce di  \eqref{Te}$_2$ e fissando pari a zero l'entropia di riferimento alla temperatura $\vartheta_0$,
+\begin{equation}
+\widehat{\eta}(\Eb, \vartheta)=-\left(\partial^2_{\vartheta\Eb} \widehat{\psi}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\cdot \Eb-
+\left(\partial^2_{\vartheta\vartheta} \widehat{\psi}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.\right)\, (\vartheta-\vartheta_0),
+\end{equation}
+
+Introduciamo il \textit{calore specifico} (a deformazione fissata)
+\begin{equation}
+c(\Eb, \vartheta)\coloneqq \partial_\vartheta\widehat{\varepsilon}(\Eb,\vartheta).
+\end{equation}
+Utilizzando la \eqref{epsthe}, troviamo
+\begin{equation}
+c(\Eb, \vartheta)= -\vartheta\,\partial^2_{\vartheta\vartheta}\widehat{\psi}(\Eb, \vartheta).
+\end{equation}
+Assumiamo che il calore specifico sia strettamente positivo,
+\begin{equation}
+	c(\Eb, \vartheta)>0;
+\end{equation}
+questo equivale a richiedere che l'entropia $\widehat{\eta}(\Eb, \vartheta)$, come funzione di $\vartheta$, sia strettamente crescente e che $\partial^2_{\vartheta\vartheta}\widehat{\psi}(\Eb, \vartheta)$, ovvero che l'energia libera sia concava in $\vartheta$.
+
+Definendo
+\begin{equation}
+c_0\coloneqq  \partial_\vartheta \widehat{\varepsilon}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.=-\vartheta_0\, \partial^2_{\vartheta\vartheta} \widehat{\psi}(\Eb, \vartheta)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0}}\right.,
+\end{equation}
+possiamo scrivere l'equazione costitutiva per l'entropia come
+\begin{definition}
+\begin{equation}
+\widehat{\eta}(\Eb, \vartheta)=-\Mb \cdot \Eb+\frac{c_0}{\vartheta_0}(\vartheta-\vartheta_0).
+\end{equation}
+\end{definition}
+
+Se ci si discosta poco da $\vartheta=\vartheta_0$
+\begin{equation}
+	\vartheta\dot{\eta}=-\vartheta_0\Mb \cdot \dot\Eb+c_0\,\dot\vartheta,
+\end{equation}
+e dunque il bilancio di entropia \eqref{bilentro} può essere riscritta come
+\begin{definition}
+\begin{equation}
+	c_0 \dot\vartheta=- \Div \, \mathbf{q} \vartheta_0+ \Mb\cdot\dot{\Eb} + r.
+\end{equation}
+\end{definition}
+
+In considerazione delle \eqref{Te}, possiamo determinare la funzione di risposta costitutiva per l'energia libera
+\begin{definition}
+	\begin{equation}
+\widehat{\psi}(\Eb, \vartheta)=\frac{1}{2}\Co\Eb\cdot\Eb+(\vartheta-\vartheta)\,\Mb\cdot\Eb-\frac{c_0}{2\vartheta_0}\,(\vartheta-\vartheta_0)^2.
+	\end{equation}
+\end{definition}
+%e, alla luce di \eqref{epsthe}, per l'energia interna
+%\begin{equation}
+%	\varepsilon=\widehat{\psi}(\Eb, \varepsilon)=\widehat{\psi}(\Eb, \vartheta)+\vartheta\,\widehat{\eta}(\Eb, \vartheta)=
+%\end{equation}
+
+Resta da determinare l'equazione costitutiva per il flusso di calore. Osserviamo che 
+la \eqref{q0t} implica che
+\begin{equation}
+\widehat{\qb}(\mathbf{0},\vartheta_0, \mathbf{0})=\mathbf{0}, \qquad \partial_\vartheta\widehat{\qb}(\Eb, \vartheta, \gb)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0 \\ \gb=\mathbf{0}}}\right.
+=\mathbf{0}, \qquad 
+\qquad \partial_\Eb\widehat{\qb}(\Eb, \vartheta, \gb)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0 \\ \gb=\mathbf{0}}}\right.
+=\mathbf{0},
+\end{equation}
+sicché
+\begin{definition}
+\begin{equation}\label{Four}
+\widehat{\qb}(\Eb, \vartheta, \nabla\vartheta)=-\Kb\,\nabla\vartheta,
+\end{equation}
+\end{definition}
+con
+\begin{equation}
+\Kb\coloneqq\partial_\gb\, \widehat{\qb}(\Eb, \vartheta, \gb)\left|_{\substack{\Eb=\mathbf{0} \\ \vartheta=\vartheta_0 \\ \gb=\mathbf{0}}}\right..
+\end{equation}
+$\Kb$ è il tensore di \textit{conducibilità termica} e la \eqref{Four} non è nient'altro che la \textit{legge di Fourier}.
+
+
+
+\subsection{Materiali termo-elastici lineari isotropi}
+Se il materiale è isotropo, si ha che
+\begin{equation}
+\begin{aligned}
+&\Co \Eb=\frac{E}{1+\nu}{\left(\mathbf{E}+\frac{\nu}{1-2\nu}(\operatorname{tr}\mathbf{E})\mathbf{I}\right)},\\
+&\Mb =m \Ib, \\
+&\Kb =\chi \Ib,
+\end{aligned}
+\end{equation}
+dove $E$ e $\nu$ sono il modulo di Young e il coefficiente di Poisson isotermi, $m$ il modulo di accoppiamento termo-elastico, $\chi$ il coefficiente di conducibilità termica. 
+
+Le equazioni costitutive per un materiale elastico lineare isotropo sono allora:
+\begin{definition}
+\begin{equation}
+\begin{aligned}
+&\psi=\frac{E}{1+\nu}\left( |\Eb|^2+ \frac{\nu}{1-2\nu}\,(\operatorname{tr}\Eb)^2\right)+ m (\vartheta-\vartheta_0)\, \operatorname{tr}\Eb-\frac{c_0}{2\vartheta_0}(\vartheta-\vartheta_0)^2,\\
+&\Tb=\frac{E}{1+\nu}{\left(\mathbf{E}+\frac{\nu}{1-2\nu}(\operatorname{tr}\mathbf{E})\mathbf{I}\right)}+m(\vartheta-\vartheta_0)\,\Ib,\\
+&\eta=- m \operatorname{tr}\Eb+\frac{c_0}{\vartheta_0}(\vartheta-\vartheta_0),\\
+&\qb=-\chi\, \nabla\vartheta.
+\end{aligned}
+\end{equation}
+\end{definition}
+
+Determinare l'equazione costitutiva inversa che fornisce la deformazione in termini dello sforzo e della variazione di temperatura, osserviamo che
+\begin{equation}
+\Eb= \Co^{-1}\Tb-\Co^{-1}\Mb(\vartheta-\vartheta_0)= \Co^{-1}\Tb-m(\vartheta-\vartheta_0)\,\Co^{-1}\Ib;
+\end{equation}
+tramite la \eqref{costinv}, troviamo allora
+\begin{definition}
+	\begin{equation}\label{constinvthe}
+		\Eb=\frac{1+\nu}{E}\mathbf{T}-\frac{\nu}{E}(\operatorname{tr}\mathbf{T})\mathbf{I}+\alpha(\vartheta-\vartheta_0)\,\Ib,
+	\end{equation}
+\end{definition}
+dove
+\begin{equation}
+\alpha\coloneqq -\frac{1-2\nu}{E}m
+\end{equation}
+è il \textit{coefficiente di espansione termica}. Ricordando la \eqref{compr} troviamo che 
+\begin{equation}
+m=-3\beta \alpha,
+\end{equation}
+essendo $\beta$ il modulo di comprimibilità.
+
+
+
+
+
+

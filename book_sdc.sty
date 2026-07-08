@@ -1,0 +1,467 @@
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,polutonikogreek,italian,english]{babel}
+\usepackage{lmodern}
+\usepackage{lipsum}
+
+\usepackage{multirow}
+
+\usepackage{upgreek}
+
+\usepackage[most]{tcolorbox}
+\usepackage{setspace}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+
+\usepackage{comment}
+\usetikzlibrary{arrows.meta, decorations.pathreplacing}
+
+
+
+
+
+
+% ALTRI PACCHETTI
+%\usepackage{epigraph}
+%\usepackage{etoolbox}
+%\usepackage{lipsum} % testo fittizio
+%\usepackage[inline]{enumitem} % elenchi nel corpo del testo
+%\usepackage{arydshln, booktabs}
+%\usepackage{multirow}
+%\usepackage{emptypage} % eliminare testatine ultima pagina capitoli
+%\usepackage{psfrag}
+%\usepackage{tikz} % pacchetto per i diagrammi di Tonti
+%%\usetikzlibrary{matrix}
+%\usetikzlibrary{matrix,decorations.markings,decorations.pathreplacing,arrows}
+%\usepackage{marginnote}
+%\usepackage{rotating}
+
+
+% PACCHETTI MATEMATICA
+\usepackage{ amsfonts, amssymb}
+\usepackage{mathrsfs, mathtools}
+\usepackage{bm}
+%\usepackage[amsmath,framed,thmmarks]{ntheorem}
+\DeclareMathAlphabet{\mathbfsf}{\encodingdefault}{\sfdefault}{bx}{n}
+\usepackage{stmaryrd}
+
+% PACCHETTI FIGURE
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\captionsetup{margin=10pt,font=footnotesize,labelfont={it,bf},textfont=rm, format=plain,labelsep=period,indention=0.5cm}
+%\usepackage[innercaption]{sidecap}
+%\sidecaptionvpos{figure}{t}
+%
+%\usepackage{subfig}
+%\usepackage{wrapfig}
+%\usepackage{floatrow} CHECK
+%\usepackage{subcaption} CHECK
+
+%% DIMENSIONI PAGINA
+%\usepackage[twoside, text={384pt,562pt},headheight=50pt,headsep=24pt,footskip=12pt,footnotesep=24pt plus 2pt minus 12pt,centering]{geometry}
+%\geometry{paperheight=240mm,paperwidth=168mm} %paper
+
+%% PACCHETTI STILE
+%\usepackage[pagestyles]{titlesec}
+%
+%% -- stile Parti
+%\makeatletter
+%\titleformat{\part}[display]
+%{\Huge\filright}
+%{\partname~\thepart.}
+%{5pt}
+%{\thispagestyle{empty}}
+%\makeatother
+%\setlength\epigraphwidth{.6\textwidth}
+
+%% -- stile Capitoli
+%\titleformat{\chapter}[hang]
+%{\Large\bfseries}{\thechapter.}{5.0pt}{\thispagestyle{empty}}{}
+%\titlespacing*{\chapter}{0cm}{-\topskip}{5cm}[0pt]
+%
+%
+%% -- stile Sezioni
+%\titleformat{\section}[hang]{\bfseries}{\thesection}{0.5em}{}
+%\titlespacing*{\section} {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+%% -- stile Sottosezioni
+%\titleformat{\subsection}
+%{\bfseries\itshape}{\thesubsection}{1em}{}
+%\titlespacing*{\subsection} {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%
+%% -- stile Sottosottosezioni
+%\titleformat{\subsubsection}[runin]
+%{\normalfont\small\bfseries\itshape}
+%{}{.5em}{}[.]
+%\titlespacing{\subsubsection}
+%{\parindent}{1.5ex plus .1ex minus .2ex}{4pt}
+
+%% -- stile Approfondimenti
+%\newcommand\specialsection{%
+%	\titleformat*{\section}{\centering\bfseries}
+%}
+%\newcommand\specialsubsection{%
+%	\titleformat*{\subsection}{\bfseries\footnotesize}
+%}
+%\newcommand\specialsubsubsection{%
+%	\titleformat*{\subsubsection}{\bfseries\itshape\footnotesize}
+%}
+
+%% -- stile paragrafi
+%\titleformat{name=\paragraph, numberless}[runin]
+%{\normalfont\itshape}{}{.5em}{}[.]
+
+%% STILE PAGINA
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead{}
+%\fancyhead[CO]{\leftmark}
+%\fancyhead[LO, RE]{\small\thepage}
+%%\fancyhead[LE, RO]{\tiny\documentnumber}
+%\fancyhead[CE]{\footnotesize \itshape \nouppercase \rightmark}
+%\fancyfoot{}
+%\renewcommand{\headrulewidth}{0.1pt}
+%\renewcommand{\chaptermark}[1]{\markboth{\footnotesize \scshape \MakeLowercase{\thechapter. #1}}{}} 
+%
+%\def \currentrevision{A}
+%\def \documentnumber{ISBN-xx-xxx-xxxx-x}
+%
+%% STILE OSSERVAZIONI ED ESEMPI
+%
+%% -- stile Esempi
+%\theoremstyle{plain}
+%\theoremheaderfont{\bf}
+%\theoremindent=1.cm
+%\theorembodyfont{\footnotesize}
+%\theoremsymbol{\ensuremath{\square}}
+%\theoremseparator{.}
+%\newtheorem{esempio}{\ensuremath{\blacksquare}~Esempio}[chapter]
+%\AtBeginEnvironment{esempio}{\vspace{.5cm}}
+%
+%% -- stile Esercizi
+%\theoremstyle{plain}
+%\theoremheaderfont{\bf}
+%\theoremindent=1.cm
+%\theorembodyfont{\itshape\footnotesize}
+%\theoremsymbol{\ensuremath{\blacksquare}}
+%\theoremseparator{.}
+%\newtheorem{esercizio}{Exercise}
+%\AtBeginEnvironment{esercizio}{\vspace{.5cm}}
+%
+%\theoremheaderfont{\it}
+%\theorembodyfont{\upshape\footnotesize}
+%\theoremindent=0.cm
+%\theoremstyle{nonumberplain}
+%\theoremseparator{.}
+%\theoremsymbol{\ensuremath{\square}}
+%\newtheorem{svolgimento}{Solution}
+%
+%% -- stile Osservazioni
+%\usepackage{lettrine}
+%
+%\theoremstyle{nonumberplain}
+%\theoremheaderfont{\bf}
+%\theoremindent=2.cm
+%\theorembodyfont{\itshape\footnotesize}
+%\theoremsymbol{}
+%\theoremseparator{.}
+%\newtheorem{sommario}{Sommario}
+%
+%\theoremstyle{plain}
+%\theoremheaderfont{\bf}
+%\theoremindent=1.cm
+%\theorembodyfont{\upshape\footnotesize}
+%\theoremsymbol{\ensuremath{\square}}
+%\theoremseparator{.}
+%\newtheorem{oss}{Osservazione}[chapter]
+%\AtBeginEnvironment{oss}{\vspace{.5cm}}
+%
+%% -- stile ambiente Forma Operatoriale
+%\theoremstyle{nonumberplain}
+%\theoremheaderfont{\bf}
+%\theoremindent=1.cm
+%\theorembodyfont{\upshape\footnotesize}
+%\theoremsymbol{\ensuremath{\blacksquare}}
+%\theoremseparator{.}
+%\newtheorem{operatoriale}{Forma operatoriale}
+
+% -- Contatori equazioni Esempi e Osservazioni
+%\AtBeginEnvironment{esempio}{\subequations}
+%\AtEndEnvironment{esempio}{\endsubequations}
+%\AtBeginEnvironment{oss}{\subequations}
+%\AtEndEnvironment{oss}{\endsubequations}
+%\AtBeginEnvironment{operatoriale}{\subequations}
+%\AtEndEnvironment{operatoriale}{\endsubequations}
+
+% PERCORSO GRAFICI
+%\graphicspath{{figure/}}
+
+% OPERATORI MATEMATICI
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Sph}{Sph}
+\DeclareMathOperator{\Dev}{Dev}
+\DeclareMathOperator{\dev}{dev}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sym}{sym}
+\DeclareMathOperator{\Skw}{Skw}
+\DeclareMathOperator{\skw}{skw}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\LinLin}{LinLin}
+\DeclareMathOperator{\Rot}{Rot}
+\DeclareMathOperator{\Curl}{Curl}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\Grad}{Grad}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Lapl}{\Delta}
+\DeclareMathOperator{\vers}{vers}
+\DeclareMathOperator{\Ecu}{\mathcal{E}_{\textrm cur}}
+\DeclareMathOperator{\Vcu}{\mathcal{V}_{\textrm cur}}
+\DeclareMathOperator{\Vr}{\mathcal{V}_{\textrm ref}}
+\DeclareMathOperator{\Er}{\mathcal{E}_{\textrm ref}}
+
+
+
+
+% INSERIMENTO SCRITTA BOZZA
+%\usepackage{draftwatermark}
+%\SetWatermarkText{\ttfamily bozza}
+%\SetWatermarkScale{1}
+%\SetWatermarkLightness{0.95}
+
+\usepackage{emptypage}
+\usepackage{soul}
+
+
+%MACRO ANTONINO
+\usepackage[italian]{nomencl}
+\usepackage{ifthen}
+
+\renewcommand{\nomgroup}[1]{%
+	\ifthenelse{\equal{#1}{L}}{\item[\textbf{}]}{%
+		\ifthenelse{\equal{#1}{G}}{\item[\textbf{}]}{}}}
+
+%greek nomenclature
+%alpha a
+%beta b
+%gamma c
+%delta d
+%epsilon e
+%zeta f
+%eta g
+%theta h
+%iota i
+%kappa k
+%lampda l
+%mi m
+%ni n
+%xi n1
+%omicron o
+%pi p
+%rho r
+%sigma s 
+%tau t
+%ypsilon y
+%fi v
+%chi w
+%psi x
+%omega z
+
+
+%\makenomenclature
+%
+%\usepackage[or]{teubner}
+%\usepackage{adforn}
+%\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+%\pgfdeclarelayer{background}
+%\pgfsetlayers{background,main}
+%
+%
+%\usepackage{paracol}
+%\usepackage{lipsum}
+%%\usepackage{textcomp}
+%\usepackage{appendix}
+%\usepackage{chngcntr}
+%
+%
+%
+%\AtBeginEnvironment{subappendices}{%
+%	\chapter*{Appendici}
+%	\addcontentsline{toc}{chapter}{Appendici}
+%	\counterwithin{figure}{section}
+%	\counterwithin{table}{section}
+%}
+
+
+
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\columnsep}{2em}
+
+\newcommand\jump[1]{[\![#1]\!]}
+\newcommand{\Ab} {\mathbf{A}}
+\newcommand{\ab} {\mathbf{a}}
+\newcommand{\bb} {\mathbf{b}}
+\newcommand{\cb} {\mathbf{c}}
+\newcommand{\db} {\mathbf{d}}
+\newcommand{\eb} {\mathbf{e}}
+\newcommand{\fb} {\mathbf{f}}
+\newcommand{\gb} {\mathbf{g}}
+\newcommand{\hb} {\mathbf{h}}
+\newcommand{\kb} {\mathbf{k}}
+\newcommand{\lb} {\mathbf{l}}
+\newcommand{\mb} {\mathbf{m}}
+\newcommand{\tb} {\mathbf{t}}
+\newcommand{\ub} {\mathbf{u}}
+\newcommand{\nb} {\mathbf{n}}
+\newcommand{\pb} {\mathbf{p}}
+\newcommand{\qb} {\mathbf{q}}
+\newcommand{\rb} {\mathbf{r}}
+\renewcommand{\sb} {\mathbf{s}}
+\newcommand{\xb} {\mathbf{x}}
+\newcommand{\yb} {\mathbf{y}}
+\newcommand{\vb} {\mathbf{v}}
+\newcommand{\wb} {\mathbf{w}}
+\newcommand{\zb} {\mathbf{z}}
+\newcommand{\mub} {\bm{\mu}}
+\newcommand{\gammab} {\bm{\gamma}}
+\newcommand{\deltab} {\bm{\delta}}
+\newcommand{\kappab} {\bm{\kappa}}
+\newcommand{\xib} {\bm{\xi}}
+\newcommand{\varphib} {\bm{\varphi}}
+\newcommand{\taub} {\bm{\tau}}
+\newcommand{\phib} {\bm{\phi}}
+\newcommand{\nub} {\bm{\nu}}
+\newcommand{\varrhob} {\bm{\varrho}}
+\newcommand{\varthetab} {\bm{\vartheta}}
+\newcommand{\varepsilonb} {\bm{\varepsilon}}
+\newcommand{\sigmab} {\bm{\sigma}}
+\newcommand{\Phib} {\bm{\Phi}}
+\newcommand{\omegab} {\bm{\omega}}
+\newcommand{\Omegab} {\bm{\Omega}}
+\newcommand{\Bb} {\mathbf{B}}
+\newcommand{\Cb} {\mathbf{C}}
+\newcommand{\Db} {\mathbf{D}}
+\newcommand{\Eb} {\mathbf{E}}
+\newcommand{\Fb} {\mathbf{F}}
+\newcommand{\Gb} {\mathbf{G}}
+\newcommand{\Hb} {\mathbf{H}}
+\newcommand{\Ib} {\mathbf{I}}
+\newcommand{\Jb} {\mathbf{J}}
+\newcommand{\Kb} {\mathbf{K}}
+\newcommand{\Lb} {\mathbf{L}}
+\newcommand{\Mb} {\mathbf{M}}
+\newcommand{\Nb} {\mathbf{N}}
+\newcommand{\Pb} {\mathbf{P}}
+\newcommand{\Rb} {\mathbf{R}}
+\newcommand{\Qb} {\mathbf{Q}}
+\newcommand{\Sb} {\mathbf{S}}
+\newcommand{\Tb} {\mathbf{T}}
+\newcommand{\Ub} {\mathbf{U}}
+\newcommand{\Vb} {\mathbf{V}}
+\newcommand{\Wb} {\mathbf{W}}
+
+
+
+\newcommand{\Ac} {\mathcal{A}}
+\newcommand{\Bc} {\mathcal{B}}
+\newcommand{\Cc} {\mathcal{C}}
+\newcommand{\Dc} {\mathcal{D}}
+\newcommand{\Ec} {\mathcal{E}}
+\newcommand{\Fc} {\mathcal{F}}
+\newcommand{\Hc} {\mathcal{H}}
+\newcommand{\Gc} {\mathcal{G}}
+\newcommand{\Ic} {\mathcal{I}}
+\newcommand{\Jc} {\mathcal{J}}
+\newcommand{\Kc} {\mathcal{K}}
+\newcommand{\Lc} {\mathcal{L}}
+\newcommand{\Mc} {\mathcal{M}}
+\newcommand{\Pc} {\mathcal{P}}
+\newcommand{\Qc} {\mathcal{Q}}
+\newcommand{\Rc} {\mathcal{R}}
+\newcommand{\Sc} {\mathcal{S}}
+\newcommand{\Tc} {\mathcal{T}}
+\newcommand{\Uc} {\mathcal{U}}
+\newcommand{\Vc} {\mathcal{V}}
+\newcommand{\Wc} {\mathcal{W}}
+\newcommand{\Zc} {\mathcal{Z}}
+
+
+
+\newcommand {\Ro} {\mathbb{R}}
+\newcommand {\Co} {\mathbb{C}}
+\newcommand{\dd} {\mathrm{d}}
+\newcommand{\dA} {\,\mathrm{d}A}
+\newcommand{\dV} {\,\mathrm{d}V}
+\newcommand{\dz} {\,\mathrm{d}z}
+\newcommand{\dl} {\,\mathrm{d}l}
+
+\newcommand{\He}{\mathbf{H}^{\rm e}}
+\newcommand{\Hp}{\mathbf{H}^{\rm p}}
+\newcommand{\Ee}{\mathbf{E}^{\rm e}}
+\newcommand{\Ep}{\mathbf{E}^{\rm p}}
+\newcommand{\We}{\mathbf{W}^{\rm e}}
+\newcommand{\Wp}{\mathbf{W}^{\rm p}}
+\newcommand{\Te}{\mathbf{T}^{\rm e}}
+\newcommand{\Tp}{\mathbf{T}^{\rm p}}
+
+%\newcommand{\itc} {\vspace{.3cm}\noindent$\clubsuit$ }
+%\newcommand{\its} {\vspace{.3cm}\noindent$\spadesuit$ }
+\newcommand{\itc} {\vspace{.3cm}\noindent\Large\adfdownhalfleafleft\normalsize\hspace{.2cm}}
+\newcommand{\its} {\vspace{.3cm}\noindent\Large\adfdownhalfleafright\normalsize\hspace{.2cm}}
+
+\newcommand{\tR}[1]{{\color{red} #1}}
+\newcommand{\tB}[1]{{\color{blue} #1}}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Imm}{Im}
+\DeclareMathOperator{\rg}{rank}
+\DeclareMathOperator{\nl}{nullity}
+
+\DeclareMathOperator{\dotb}{{\boldsymbol{\cdot}}}
+
+%\usepackage{stackengine}
+%\stackMath
+%\newlength\matfield
+%\newlength\tmplength
+%\def\matscale{1.}
+%\newcommand\dimbox[3]{%
+%	\setlength\matfield{\matscale\baselineskip}%
+%	\setbox0=\hbox{\vphantom{X}\smash{#3}}%
+%	\setlength{\tmplength}{#1\matfield-\ht0-\dp0}%
+%	\fboxrule=1pt\fboxsep=-\fboxrule\relax%
+%	\fbox{\makebox[#2\matfield]{\addstackgap[.5\tmplength]{\box0}}}%
+%}
+%\newcommand\raiserows[2]{%
+%	\setlength\matfield{\matscale\baselineskip}%
+%	\raisebox{#1\matfield}{#2}%
+%}
+%\newcommand\matbox[5]{
+%	\stackunder{\dimbox{#1}{#2}{$#5$}}{\scriptstyle(#3\times #4)}%
+%}
+%\parskip 1em
+
+
+\mathtoolsset{showonlyrefs}
+%    \mathtoolsset{centercolon}
+%\usepackage{refcheck}
+
+
+
+
+
+% ALFABETI MATEMATICI
+\usepackage[cal=boondoxo, scr=boondoxo]{mathalfa}
+\usepackage{bbold}
+%\usepackage{refcheck}
+%\usepackage{showkeys}
+\newcommand{\eqtext}[1]{\ensuremath{\stackrel{\text{#1}}{=}}}
+
+\newcommand\defeq{\stackrel{\mathclap{\tiny\mbox{def}}}{=}}
+\newcommand\eqeq{\stackrel{\mathclap{\tiny\mbox{eql}}}{=}}
+\newcommand\coneq{\stackrel{\mathclap{\tiny\mbox{cng}}}{=}}
+
+

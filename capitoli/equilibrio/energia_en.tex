@@ -1,0 +1,262 @@
+\chapter{Energy Balance and Entropy Imbalance}
+
+In addition to the balance laws for forces, the response of a body is governed by  
+\begin{itemize}
+	\item[(i)] the energy balance law, and  
+	\item[(ii)] an entropy imbalance law.
+\end{itemize}
+
+These two laws are known as the \textit{first} and \textit{second laws of thermodynamics}. As we did for the balance of forces and moments, we will first formulate these laws in a global form for parts \( \Pi \), and then, by invoking the requirement that the underlying parts be arbitrary and applying the localization lemma, we will derive local forms of the laws in the form of partial differential equations and inequalities.
+
+
+
+\section{Energy Balance: First Law of Thermodynamics}
+We define \textit{motion} as a one-parameter family of deformations:
+\[
+\mathcal{M} = \left\{ \fb_t \mid t \in T \subset \mathbb{R} \right\}, \qquad 	(\xb, t) \mapsto \yb = \fb(\xb, t) = \fb_t(x);
+\]
+where the parameter \( t \) typically represents \textit{time}. In a motion, we can define the \textit{velocity}
+\[
+\mathbf{v}(\xb) = \partial_t \yb = \partial_t \fb(\xb, t)= \partial_t \ub(\xb, t).
+\]
+
+A pair consisting of \( \Mc \) and a symmetric tensor field \( \Tb \), with \( T(\cdot, t) \) smooth for each \( t \in T \), is called a \textit{dynamic process}.
+
+In addition to describing the motion and the associated stress, we will be interested in describing the evolution of a material system in terms of its thermal and mechanical states, analyzing a \textit{thermodynamic process}, in which we will consider not only stress and deformation, but also quantities like temperature, internal energy, entropy, and heat flux.
+
+Let us now look at the laws that govern thermodynamic processes.
+
+The \textit{first law of thermodynamics} represents a balance between the rate of change of internal energy and the rate at which energy is transferred, in the form of heat, to a part \( \Pi \) plus the mechanical power spent. %In the following, we will limit ourselves to considering small deformations.
+
+We introduce the \textit{internal energy} \( E(\Pi) \) of part \( \Pi \), expressed in terms of an internal energy density per unit volume \( \varepsilon \):
+\begin{equation}
+	E(\Pi) = \int_{\Pi}\rho \varepsilon.
+\end{equation}
+
+Its time derivative, denoted as \( \dot{E}(\Pi) \), represents the rate of energy supply to part \( \Pi \).
+
+The sum of the internal energy and the kinetic energy delivers the \textit{total energy}.
+
+We consider two types of energy input:
+
+\begin{enumerate}
+	\item \textit{Mechanical Sources}. The force system acting on \( \Pi \), due to the fact that the points of \( \Pi \) assume a certain velocity during the motion, expends power. In particular, we define the \textit{power of the forces} acting on \( \Pi \), or \textit{external power}, as the quantity
+	\begin{equation}\label{Wext}
+		\Wc^{\rm ext}(\Pi)= \int_{\Pi} \bb \cdot \vb + \int_{\partial \Pi} \tb\cdot \vb.
+	\end{equation}
+	
+	The first contribution is the power spent by volume forces, while the second is the power spent by the tensions acting on the boundary of \( \Pi \), which we now assume to be entirely internal to \( \Omega \).
+	
+	Using Cauchy's theorem, we can write that 
+	\begin{equation}
+		\Wc^{\rm ext}(\Pi)=	\int_{\Pi} \bb \cdot \vb + \int_{\partial \Pi} \Tb \nb\cdot \vb = \int_{\Pi} \bb \cdot \vb + \int_{\Pi} \dive(\Tb^\top\vb);
+	\end{equation}
+	using the identity \eqref{identitadiff}$_5$ and recalling that \( \Tb \in \Sym \), we obtain that 
+	\begin{equation}
+		\Wc^{\rm ext}(\Pi)	= \int_{\Pi} (\dive\Tb+\bb) \cdot \vb +  \Tb \cdot \Db.
+	\end{equation}
+%	where we have denoted by
+%	\begin{equation}
+%		\dot\Eb=\sym \grad \dot \ub=\sym \grad \vb
+%	\end{equation}
+%	the \textit{strain rate}.
+	
+	 Recalling that, for the pointwise equilibrium equation \( \dive\Tb+\bb=\mathbf{0} \), we conclude that
+	\begin{equation}
+		\Wc^{\rm ext}(\Pi)= \int_{\Pi}  \Tb \cdot \Db=	\Wc^{\rm int}(\Pi),
+	\end{equation}
+	where \( \Wc^{\rm int}(\Pi) \) denotes the \textit{internal power}, or \textit{stress power}. We have thus concluded that the external power equals the stress power.
+	
+	\item \textit{Thermal Sources}. We denote the \textit{heat transfer} to part \( \Pi \) as \( \Qc(\Pi) \), which consists of two contributions: one from the \textit{heat flux} \( \qb \) transferred to \( \Pi \) through its boundary \( \partial\Pi \), and an \textit{internal heat source} \( r \) (generated, for example, by chemical reactions, radiation, etc):
+	\begin{equation}
+		\Qc(\Pi) = -\int_{\partial \Pi} \qb\cdot \mathbf{n} + \int_{\Pi}\rho r.
+	\end{equation}
+	The negative sign in the first contribution is due to the fact that, since \( \nb \) is the outward normal at \( \partial\Pi \), we require that the heat transfer be non-negative when the flux is entering \( \partial\Pi \).
+	
+%	\begin{remark}
+%		The physical dimensions of the heat flux and the internal heat source are respectively
+%		\begin{equation}
+%			[\qb]=\left[\frac{{\rm energy}}{{\rm time}\times{\rm area}} \right], \qquad [r]=\left[\frac{{\rm energy}}{{\rm time}\times{\rm volume}} \right]
+%		\end{equation}
+%	\end{remark}
+	
+	Using the divergence theorem, the heat transfer \( \Qc (\Pi) \) can be rewritten as
+	\begin{equation}
+		\Qc(\Pi)= \int_{\Pi}(-\dive \qb +\rho r).
+	\end{equation}
+	
+\end{enumerate}
+
+
+At this point, we can establish that the energy balance corresponds to the following relation:
+\begin{equation}
+	\dot{E}(\Pi)=\Wc^{\rm int}(\Pi)+\Qc (\Pi),
+\end{equation}
+or
+\begin{equation}
+	\left(  \int_{\Pi}\rho \varepsilon\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}= \int_{\Pi} \Tb \cdot \Db - \dive \, \mathbf{q} + \rho  r.
+\end{equation}
+By the Reynolds' theorem \eqref{reyn} and the  mass \eqref{masbal}, we have that
+Since \( \Pi \) does not depend on time, we can thus establish that 
+\begin{equation}
+	\left( \int_{\Pi}\rho\varepsilon \right)^{\dotb}=\int_{\Pi}\rho\dot\varepsilon,
+\end{equation}
+and therefore 
+\begin{equation}
+	\int_{\Pi}\rho \dot{\varepsilon}= \int_{\Pi}  \Tb \cdot \Db - \dive \, \mathbf{q} + r.
+\end{equation}
+Using the usual localization lemma, we then obtain the following
+
+\begin{definition}
+	\textit{\textbf{Local energy balance equation}}:
+	\begin{equation}\label{bilen}
+	\rho	\dot{\varepsilon} =\Tb \cdot \Db - \dive \, \mathbf{q} + \rho r.
+	\end{equation}
+\end{definition}
+
+
+
+
+
+\section{Entropy Imbalance: Second Law of Thermodynamics}
+
+The power expenditure represents a macroscopic transfer of energy, as it is calculated using the velocity of material points. We consider heat as an additional form of energy transfer due to the \textit{fluctuations} of atoms and/or molecules, and \textit{entropy} as a measure of the disorder in the system induced by these fluctuations: the greater the degree of disorder, the higher the entropy. Like energy, regions of the body possess entropy, and entropy can flow from one region to another and also from a region to the external world. However, unlike energy, parts of the body are allowed to \textit{produce} entropy.
+
+We introduce the \textit{internal production of entropy} of the part $\Pi$
+\begin{equation}
+	\Delta (\Pi)=\int_{\Pi}\rho\delta,
+\end{equation}
+where $\delta$ represents the density of entropy production. We assume that this production has two contributions:
+\begin{equation}
+	\Delta(\Pi)= \dot{\Hc}(\Pi)-\Dc(\Pi);
+\end{equation}
+where $\dot{\Hc}(\Pi)$ represents the rate at which the entropy of $\Pi$ increases, and $\Dc(\Pi)$ is the rate at which entropy is transferred to $\Pi$.
+
+The fundamental premise that systems tend to increase their degree of disorder is reflected in the requirement that the internal production of entropy be non-negative in every region $\Pi$:
+\begin{equation}
+	\Delta(\Pi)\geq 0.
+\end{equation}
+
+As with energy, we assume that there exists a scalar field $\eta$, the \textit{entropy density}, such that
+\begin{equation}
+	\Hc(\Pi)=\int_{\Pi}\rho\eta.
+\end{equation}
+In analogy with heat transfer, we assume that the entropy contribution is characterized by a flux $\hb$ and a source $s$:
+\begin{equation}
+	\Dc(\Pi)=-\int_{\partial\Pi}\hb \cdot \nb +\int_{\Pi} \rho s,
+\end{equation}
+from which we obtain
+\begin{equation}\label{sbentr}
+	\left( \int_{\Pi}\rho\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq -\int_{\partial\Pi}\hb \cdot \nb +\int_{\Pi} \rho s,
+\end{equation}
+which represents the form we give to the second law of thermodynamics in this context.
+
+\begin{remark}
+	The theory we are developing is consistent with two famous statements by \textsc{Rudolph Clausius}:
+	\begin{itemize}
+		\item \textit{Die Energie des Weltalls ist konstant } (The energy of the universe is constant).
+		\item \textit{Die Entropie des Weltalls strebt einem Maximum zu} (The entropy of the universe tends to a maximum).
+	\end{itemize}
+	The word \textit{Weltall} can be more prosaically replaced with an isolated system, that is, a system for which $\qb \cdot \nb = \hb \cdot \nb = 0$ and $r = s = 0$; in this case, the energy balance and the entropy imbalance reduce to
+	\begin{equation}
+		\left(\int_{\Pi}\varepsilon\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}=0, \qquad \left( \int_{\Pi}\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq 0,
+	\end{equation}
+	which correspond to Clausius' two statements.
+\end{remark}
+
+A fundamental hypothesis of the theory relates the entropy and heat fluxes and the two sources; in particular, it is assumed that there exists a scalar field $\vartheta>0$, the \textit{absolute temperature}, such that
+\begin{equation}
+	\hb =\frac{\qb}{\vartheta}, \qquad s=\frac{r}{\vartheta}.
+\end{equation}
+
+The entropy flux and heat flux have the same direction, and one cannot vanish without the other. This hypothesis reflects the fact that a heat flux has different entropic effects depending on the temperature at which it occurs; in particular, heat received at low temperatures is more ``effective'' than that received at high temperatures.
+
+We can then write the entropy imbalance \eqref{sbentr} in the form of the
+
+\begin{definition}
+	\noindent \textbf{\textit{Clausius-Duhem Inequality}}:
+	\begin{equation}
+		\left( \int_{\Pi}\rho\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq -\int_{\partial\Pi}\frac{\qb}{\vartheta} \cdot \nb +\int_{\Pi} \frac{\rho r}{\vartheta}.
+	\end{equation}
+\end{definition}
+
+Using the usual localization lemma, we obtain the 
+\begin{definition}
+	\textbf{\textit{Local Entropy Imbalance Inequality}}:
+	\begin{equation}
+	\rho	\dot \eta \geq -\dive \left( \frac{\qb}{\vartheta} \right)+\frac{\rho r}{\vartheta}
+	\end{equation}
+\end{definition}
+and the expression for the internal entropy production density
+\begin{equation}\label{delta}
+\rho	\delta=\rho \dot{\eta}+\dive \left( \frac{\qb}{\vartheta} \right)-\frac{\rho r}{\vartheta}\geq 0.
+\end{equation}
+
+When irreversible processes occur within a system, such as heat conduction, there is internal entropy production $\delta$, which measures the rate of entropy generated per unit volume due to these irreversible processes. We have seen how the absolute temperature $\vartheta$ serves as a scaling factor that converts entropy production into dissipated energy. The quantity
+\begin{equation}
+	\gamma\coloneqq\delta\vartheta
+\end{equation}
+represents the \textit{rate of energy dissipation} (or \textit{dissipated power}) per unit volume in the system. In fact, in a thermodynamic system, the second law of thermodynamics establishes that entropy production is always associated with a loss of available energy: this loss manifests itself as internal energy dissipation.
+
+Using \eqref{delta}, we can write the dissipated power as
+\begin{equation}
+\rho	\gamma=\rho \vartheta\dot\eta+\vartheta\dive \left( \frac{\qb}{\vartheta} \right)-\rho r\geq 0.
+\end{equation}
+
+Using identity \eqref{identitadiff}$_3$, we can deduce that
+\begin{equation}
+	\dive \left( \frac{\qb}{\vartheta} \right)=\grad\left(\frac{1}{\vartheta}\right)\cdot\qb +\frac{1}{\vartheta}\dive \qb =-\frac{1}{\vartheta^2}\grad\vartheta\cdot \qb +\frac{1}{\vartheta}\dive \qb 
+\end{equation}
+and therefore
+\begin{equation}\label{disga}
+\rho	\gamma=\rho \vartheta\dot\eta-\frac{1}{\vartheta}\grad\vartheta\cdot \qb +\dive \qb -\rho r\geq 0.
+\end{equation}
+
+Using the local energy balance equation \eqref{bilen}, we can establish that
+\begin{equation}
+	\rho\gamma=\rho\vartheta\dot\eta-\frac{1}{\vartheta}\grad\vartheta\cdot \qb +\Tb \cdot\Db-\rho \dot{\varepsilon}\geq 0. 
+\end{equation}
+If the quantity $\rho\gamma=\rho\delta\vartheta$ represents the dissipated power per unit volume, i.e., the density of energy converted into heat and increasing the entropy of the system due to irreversible processes, we can interpret the quantity $\rho\vartheta\eta$ as the energy density ``trapped'' in the entropy of the system. 
+The difference between the total energy density $\varepsilon$ and the ``trapped'' energy in entropy represents the energy available to the system. Thus, we introduce the \textit{Helmholtz free energy} per unit volume
+\begin{equation}
+	\psi=\varepsilon-\vartheta\eta.
+\end{equation}
+
+Thus \eqref{disga} can then be rewritten as the
+\begin{definition}
+	\textbf{\textit{Reduced Dissipation Inequality}}:
+	\begin{equation}\label{DDR}
+		-\rho\gamma=\rho(\dot{\psi}+\eta \dot{\vartheta})-\Tb\cdot\Db+\frac{1}{\vartheta}\qb \cdot \grad \vartheta\leq 0.
+	\end{equation}
+\end{definition} 
+The terms in \eqref{DDR} have the dimensions of (energy)/time. Integrating over part $\Pi$, we can interpret the various terms:
+\begin{equation}
+	\underbrace{\int_{\Pi}\rho\gamma}_{{\rm dissipation}\geq 0}=\underbrace{\int_{\partial \Pi}\Tb \nb \cdot \vb +\int_{\Pi}\bb\cdot \vb}_{{\rm external\; power}}-
+	\underbrace{\left(\int_{\Pi}\rho\psi\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}}_{\scriptsize \shortstack{\text{rate of change} \\ \text{of the free energy}}}
+	-\underbrace{\int_{\Pi}\rho\eta \dot{\vartheta}+\frac{1}{\vartheta}\qb \cdot \grad\vartheta}_{\text{thermal energy}}
+\end{equation}
+
+Let’s further detail the meaning of the last contribution, thermal energy. Entropy $\eta$ is associated with the energy ``stored'' thermally in the system. At higher temperatures, each unit of entropy corresponds to a greater amount of thermal energy. When the temperature changes with time $\dot{\vartheta}$, the thermal energy associated with this entropy also changes. In other words, the term $\eta\dot{\vartheta}$ represents the thermal energy per unit volume that is added or removed from the system due to the change in temperature. If $\dot{\vartheta}$ is positive, the temperature increases, and the system gains thermal energy; if $\dot{\vartheta}$ is negative, the system loses thermal energy.
+
+The second term concerns the heat flux $\qb$ and the temperature gradient $\grad\vartheta$. The quantity $\frac{1}{\vartheta}\qb \cdot \grad\vartheta$ represents the internal dissipation associated with heat conduction. Specifically, $\qb \cdot \grad\vartheta$ describes how much heat flows through the system in the presence of a temperature gradient; dividing by $\vartheta$, we obtain a quantity proportional to the generation or absorption of entropy associated with this heat flow, which reflects the change in the system's thermal energy.
+
+\begin{remark}\label{bb}
+	Volume forces $\bb$ can be decomposed into inertial and non-inertial parts
+	\begin{equation}
+		\bb =\bb^{({\rm in})}+\bb^{({\rm ni})},
+	\end{equation}
+	where inertial forces are related to acceleration and mass density $\rho$:
+	\begin{equation}
+		\bb^{({\rm in})}=-\rho \ddot{\ub}=-\rho \dot{\vb}.
+	\end{equation}
+	With this, the force balance equation becomes an \textit{evolution equation} that governs the dynamics of continuous bodies, interpretable as a momentum balance,
+	\begin{equation}
+		\dive \Tb+\bb^{({\rm ni})}=\dot{\pb},
+	\end{equation}
+	where $\pb\coloneqq\rho \vb$ is the \textit{momentum}. The external power can then be evaluated as follows:
+	\begin{equation}
+		\Wc^{\rm ext}(\Pi)= \int_{\Pi} \bb^{({\rm ni})} \cdot \vb-\rho \dot{\vb} \cdot \vb + \int_{\partial \Pi} \Tb\nb\cdot \vb=\int_{\Pi} \bb^{({\rm ni})} \cdot \vb-\pb \cdot \dot{\vb} + \int_{\partial \Pi} \Tb\nb\cdot \vb.
+	\end{equation}
+	The term $-\pb \cdot \dot{\vb}$ has a formal and physical analogy with the term $-\eta \dot{\vartheta}$ present in thermal energy: just as momentum can be thought of as a measure of the \textit{reluctance to rest} of matter, entropy can be thought of as a measure of the \textit{reluctance to order}.
+\end{remark}
+

@@ -1,0 +1,103 @@
+\babel@toc {english}{}\relax 
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {I}}{Kinematics}}{9}{part.1}%
+\ttl@starttoc {default@1}
+\contentsline {chapter}{\numberline {1}General Theory}{11}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Deformation}{11}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Deformation Gradient}{13}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Displacement}{14}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Change in Length}{16}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Change in Area}{17}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Change in Volume}{18}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Homogeneous Deformations}{19}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Strain Measures}{20}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Deformation in curvilinear coordinates}{22}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Motion velocity, velocity gradient, stretching, and spin}{28}{section.1.8}%
+\contentsline {chapter}{\numberline {2}Infinitesimal Theory}{31}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The Infinitesimal Strain Tensor}{31}{section.2.1}%
+\contentsline {section}{\numberline {2.2}The Infinitesimal Rotation Tensor}{32}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Geometric Changes}{33}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Change in Length}{33}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Change in Volume}{34}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Change in Area}{34}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Change in Angle}{34}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}Components of the Infinitesimal Strain Tensor}{35}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Elementary Deformations}{36}{section.2.5}%
+\contentsline {subsubsection}{Uniform Extension}{36}{section*.2}%
+\contentsline {subsubsection}{Uniform Dilation}{36}{section*.3}%
+\contentsline {subsubsection}{Shear}{37}{section*.4}%
+\contentsline {section}{\numberline {2.6}The Compatibility Condition}{41}{section.2.6}%
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {II}}{Basic Mechanical Principles}}{45}{part.2}%
+\ttl@stoptoc {default@1}
+\ttl@starttoc {default@2}
+\contentsline {chapter}{\numberline {3}Mass Balance}{47}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Force and Moment Balance}{51}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Force Systems}{51}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Internal Actions: Stress}{52}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Euler's Axiom}{53}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}The Hamel-Noll Theorem}{55}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}The Cauchy Theorem}{56}{subsection.4.2.3}%
+\contentsline {subsubsection}{Geometry of the Tetrahedron}{57}{section*.5}%
+\contentsline {subsubsection}{Cauchy’s Lemma}{57}{section*.6}%
+\contentsline {subsubsection}{The Tetrahedron Argument}{58}{section*.7}%
+\contentsline {section}{\numberline {4.3}Pointwise Equilibrium Equations}{59}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Cauchy’s Relation for Interior Points}{59}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Cauchy’s Relation for Boundary Points}{60}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}The Symmetry of the Stress Tensor}{60}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}External power, kinetic energy, inertial power}{61}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Referential form for the force balance}{63}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Power-conjugate pairings. Second Piola stress}{64}{subsection.4.5.1}%
+\contentsline {chapter}{\numberline {5}Frame indifference}{65}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Frame of reference}{65}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Frame-indifferent fields}{65}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Transformation rules for kinematic fields}{66}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Frame-indifference principle}{66}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Transformation rules for stress and body force}{67}{subsection.5.2.1}%
+\contentsline {chapter}{\numberline {6}Principle of Virtual Powers}{69}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Principle of Virtual Power}{70}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Force balance, stress}{70}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Symmetry and frame-indifference}{71}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Energy Balance and Entropy Imbalance}{73}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Energy Balance: First Law of Thermodynamics}{73}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Entropy Imbalance: Second Law of Thermodynamics}{75}{section.7.2}%
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {III}}{Constitutive Assumptions}}{79}{part.3}%
+\ttl@stoptoc {default@2}
+\ttl@starttoc {default@3}
+\contentsline {chapter}{\numberline {8}Constitutive theories}{81}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Constitutive response functions and constitutive principles}{81}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Examples of Constitutive Response Functions}{83}{section.8.2}%
+\contentsline {section}{\numberline {8.3}A simple illustrative example}{84}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Kinematics and field equations}{85}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Constitutive equations}{85}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Restrictions due to objectivity}{85}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Restrictions due to entropy inequality}{86}{subsection.8.3.4}%
+\contentsline {chapter}{\numberline {9}Elastic Materials}{87}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Implications of the Entropy Inequality}{87}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Implications of Material Frame Indifference}{88}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Material symmetry}{90}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1} Examples of Material Symmetry Groups}{93}{subsection.9.3.1}%
+\contentsline {section}{\numberline {9.4}Isotropic materials}{94}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Materials with Internal Constraints}{94}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Infinitesimal theory}{96}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Consequences of thermodynamic restrictions}{97}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Material symmetries}{98}{section.9.8}%
+\contentsline {section}{\numberline {9.9}Isotropic materials}{101}{section.9.9}%
+\contentsline {section}{\numberline {9.10}Interpretation of the Elastic Constants}{103}{section.9.10}%
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {IV}}{Appendices}}{107}{part.4}%
+\ttl@stoptoc {default@3}
+\ttl@starttoc {default@4}
+\contentsline {chapter}{\numberline {1}Elements of algebra and tensor analysis}{109}{chapter.1}%
+\contentsline {section}{\numberline {A.1}Vectors}{109}{section.1.1}%
+\contentsline {section}{\numberline {A.2}Second-order tensors}{110}{section.1.2}%
+\contentsline {subsubsection}{Dyadic product}{110}{section*.8}%
+\contentsline {subsubsection}{Basis for Lin}{111}{section*.9}%
+\contentsline {subsubsection}{Transpose tensor}{111}{section*.10}%
+\contentsline {subsubsection}{Composition of tensors}{112}{section*.11}%
+\contentsline {subsubsection}{Symmetric and skew-symmetric tensors}{112}{section*.12}%
+\contentsline {subsubsection}{Trace of a tensor. Scalar product. Norm}{112}{section*.13}%
+\contentsline {subsubsection}{Inverse tensor}{114}{section*.14}%
+\contentsline {subsubsection}{Determinant}{114}{section*.15}%
+\contentsline {subsubsection}{Orthogonal tensors}{114}{section*.16}%
+\contentsline {subsubsection}{Eigenvalues and eigenvectors. Spectral Theorem}{115}{section*.17}%
+\contentsline {section}{\numberline {A.3}Vector and Tensor Analysis}{116}{section.1.3}%
+\contentsline {chapter}{Bibliography}{118}{equation.1.3.6}%
+\contentsfinish 

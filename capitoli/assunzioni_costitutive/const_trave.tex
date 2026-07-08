@@ -1,0 +1,119 @@
+\chapter{La trave}\label{const_trave}
+
+Nella teoria delle travi linearmente elastiche, una volta che si siano individuate le misure di deformazione rilevanti $(\eb,\kb)$ e le duali misure di sforzo $(\fb,\mb)$ occorre legarli tramite un'opportuna relazione costitutiva.
+
+
+% inevitabile postulare che le misure di sforzo siano combinazione lineare delle deformazioni:
+%\begin{equation}\label{costtr}
+%\fb=\Cb^f_e\eb+\Cb^f_k\kb, \qquad \mb=\Cb^m_e\eb+\Cb^m_k\kb,
+%\end{equation}
+%dove  $\Cb^f_e$,  $\Cb^f_k$,  $\Cb^m_e$ e  $\Cb^m_k$ sono i \textit{tensori  di rigidezza} della trave. 
+
+%Avendo dedotto le misure di deformazione  $(\eb,\kb)$ e sforzo  $(\fb,\mb)$ dall'elasticità lineare, appare naturale esprimere  i tensori di rigidezza in termini del tensore di elasticità $\Co$. 
+
+Per farlo, occorre utilizzare le definizioni di $\fb$, $\mb$ in termini del tensore di sforzo tridimensionale $\Tb$ e legare quest'ultimo ad una legge costitutiva tipica dei corpi continui, assegnando cioè un opportuno tensore di elasticità $\mathbb{C}$; nel processo di integrazione appariranno naturalmente le misure di deformazione $\eb$ e $\kb$.
+ \\Un \textit{approccio} di questo tipo è detto \textit{cinematico} o \textit{in rigidezza}.
+
+
+%Occorre precisare due questioni:
+%\begin{enumerate}
+%	\item A differenza di $\mathbb{C}$, il tensori di rigidezza della trave  non contengono soltanto parametri materiali, ma anche geometrici, che tengono memoria di quelle proprietà che nella riduzione dimensionale evaporano; in particolare c'è da attendersi che dipendano da certe caratteristiche geometriche della sezione trasversale.
+%	% È questa una circostanza tipica dei materiali con struttura, nelle cui leggi costitutive  appaiono lunghezze interne tipiche della microstruttura.
+%	\item  
+	Una conseguenza diretta del fatto che il nostro modello di trave deriva da una cinematica vincolata da una particolare selezione del campo di spostamento ammissibile (dato dalla \eqref{u3d}), è che la risposta costitutiva tridimensionale deve esserne in accordo. Un legame costitutivo tridimensionale isotropo, ad esempio, non sarebbe ammissibile, perché non rispettoso del vincolo imposto sulla deformazione della sezione trasversale, che deve essere nulla. Appare inoltre opportuno accordare la geometria globale del corpo con la geometria costitutiva locale: sceglieremo dunque un legame costitutivo trasversalmente isotropo, il cui asse di simmetria sia quello della trave: in questo modo si accorda la direzione privilegiata dettata dalla geometria della trave con quella indotta dalla simmetria materiale. Serve dunque  caratterizzare un tensore di elasticità $\mathbb{C}$ rappresentativo di un materiale trasversalmente isotropo, ma vincolato. Si può mostrare che un tale materiale è descritto da due costanti, il modulo di Young $E$ nella direzione dell'asse e il modulo di scorrimento $G$ tra l'asse e una generica fibra della sezione trasversale; ovviamente, non è definito il coefficiente di Poisson, a differenza del caso isotropo non vincolato, né il modulo di Young e di scorrimento nel piano della sezione. 
+	
+	Poiché nel nostro modello $E_{11}=E_{12}=E_{22}$ devono soddisfare il vincolo di essere nulli, le duali componenti di sforzo $T_{11}$, $T_{22}$ e $T_{12}$ non sono costitutivamente assegnabili e dunque sono reattive. Il tensore di sforzo dunque si decompone naturalmente in una parte attiva e una reattiva:
+	\begin{equation}
+	\Tb =\Tb^{(A)}+\Tb^{(R)},
+	\end{equation}
+dove 
+\begin{equation}
+\Tb^{(R)}\coloneqq T_{11}\eb_1\otimes\eb_{1}+T_{12}(\eb_1\otimes\eb_{2}+\eb_2\otimes \eb_1)+T_{22}\eb_2\otimes\eb_{2},
+\end{equation}
+e
+\begin{equation}
+\Tb^{(A)}\coloneqq T_{13}(\eb_{1}\otimes \eb_3+\eb_{3}\otimes \eb_1)+T_{23}(\eb_{2}\otimes \eb_3+\eb_{3}\otimes \eb_2)+T_{33}\eb_3\otimes\eb_3. %\boldsymbol{\tau}\otimes\mathbf{e}_{3}+\mathbf{e}_{3}\otimes\boldsymbol{\tau}+\sigma\mathbf{e}_{3}\otimes\mathbf{e}_{3},
+\end{equation}
+%dove abbiamo indicato 	 con $\taub=T_{13}\eb_1 +T_{23}\eb_{2}$ $\sigma=T_{33}$.
+Il tensore di deformazione nel modello di trave è invece
+\begin{equation}
+\Eb= E_{13}(\eb_{1}\otimes \eb_3+\eb_{3}\otimes \eb_1)+E_{23}(\eb_{2}\otimes \eb_3+\eb_{3}\otimes \eb_2)+E_{33}\eb_3\otimes\eb_3,
+\end{equation}
+che è esprimibile in termini delle misure di deformazione della trave
+%, come espresso dalla \eqref{Etr}:
+%\begin{equation}
+%	\Eb=\sym{[(\mathbf{e} + \mathbf{k} \times \mathbf{p}) \otimes \mathbf{e}_3]},
+%\end{equation}
+%oppure 
+\begin{equation}\label{Eb1D}
+	\begin{aligned}
+		\Eb&=\frac{1}{2}\big(\gamma_1-x_2\kappa_t \big)(\eb_1\otimes\eb_3+\eb_3\otimes\eb_1)+\frac{1}{2}\big(\gamma_2+x_1\kappa_t \big)(\eb_2\otimes\eb_3+\eb_3\otimes\eb_2)\\
+		&+\big(\varepsilon+x_2\kappa_1-x_1\kappa_2\big)\eb_3\otimes\eb_3,
+	\end{aligned}
+\end{equation}
+Il legame costitutivo  adatto al modello di trave è 
+\begin{equation}\label{eqcosttrav}
+\Tb^{(A)}=G\Big(  E_{13}(\eb_{1}\otimes \eb_3+\eb_{3}\otimes \eb_1)+E_{23}(\eb_{2}\otimes \eb_3+\eb_{3}\otimes \eb_2 \Big)+ E \,E_{33}\eb_3\otimes\eb_3,
+\end{equation}
+ovvero
+\begin{equation}
+	\begin{aligned}
+&T_{13}=G E_{13}=G \big(\gamma_1-x_2\kappa_t \big), \qquad T_{23}=G E_{23}=G\big(\gamma_2+x_1\kappa_t \big), \\ 
+&T_{33}=E\,E_{33}=E \big(\varepsilon+x_2\kappa_1-x_1\kappa_2\big).
+	\end{aligned}
+\end{equation}
+Utilizzando le definizioni delle caratteristiche della sollecitazione \eqref{cds}-\eqref{cds1}, otteniamo
+\begin{definition}
+	\begin{equation}\label{eqcosttr}
+\begin{aligned}
+&T_1=\int_{\Sc}T_{13}=G A\gamma_1,\\
+&T_2=\int_{\Sc}T_{23}=G A\gamma_2,\\
+&N=\int_{\Sc}T_{33}=EA \varepsilon,\\
+&M_1=\int_{\Sc} x_2 T_{33}=  EJ_1\kappa_1  \\
+&M_2= -\int_{\Sc}x_1 T_{33}= EJ_2 \kappa_2  \\
+&M_t=\int_\Sc x_1\,T_{23}-x_2\,T_{13}=GJ_o \kappa_t,
+\end{aligned}
+\end{equation}
+\end{definition}
+ovvero
+%\begin{equation}
+%\fb = GA\gammab+EA \varepsilon \, \eb_3, \qquad  \mb=E\Jb\kappab+GJ_o \kappa_t\eb_3,
+%\end{equation}
+%che può essere riscritta come
+\begin{definition}
+	\begin{equation}
+\fb =\Cb \eb, \qquad \mb =\Kb \kappab,
+\end{equation}
+\end{definition}
+dove abbiamo introdotto i \textit{tensori di rigidezza} della trave
+\begin{equation}
+\begin{aligned}
+	&\Cb\coloneqq GA(\eb_1\otimes\eb_1+\eb_1\otimes\eb_2)+EA\,\eb_3\otimes\eb_3,\\
+	&\Kb\coloneqq EJ_1\, \eb_1\otimes\eb_1+EJ_2\, \eb_2\otimes\eb_2+EJ_o\,\eb_3\otimes\eb_3.
+\end{aligned}
+\end{equation}
+
+Nel caso della trave piana, le \eqref{eqcosttr} diventano
+
+\begin{definition}
+	\begin{equation}\label{eqcosttrp}
+		\begin{aligned}
+			&T=G A\gamma,\\
+			&N=EA \varepsilon,\\
+			&M=  EJ\kappa.
+			\end{aligned}
+	\end{equation}
+\end{definition}
+
+Vedremo più avanti che  le equazioni costitutive trovate per i tagli e per il momento torcente non sono  corrette; la ragione risiede nel fatto che,  in presenza di sforzi di taglio e di momento torcente, le sezioni trasversali non rimangono piane. 
+	
+%	Essendo $\tb^y=\bm{\tau}^y+ \sigma^y \,\ab$ ed $\eb^y=\bm{\gamma}^y+ \varepsilon^y\,\ab$, il legame diretto trasversalmente isotropo vincolato assume la forma
+%	\begin{equation}\label{Leg-cost-trasv_isotropo}
+%		\tb^y= G^y\,\bm{\gamma}^y+E^y\,\varepsilon^y\,\ab, 
+%	\end{equation}
+%	mentre il legame inverso si scrive
+%	\begin{equation}
+%		\eb^y=\frac{1}{G^y}\,\bm{\tau}^y+\frac{\sigma^y}{E^y}\,\ab,
+%	\end{equation}
+%	dove $G^y$ e $E^y$ sono totalmente indipendenti e, in generale, funzioni del posto $P^y$,\footnote{Di qui l'apice $y$ apposto ai simboli costanti elastiche longitudinale $E$ e trasversale $G$.} a differenza del caso isotropo, per cui $E^y=2(1+\nu^y)G^y$.
+%\end{enumerate}

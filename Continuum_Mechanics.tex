@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 2.1.1 (14/2/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com) with modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Compiling this template:
+% This template uses biber for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the 
+% commands below to make sure your LaTeX distribution is configured correctly:
+%
+% 1) pdflatex main
+% 2) makeindex main.idx -s StyleInd.ist
+% 3) biber main
+% 4) pdflatex main x 2
+%
+% After this, when you wish to update the bibliography/index use the appropriate
+% command above and make sure to compile with pdflatex several times 
+% afterwards to propagate your changes to the document.
+%
+% This template also uses a number of packages which may need to be
+% updated to the newest versions for the template to compile. It is strongly
+% recommended you update your LaTeX distribution if you have any
+% compilation errors.
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+%----------------------------------------------------------------------------------------
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+\usepackage{book_sdc}
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate [below=12cm] (midpoint) at (current page.north);
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
+\draw[anchor=north] (midpoint) node [fill=bluSapienza!100!white,fill opacity=1,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Continuum Mechanics\\[15pt] % Book title
+{\Large Lecture Notes for  \\Nanotechnology Engineering}\\[20pt] % Subtitle
+{\huge Prof.  Antonino Favata}}}; % Author name
+\end{tikzpicture}};
+\end{tikzpicture}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+%\vspace{5cm}
+%
+
+\vspace*{\fill}
+	\noindent\textbf{Caveat lector}\\
+	\noindent This draft should be regarded as a set of \textit{personal notes} for the course in \textit{Continuum Mechanics}, which I have been teaching at Sapienza University of Rome for students in Nanotechnology Engineering. The text is intentionally informal; typos, imprecisions, notational liberties, and occasional inconsistencies may be present throughout. Some parts might be quoted almost verbatim from references.\\[.5cm]
+	\noindent Feedback is welcome at \texttt{antonino.favata@uniroma1.it}
+	
+	\vspace{.9cm}
+	
+%	\noindent\underline{\textbf{This draft cannot be shared without the author’s consent}}. \\
+%	\noindent\underline{\textbf{Any misuse will be prosecuted in the appropriate judicial venues}}.
+%	
+	
+\begin{tcolorbox}[colback=gray!10, colframe=black, boxrule=0.4pt, arc=2mm, width=\textwidth, left=5pt, right=5pt, top=5pt, bottom=5pt]
+	\small
+	\setstretch{1.5} % oppure un altro valore, es. 1.2, 1.3, 1.6...
+	\textbf{This draft is intended for personal use only. Redistribution, reproduction, or public sharing without the explicit consent of the author is strictly prohibited.\\ 
+		\underline{Any unauthorized use may result in legal action in the appropriate judicial venue}.}
+\end{tcolorbox}
+\vspace*{\fill}
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2026 Antonino Favata\\ % Copyright notice
+
+%\noindent \textsc{Published by Publisher}\\ % Publisher
+
+%\noindent \textsc{book-website.com}\\ % URL
+
+%\noindent Queste note sono state utilizzate come \textit{appunti personali} per il  corso di \textit{Scienza delle Costruzioni} che  tengo presso Sapienza Università di Roma  dal  2024, per il corso di laurea triennale in Ingegneria Clinica.
+%Il testo è piuttosto informale, errori di battitura, imprecisioni e abusi di notazione potrebbero essere ovunque.\\ % License information
+
+\noindent \textit{Rome, \today} % Printing/edition date
+%
+%
+\newpage\thispagestyle{empty}
+
+\vspace*{\fill}
+\begin{flushright}
+	\raggedleft
+	O voi ch'avete li 'ntelletti sani,\\
+	mirate la dottrina che s'asconde\\
+	sotto 'l velame de li versi strani.\footnote{O ye who have undistempered intellects,\\
+		Observe the doctrine that conceals itself\\
+		Beneath the veil of the mysterious verses.}\\[.4cm]
+	\textsc{Dante}, \textit{Inferno} \textsc{ix}, 61-63\\[1.5cm]
+	Surge ai mortali per diverse foci\\
+	la lucerna del mondo [\ldots] \\
+	Le cose tutte quante\\
+	hanno ordine tra loro [\ldots]\footnote{To mortal men by passages diverse\\
+		Uprises the world's lamp[\ldots]\\
+		All things whate'er they be\\
+		Have order among themselves [\ldots]}\\[.4cm]
+	\textsc{Dante}, \textit{Paradiso} \textsc{i}, 37-38, 103-104\\[1.5cm]
+%	Mechanicam vero duplicem Veteres constituerunt: \\ \emph{rationalem} qu\ae{} per demonstrationes accurat\ae{} procedit, \\et \emph{praticam}.\footnote{The Ancients established mechanics to be of two kinds:\ \emph{rational}, which proceeds through rigorous demonstrations, and \emph{practical}.}\\[.4cm]
+	%	\textsc{Isaac Newton}
+\end{flushright}
+	
+	\vspace{.7cm}
+	
+%	\begin{minipage}[t]{0.5\textwidth}
+%		\raggedleft
+%		\begin{tabular}{l}
+%			Surge ai mortali per diverse foci\\
+%			la lucerna del mondo [\ldots] \\
+%			Le cose tutte quante\\
+%			hanno ordine tra loro [\ldots]\\[.5cm]
+%			\textsc{Dante}, \textit{Paradiso} \textsc{ixi}, 37-38, 103-104
+%		\end{tabular}
+%	\end{minipage}
+%\end{flushright}
+
+
+%\vspace{.7cm}
+%
+%\begin{flushright}
+%	\begin{tabular}{l}
+%	Mechanicam vero duplicem Veteres constituerunt: \\
+%	rationalem, quae per demonstrationes accuratae procedit, \\
+%	et praticam. \\[.5cm]
+%		\textsc{Isaac Newton}, Philosophiae Naturalis Principia Mathematica
+%	\end{tabular}
+%\end{flushright}
+
+\vspace*{\fill}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{chapter_head_1.pdf} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+\part{Kinematics}
+\include{capitoli/cinematica/cinematica3D_en}
+
+\part{Basic Mechanical Principles}
+\include{capitoli/equilibrio/equilibrio3D_en.tex}
+\include{capitoli/equilibrio/energia_en.tex}
+%%
+%%%
+\part{Constitutive Assumptions}
+\include{capitoli/assunzioni_costitutive/const3D_en.tex}
+%%%
+%%%
+%\part[Mechanical Theories of Solids]
+%{Mechanical Theories of Solids}
+%%%
+%\include{capitoli/problema_elastico/pelastico3D_en.tex}
+%\include{capitoli/problema_elastico/plasticity.tex}
+
+
+
+\part{Appendices}
+\include{capitoli/appendici/algebra_en.tex}
+
+
+
+
+%
+%
+
+\include{capitoli/bibliografia/bibliografia}
+
+
+% Cambio margini solo per questa pagina
+\newpage
+\newgeometry{top=1in, bottom=-.1in, left=1in, right=1in} % Nuovi margini
+\thispagestyle{empty}
+
+\vspace*{\fill}
+
+%\begin{center}
+%	\begin{small}
+%	\begin{minipage}[t]{0.5\textwidth}
+%	\begin{tabular}{l}
+%E quella pria ch’el cor s’innalzi e senta\\
+%la virtù che da la somma luce spira,\\
+%saria per ciò che più la mente appenta\\
+%menata a verace intendimento.\\[.4cm]
+%	\textsc{Dante}, \textit{Paradiso}, \textsc{ ix}, 25-30\\[1.5cm]
+%\end{tabular}
+%\end{minipage}
+%\end{small}
+%\end{center}
+
+%\begin{center}
+%	\begin{small}
+%\begin{minipage}[t]{0.5\textwidth}
+%\begin{tabular}{l}
+%	Lo duca e io per quel cammino ascoso\\
+%	intrammo a ritornar nel chiaro mondo;\\
+%	e sanza cura aver d’alcun riposo,\\[.3cm]
+%	salimmo sù, el primo e io secondo,\\
+%	tanto ch'i' vidi de le cose belle\\
+%	che porta 'l ciel, per un pertugio tondo.\\[.3cm]
+%	E quindi uscimmo a riveder le stelle.\\[.4cm]
+%	\textsc{Dante}, \textit{Inferno} \textsc{ xxxiv}, 133-139\\[1.5cm]
+%\end{tabular}
+%\end{minipage}
+%\end{small}
+%\end{center}
+%\newpage
+%\thispagestyle{empty} % Rimuove intestazione, piè di pagina e numeri di pagina
+%\hspace{0pt} % Assicura che la pagina venga generata
+%\vfill % Assicura che la pagina resti vuota
+
+
+
+
+\end{document}

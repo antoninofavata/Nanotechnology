@@ -1,0 +1,641 @@
+\setcounter{chapter}{0}
+\chapter{Elementi di algebra ed analisi tensoriale}
+
+%\addcontentsline{toc}{chapter}{A. Richiami di algebra ed analisi} % Aggiunge il capitolo all'indice
+%\renewcommand{\theequation}{A\arabic{equation}}
+%\setcounter{equation}{0} % Reset del contatore delle equazioni
+\renewcommand{\thesection}{A.\arabic{section}}
+\setcounter{section}{0} % Reset del contatore delle sezioni
+
+
+
+% Ridefinisci la numerazione delle equazioni per questo capitolo
+\renewcommand{\theequation}{A\arabic{equation}}
+\setcounter{equation}{0} % Reset del contatore delle equazioni
+
+
+
+\section{Vettori}
+Operiamo su uno spazio euclideo $\Ec^n$ di dimensione $n=1,2,3$; laddove $n$ non sia esplicitamente indicato si intende $n=3$. Gli elementi di $\Ec$ sono punti $P$, $Q$, $\ldots$. La differenza tra due punti è un vettore, un elemento dello spazio delle traslazioni $\Vc$ associato ad $\Ec$:
+\begin{equation}
+	P-Q=\vb \in \Vc.
+\end{equation}
+$\Vc$ è uno \textit{spazio vettoriale}.
+
+Indicheremo i vettori con lettere minuscole in grassetto, generalmente latine, ma qualche volta, per necessità, useremo anche caratteri greci, $\ab, \bb, \ldots \boldsymbol{\alpha}, \boldsymbol{\beta}, \ldots$
+
+Scelto in $\Ec^n$ un punto $O$, il \textit{vettore posizione} di $X$ rispetto ad $O$ può essere indicato con
+\begin{equation}
+P-O=\overrightarrow{OP}=\pb\in \Vc^n.
+\end{equation}
+Per semplicità qualche volta ci riferiremo al punto $\pb\in \Vc$, pensando alla sua posizione rispetto all'origine.
+
+Dotiamo $\Vc$ di \textit{prodotto scalare}, che indichiamo con $\ub\cdot \vb$, $\ub$, $\vb\in\Vc$.
+La \textit{norma} di un vettore $\ub$ è $|\ub|\coloneqq \sqrt{\ub\cdot\ub}$. Detto $\vartheta$ l'angolo formato tra due vettori $\ub$, $\vb$, avremo
+\begin{equation}
+\ub \cdot \vb =|\ub||\vb|\cos \vartheta.
+\end{equation}
+
+Un vettore unitario, o \textit{versore}, è un vettore di norma 1, mentre due vettori, non nulli, si dicono \textit{ortogonali} se il loro prodotto scalare è nullo.
+
+Se $\Vc$ ha dimensione $n$, è sempre possibile trovare un sistema ortonormale di $n$ vettori, che identificheremo come \textit{base} di $\Vc$, ne sceglieremo una indicandola con $\eb_1, \eb_2, \ldots \eb_n$. Avremo che
+\begin{equation}
+\eb_i \cdot \eb_j=\delta_{ij}, \qquad \forall i,j=1,2,\ldots, n,
+\end{equation}
+dove $\delta_{ij}$ è il \textit{delta di Kronecker} ($\delta=1$ se $i=j$ e 0 altrimenti).
+
+
+Le componenti di un vettore $\ub$ rispetto alla base $\{\eb_i\}$ sono gli scalari
+\begin{equation}
+u_i=(\ub)_i\coloneqq \ub \cdot \eb_i.
+\end{equation}
+e dunque
+\begin{equation}
+\ub =u_1 \eb_1+ u_2\eb_2+\ldots+u_n \eb_n=\sum_{i=1}^n u_i \eb_i.
+\end{equation}
+Useremo la \textit{convenzione di Einstein}: ogni indice ripetuto due volte in un'espressione viene sommato al variare di tutti i possibili valori che l'indice può assumere; per cui, possiamo semplicemente scrivere
+\begin{equation}
+\ub=u_i \eb_i
+\end{equation}
+
+Se $n=3$, possiamo definire il \textit{prodotto vettoriale} tra due vettori $\ub$ e $\vb$:
+\begin{equation}
+\ub \times \vb =(\ub \times \vb)_k \eb_k, \qquad (\ub \times \vb)_k=(u_i \eb_i)\times (b_j\eb_j)\cdot \eb_k=\epsilon_{ijk}a_i b_j,
+\end{equation}
+dove 
+\begin{equation}\label{Ricci}
+	\epsilon_{ijk}=
+	\begin{cases}
+\begin{aligned}
+		&1 \qquad &&\mathrm{se~}(i,j,k)\text{ è una permutazione pari di }(1,2,3);\\
+	&-1  &&\mathrm{se~}(i,j,k)\text{ è una permutazione dispari di }(1,2,3);\\
+	&0 &&\text{se due indici sono uguali,}&
+\end{aligned}
+	\end{cases}
+\end{equation}
+è il  \textit{simbolo di Ricci}.
+
+Il simbolo di Ricci e il delta di Kronecker sono legati dalla relazione 
+\begin{equation}\label{epsdel}
+	\epsilon_{ijk}\epsilon_{ipq}=\delta_{jp}\delta_{kq}-\delta_{jq}\delta_{kp}.
+\end{equation}
+
+Il prodotto $\ub\times \vb$ è un vettore ortogonale sia a $\ub$ che $\vb$, ha modulo pari all'area del parallelogramma di lati $\ub$ e $\vb$, ovvero 
+\begin{equation}
+|\ub \times \vb|=|\ub||\vb|\sin\vartheta,
+\end{equation}
+il verso determinato con la regola della mano destra.
+
+\section{Tensori del secondo ordine}
+Un tensore del secondo ordine è un'applicazione lineare da $\Vc$ in $\Vc$. Indicheremo i tensori con lettere in  grassetto maiuscolo $\Ab, \Bb, \ldots$. L'insieme dei tensori del secondo ordine verrà indicato con $\Lin$.
+
+Dunque
+\begin{equation}
+	\mathbf{A}\in\mathrm{Lin~}\Longleftrightarrow\mathbf{~A}(\alpha\mathbf{u}+\beta\mathbf{v})=\alpha\mathbf{A}\mathbf{u}+\beta\mathbf{A}\mathbf{v}\quad\forall\mathbf{u},\mathbf{v}\in\mathcal{V},\mathrm{~}\forall \alpha, \beta\in\mathbb{R}.
+\end{equation}
+Possiamo definire  la \textit{somma} e la \textit{moltiplicazione per uno scalare}:
+\begin{equation}
+%	(\mathbf{AB})\mathbf{v}=\mathbf{A}(\mathbf{B}\mathbf{v})=:\mathbf{A}\mathbf{B}\mathbf{v},\quad
+	(\mathbf{A}+\mathbf{B})\mathbf{v}=\mathbf{A}\mathbf{v}+\mathbf{B}\mathbf{v},\quad(c\mathbf{A})\mathbf{v}=c(\mathbf{A}\mathbf{v})=:c\mathbf{A}\mathbf{v}
+\end{equation}
+per ogni $\Ab, \Bb \in \Lin$, $\vb \in \Vc$ e $c\in \Ro$.
+
+\subsubsection{Prodotto diadico}
+Dati due vettori $\ab$, $\bb$ il \textit{prodotto diadico} (o \textit{prodotto tensoriale}) $\ab \otimes \bb$ è un tensore del secondo ordine che agisce nel modo seguente
+\begin{equation}
+(\ab \otimes \bb)\,\vb =(\bb \cdot \vb)\,\ab, \qquad \forall \vb \in \Vc.
+\end{equation}
+Tutti i vettori di $\Vc$ vengono allora mandati da $\ab \otimes \bb$ nella retta generata da $a$.
+Ogni combinazione lineare di diadi è una trasformazione lineare di $\Vc$ in sé. 
+
+\subsubsection{Base per Lin}
+Partendo dalla base ortonormale scelta per $\Vc$, possiamo costruire una base per Lin.
+
+Consideriamo, per partire, la diade $\eb_1\otimes \eb_2$. Abbiamo che
+\begin{equation}
+(\eb_1\otimes \eb_2)\vb=(\eb_2\cdot \vb)\eb_1=v_2\,\eb_1,
+\end{equation}
+ovvero, usando una rappresentazione per matrici
+\begin{equation}
+	\begin{bmatrix}&&\\&\eb_{1}\otimes\eb_{2}&\\&&\end{bmatrix}\begin{bmatrix}v_{1}\\v_{2}\\v_{3}\end{bmatrix}=\begin{bmatrix}v_{2}\\0\\0\end{bmatrix},\quad\forall\vb\in \Vc;
+\end{equation}
+vista l'arbitrarietà di $\vb$ concludiamo che la matrice rappresentativa di $\eb_{1}\otimes\eb_2$ ha l'aspetto
+\begin{equation}
+[\eb_{1}\otimes\eb_2]=	\begin{bmatrix}0&1&0\\0&0&0\\0&0&0\end{bmatrix}.
+\end{equation}
+ In generale, l’unico elemento non nullo della matrice associata a $\eb_i \otimes \eb_j$ è quello che si trova $i$-esima riga e $j$-esima colonna e vale 1. Una combinazione lineare delle 9 diadi costruibili con i vettori della base ortonormale di $\Vc$ restituisce qualunque matrice $3\times 3$:
+ \begin{equation}
+ 	[\mathbf{M}]=M_{ij}[\eb_i\otimes \eb_j].
+ \end{equation}
+ 
+ Al fine di mostrare che le diadi $\eb_i\otimes \eb_j$ costituiscono una base ortonormale, introduciamo il prodotto scalare tra diadi:
+ \begin{equation}
+ \ab \otimes \bb \cdot \cb \otimes \db \coloneqq (\ab \cdot \cb)(\bb\cdot \db).
+ \end{equation}
+ Allora,
+ \begin{equation}
+\eb_i\otimes\eb_j \cdot\eb_h \otimes \eb_k=(\eb_i\cdot\eb_h)(\eb_j\cdot\eb_k)=\delta_{ih}\delta_{jk},
+ \end{equation}
+quindi ognuna delle diadi $\eb_i\otimes \eb_j$ ha modulo 1 ed è ortogonale alle altre.
+
+Possiamo anche definire il prodotto scalare tra un tensore del secondo ordine $\Vb$ e una diade $\ab \otimes\bb$:
+\begin{equation}
+\Vb \cdot(\ab \otimes \bb)\coloneqq (\Vb\bb)\cdot \ab,
+\end{equation}
+e dare la rappresentazione conseguente
+\begin{equation}
+\Vb = V_{ij}\, \eb_i \otimes \eb_j, \qquad V_{ij}\coloneqq \Vb \cdot \eb_{i}\otimes\eb_j=\Vb \eb_j \cdot \eb_i.
+\end{equation}
+I numeri reali $V_{ij}$ sono le \textit{componenti} di $\Vb$ nella base ortonormale scelta per $\Lin$ e coincidono con gli elementi della matrice associata a $\Vb$ relativamente alla stessa base. Per il \textit{tensore identità} $\Ib$ si ha
+\begin{equation}
+\Ib = \eb_i \otimes \eb_i, \qquad I_{ij}=\delta_{ij}.
+\end{equation}
+
+\subsubsection{Tensore trasposto}
+Dato $\Ab \in \Lin$ il \textit{tensore trasposto} $\Ab^\top$ è l'unico tensore che soddisfa la seguente identità
+\begin{equation}
+	\Ab \ub \cdot \vb =\ub \cdot \Ab^\top \vb, \qquad \forall \ub, \vb \in \Vc.
+\end{equation}
+Dalla definizione segue che $(\Ab^\top)_{ij}=(\Ab)_{ji}$, ossia la matrice rappresentativa di $\Ab^\top$ è uguale alla trasposta della matrice rappresentativa di $\Ab$.  È immediato verificare che
+\begin{equation}
+	(\ab \otimes \bb)^\top =\bb \otimes \ab, \qquad \forall \ab, \bb \in \Vc.
+\end{equation}
+
+
+
+\subsubsection{Composizione tra tensori}
+Definiamo la  \textit{composizione} tra tensori:\begin{equation}
+	(\mathbf{AB})\mathbf{v}=\mathbf{A}(\mathbf{B}\mathbf{v})=:\mathbf{A}\mathbf{B}\mathbf{v},
+\end{equation}
+per ogni $\Ab, \Bb \in \Lin$, $\vb \in \Vc$. Possiamo scrivere la composizione per componenti:
+\begin{equation}
+	(\Ab\Bb)_{ij}=A_{ik}B_{kj}.
+\end{equation}
+Nella notazione per indici che qui abbiamo utilizzato, va notato che gli indici liberi del membro di sinistra coincidono con quelli di destra, visto che l'indice `muto' $k$ che è presente a destra è ripetuto, quindi, secondo la convenzione di Einstein va sommato e dunque si satura:
+\begin{equation}
+A_{ik}B_{kj}=A_{i1}B_{1j}+A_{i2}B_{2j}+A_{i3}B_{3j}.
+\end{equation}
+
+Valgono le seguenti identità, immediate da verificare:
+\begin{equation}
+	\begin{aligned}
+		& (\ab \otimes \bb)\Ab =\ab \otimes (\Ab ^\top \bb)=\ab \otimes \Ab ^\top \bb,\\
+		& (\Ab ^\top)^\top =\Ab,\\
+		& (\Ab \Bb)^\top= \Bb ^\top \Ab ^\top.
+	\end{aligned}
+\end{equation}
+
+\subsubsection{Tensori simmetrici e antisimmetrici}
+
+Un tensore $\Ab$ si dice \textit{simmetrico} se $\Ab =\Ab ^\top$ e \textit{antisimmetrico} (o \textit{emisimmetrico}) se  $\Ab =-\Ab ^\top$. Indicheremo con Sym e Skw lo spazio dei tensori simmetrici e antisimmetrici:
+\begin{equation}
+	\mathrm{Sym}:=\{\mathbf{A}\in\mathrm{Lin}:\mathbf{A}=\mathbf{A}^\top\}\quad\mathrm{e}\quad\mathrm{Skw}:=\{\mathbf{A}\in\mathrm{Lin}:\mathbf{A}=-\mathbf{A}^\top\}.
+\end{equation}
+ Indicheremo inoltre con
+ \begin{equation}
+ \sym \Ab\coloneqq \frac12 (\Ab+\Ab^\top), \qquad  \skw \Ab\coloneqq \frac12 (\Ab-\Ab^\top)
+ \end{equation}
+la \textit{parte simmetrica} e la \textit{parte antisimmetrica} di un tensore $\Ab \in \Lin$.
+
+Ad ogni tensore antisimmetrico $\Wb$ è possibile associare un vettore $\wb$, detto assiale, tale che
+\begin{equation}\label{Ww}
+	\Wb\ab = \wb \times \ab, \qquad\forall \ab \in \Vc. 
+\end{equation}
+
+
+\subsubsection{Traccia di un tensore. Prodotto scalare. Norma}
+
+La \textit{traccia} di una diade è l'operatore lineare $\operatorname{tr}\,:\, Lin \to \Ro$ così definito:
+\begin{equation}
+\operatorname{tr}(\ub \otimes \vb)\coloneqq \ub \cdot \vb, \qquad \forall \ub, \vb \in \Vc.
+\end{equation}
+Dato che un qualunque tensore del secondo ordine può essere rappresentato come combinazione di diadi, abbiamo
+\begin{equation}
+\operatorname{tr}\Ab =\operatorname{tr}(A_{ij}\eb_i\otimes \eb_j)=A_{ij}\operatorname{tr}(\eb_i\otimes \eb_j)=A_{ij}\delta_{ij}=A_{ii}.
+\end{equation}
+Concludiamo che la traccia di $\Ab$ è la somma degli elementi della diagonale principale della matrice rappresentativa di $\Ab$. 
+
+Il prodotto scalare su $\Vc$ induce su $\Lin$ una nozione di prodotto scalare, tramite l'operato traccia. In particolare, dati $\Ab$ e $\Bb\in \Lin$, il prodotto scalare $\Ab \cdot \Bb$ è così definito:
+\begin{equation}
+\Ab \cdot \Bb \coloneqq \operatorname{tr}(\Ab ^\top \Bb).
+\end{equation}
+Si ha dunque che 
+\begin{equation}
+\Ab \cdot \Bb = (\Ab ^\top \Bb)_{jj}=(\Ab ^\top)_{ji}B_{ij}=A_{ij}B_{ij}=\Ab \cdot \Ib;
+\end{equation}
+ il prodotto scalare tra due tensori risulta dunque  uguale alla somma dei prodotti delle componenti omologhe delle matrici rappresentative. Vale ovviamente l'identità
+ \begin{equation}
+ 	\Ab \cdot \Bb =\Ab ^\top \Bb ^\top.
+ \end{equation}
+ 
+ Data la nozione di prodotto scalare, possiamo definire la \textit{norma} di un tensore $\Ab$:
+ \begin{equation}
+ |\Ab|\coloneqq \sqrt{\Ab \cdot \Ab}=\sqrt{A_{ij}A_{ij}}=\sqrt{\sum_{i,j=1}^n A_{ij}^2};
+ \end{equation}
+la norma di un tensore è dunque la radice quadrata della somma dei quadrati delle componenti omologhe.
+
+\vspace{.5cm}
+
+\noindent Valgono le seguenti proprietà:
+\begin{enumerate}
+	\item Se $\Ab \cdot \Bb=0, \quad \forall \Bb \in \Lin$, allora $\Ab =\mathbf{0}$.
+	\item Se $\Ab \in \Sym$ e $\Wb \in \Skw$, allora $\Ab \cdot \Wb =0$.
+	\item Se $\Ab \cdot \Bb=0, \quad \forall \Bb \in \Sym$, allora $\Ab \in \Skw$.
+\end{enumerate}
+
+La 1. si verifica immediatamente scegliendo $\Bb =\mathbf{0}$:
+\begin{equation}
+0=|\Ab|^2 \qquad \Longrightarrow\qquad \Ab =\mathbf{0}.
+\end{equation}
+La 2. si ottiene facilmente applicando l'operatore di trasposizione:
+\begin{equation}
+\Ab \cdot \Wb =\Ab^\top \Wb^\top=-\Ab^\top \Wb, \qquad \Ab \cdot \Wb=0.
+\end{equation}
+La 3. si ottiene osservando che, per un generico tensore $\Bb \in \Lin$, $\Bb + \Bb ^\top\in \Sym$ e quindi, per ogni $\Bb \in \Lin$
+\begin{equation}
+0=\Ab \cdot (\Bb +\Bb ^\top)=\Ab \cdot \Bb + \Ab ^\top \cdot \Bb =(\Ab + \Ab ^\top)\cdot \Bb.
+\end{equation}
+Usando il risultato 1., segue $\Ab + \Ab ^\top=0$, ovvero la tesi.
+
+La proprietà 2 consente di osservare che $\Lin$ può essere decomposto come somma diretta dei sottospazi dei tensori simmetrici e antisimmetrici:
+\begin{equation}
+	\Lin = \Sym \oplus \Skw. 
+\end{equation}
+
+\begin{exercise}
+Dimostrare che valgono le seguenti identità:
+\begin{equation}
+	\begin{aligned}
+	%	&\mathbf{I}\cdot\mathbf{A}=\operatorname{tr}\mathbf{A}; \\
+		&\mathbf{A}\cdot\mathbf{B}\mathbf{C}=\mathbf{B}^\mathsf{T}\mathbf{A}\cdot\mathbf{C}=\mathbf{A}\mathbf{C}^\mathsf{T}\cdot\mathbf{B}; \\
+		&\mathbf{u}\cdot\mathbf{A}\mathbf{v}=\mathbf{A}\cdot\mathbf{u}\otimes\mathbf{v}; \\
+		&\mathbf{a\otimes b\cdot c\otimes d=(a\cdot c)(b\cdot d).}
+	\end{aligned}
+\end{equation}
+\begin{svolgimento}
+Per la prima si ha:
+\begin{equation}
+\mathbf{A}\cdot\mathbf{B}\mathbf{C}=A_{ij}B_{ik}C_{kj}=B^\top_{ki}A_{ij}C_{kj}=\Bb ^\top \Ab \cdot \Cb =A_{ij}C^\top_{jk}B_{ik}=\mathbf{A}\mathbf{C}^\mathsf{T}\cdot\mathbf{B}.
+\end{equation}
+Per la seconda:
+\begin{equation}
+	\mathbf{u}\cdot\mathbf{A}\mathbf{v}=u_i A_{ij}v_j=A_{ij}(u_iv_j)=\Ab \cdot(\ub \otimes \vb).
+\end{equation}
+Per la terza:
+\begin{equation}
+\mathbf{a\otimes b\cdot c\otimes d}=a_i b_j c_i d_j=(a_i c_i)(b_j d_j)=(\ab\cdot \cb)(\bb\cdot \db).
+\end{equation}
+\end{svolgimento}
+\end{exercise}
+ 
+
+
+\subsubsection{Tensore inverso}
+Un tensore $\Ab$ è \textit{invertibile} se esiste un tensore $\Ab ^{-1}$, chiamato inverso di $\Ab$, tale che
+\begin{equation}
+	\Ab \Ab ^{-1}=\Ab ^{-1}\Ab =\Ib.
+\end{equation} 
+Dato un tensore $\Ab \in \Lin$ le seguenti condizioni sono equivalenti:
+\begin{enumerate}
+	\item $\Ab$ è invertibile.
+	\item Per ogni $\ub \in \Vc$, $\Ab \ub=\mathbf{0} $ implica che $\ub = \mathbf{0}$.
+	\item Per ogni base $\{ \ub, \vb, \wb \}$, la tripletta $\{\Ab \ub, \Ab \vb, \Ab \wb\}$ è una base.
+	\item Per ogni coppia di vettori $\ub$ e $\vb$, $\ub \times \vb \neq \mathbf{0}$ implica che $\Ab\ub \times \Ab\vb\neq \mathbf{0}$.
+\end{enumerate}
+
+%Un tensore si dice \textit{non singolare} se l'unico vettore mappato nel vettore nullo è il vettore nullo stesso:
+%\begin{equation}
+%\Ab \vb = \mathbf{0} \qquad \Longrightarrow \vb =\mathbf{0}.
+%\end{equation}
+%Ogni tensore non singolare ammette un inverso $\Ab^-{1}$, definito da
+%\begin{equation}
+%	\Ab^{-1}\ub=\vb \qquad \Longleftrightarrow \Ab \vb =\ub.
+%\end{equation}
+%Ne segue che
+%\begin{equation}
+%	\Ab^{-1}\Ab = \Ab \Ab ^{-1}=\Ib.
+%\end{equation}
+
+Valgono le seguenti proprietà, immediatamente verificabili:
+\begin{enumerate}
+	\item $(\Ab \Bb)^{-1}= \Bb^{-1}\Ab^{-1}$;
+	\item $(\Ab^{-1})^\top=(\Ab ^\top)^{-1}=:\Ab^{-\top}$.
+\end{enumerate}
+
+\subsubsection{Determinante}
+ Il \textit{determinante}  è un operatore che assegna ad ogni tensore $\Ab\in \Lin$ lo scalare $\det \Ab$ così definito:
+\begin{equation}
+	\det \Ab \coloneqq 	\frac{\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})}{\mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})}
+\end{equation}
+per ogni  base $\{\ub, \vb, \wb\}$. Dunque $|\det\Ab|$ rappresenta il rapporto tra il volume del parallelepipedo definito dai vettori $\Ab \ub$, $\Ab\vb$, $\Ab \wb$ e il volume del parallelepipedo definito dai vettori $\ub$, $\vb$, $\wb$. Un'immediata conseguenza è che due basi $\{\ub, \vb, \wb\}$ e $\{\Ab \ub$, $\Ab\vb$, $\Ab \wb\}$  hanno la stessa orientazione se e solo se 
+\begin{equation}
+	\det \Ab >0.
+\end{equation}
+Osserviamo inoltre che $\det \Sb \neq 0$ se e solo se  $\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})\neq 0$ e dunque se e solo se $\mathbf{Au}\cdot(\mathbf{Av}\times\mathbf{Aw})$ è una base. Concludiamo che $\Ab$ è invertibile se e solo se $\det \Ab \neq 0$.
+
+Valgono le seguenti proprietà:
+\begin{enumerate}
+	\item $\det \Ab =\det \Ab ^\top$;
+	\item $\det (\Ab \Bb)=\det (\Bb \Ab)=(\det \Ab)(\det \Bb)$;
+	\item $\det(\alpha \Ab)=\alpha^3 \det \Ab$
+	\item $\det (\Ab^{-1})=(\det \Ab)^{-1}$.
+\end{enumerate}
+
+\subsubsection{Tensori ortogonali}
+Un tensore $\Qb$ si dice \textit{ortogonale} se 
+\begin{equation}
+\Qb \ub \cdot \Qb \vb =\ub \cdot \vb
+\end{equation}
+per ogni $\ub$ e $\vb \in \Vc$.
+Scegliendo $\vb =\ub$, si ha
+\begin{equation}
+|\Qb \ub|^2 =\Qb \ub\cdot\Qb \ub =\ub \cdot\ub =|\ub|^2,
+\end{equation}
+e quindi 
+\begin{equation}
+	|\Qb \ub|=|\ub|.
+\end{equation}
+Dunque l'azione di un tensore ortogonale $\Qb$ su un vettore $\ub$ ne lascia inalterata la lunghezza. Consideriamo adesso due vettori $\ub$ e $\vb$, che formano fra loro un angolo $\vartheta$:
+\begin{equation}
+	\cos\vartheta=\frac{\ub \cdot \vb}{|\ub||\vb|}=\frac{\Qb \ub \cdot \Qb \vb}{|\Qb \ub ||\Qb \vb |};
+\end{equation}
+Dunque anche l'angolo tra due vettori è preservato. I tensori ortogonali dunque preservano lunghezze e angoli.
+
+Condizione necessaria e sufficiente affinché $\Qb$ sia ortogonale è che
+\begin{equation}
+	\Qb^\top = \Qb ^{-1}.
+\end{equation}
+Infatti
+\begin{equation}
+	\ub \cdot \vb =\Qb \ub \cdot\Qb \vb =\Qb ^\top \Qb \ub \cdot \vb;
+\end{equation}
+visto che l'identità vale per ogni $\vb \in \Vc$, si deduce che $\ub = \Qb ^\top \Qb \ub$, da cui, vista l'arbitrarietà di $\ub$,
+\begin{equation}
+\Qb ^\top \Qb =\Qb \Qb ^\top =\Ib.
+\end{equation}
+Inoltre, poiché $\det (\Qb^\top \Qb)=(\det \Qb)^2$, si ha che $\det \Qb=\pm 1$.
+
+Possiamo quindi così caratterizzare lo spazio del tensori ortogonali:
+\begin{equation}
+	\operatorname{Orth}\coloneqq \{\Qb \in \Lin \,:\, \Qb ^\top \Qb =\Qb \Qb ^\top =\Ib\}.
+\end{equation}
+
+Un tensore ortogonale è una \textit{rotazione} se $\det \Qb =1$, una \textit{riflessione} altrimenti.
+Indicheremo con
+\begin{equation}
+\operatorname{\Rot}\coloneqq \{\Rb \in \operatorname{Orth}\,:\; \det \Rb =1  \}.
+\end{equation}
+lo spazio delle rotazioni.
+
+\subsubsection{Autovalori e autovettori. Teorema spettrale}
+Dato $\Ab\in\Lin$, diciamo che lo scalare $\lambda$ è un \textit{autovalore} di $\Ab$, se esiste un versore non nullo $\vb$, detto \textit{autovettore}, tale che
+\begin{equation}
+	\Ab \vb =\lambda \vb.
+\end{equation}
+Dato che possiamo riscrivere la relazione autovalore-autovettore come $(\Ab -\lambda\Ib)\vb =\mathbf{0}$ e $\vb \neq \mathbf{0}$, allora necessariamente 
+\begin{equation}
+	\det (\Ab -\lambda \Ib)=0.
+\end{equation}
+Le radici di questa equazione, detta \textit{polinomio caratteristico}, sono gli autovalori di $\Ab$.
+
+Il prossimo risultato è un teorema centrale in algebra lineare ed è piuttosto utilizzato nel nostro contesto e va sotto il nome di \textit{Teorema Spettrale}:
+Sia $\Ab$ un tensore simmetrico. Allora esiste una base ortonormale $\{\ab_i\}$ di autovettori di $\Ab$ e di $\Ab$ si può dare la seguente \textit{decomposizione spettrale}:
+\begin{equation}
+	\Ab=\sum_{i=1}^3 \lambda_i \ab_i\otimes\ab_i,
+\end{equation}
+dove, per ogni $i$, $\lambda_i$ è un autovettore di $\Ab$ e $\ab_i$ il corrispondente autovettore.
+
+Si può anche dimostrare che tutti gli autovalori di $\Ab$ sono reali e ad autovalori distinti corrispondono autovettori ortogonali.
+
+\section{Analisi vettoriale e tensoriale}
+Sia $\fb \, :\, \Ro^n\to \Ro ^n$, con $n$ intero maggiore di 1, un generico campo. Diciamo che $\fb$ è derivabile in $\xb_0$ lungo la direzione $\hb$ se esiste il limite
+\begin{equation}
+	\lim_{\varepsilon\to 0} \frac{\fb (\xb_0+\varepsilon\hb)-\fb(\xb_0)}{\varepsilon}=: \partial_\hb \fb (\xb_0).
+\end{equation} 
+Indichiamo con 
+\begin{equation}
+	\fb,_i\coloneqq \partial_{\eb_i}\fb,
+	\end{equation}
+ovvero la derivata parziale rispetto alla variabile $x_i$. Se esistono tutte le derivate parziali lungo le direzioni $\eb_i$, definiamo il \textit{gradiente} di $\fb$ in $\xb_0$
+\begin{equation}
+	\nabla \fb (\xb_0)\coloneqq \fb,_i(\xb_0)\otimes \eb_i.
+\end{equation}
+
+Se $\fb$ è differenziabile in $\xb_0$ allora, per ogni vettore $\hb$
+\begin{equation}
+\partial_{\hb}\fb (\xb_0)=\nabla\fb (\xb_0)\, \hb.
+\end{equation}
+
+La \textit{divergenza} di $\fb$ è definita come
+\begin{equation}
+	\Div \fb \coloneqq \operatorname{tr}\nabla \fb.
+\end{equation}
+Poiché
+\begin{equation}
+	\Div \fb=\nabla\fb \cdot \Ib =\nabla \fb \cdot \eb_i \otimes \eb_i =\eb_i \cdot \nabla \fb \,\eb_i =\eb_i\cdot \fb,_i= f_{i,i}
+\end{equation}
+ risulta che $	\Div \fb$ è uguale alla somma delle derivate delle componenti $f_i$ rispetto alla variabile $x_i$.
+
+Definiamo il \textit{rotore} di $\fb$ come
+\begin{equation}
+\wb \cdot \Rot \fb = \Wb \cdot \nabla \fb,
+\end{equation}
+per ogni vettore costante $\wb$, associato al tensore antisimmetrico $\Wb$, secondo la corrispondenza \eqref{Ww}.
+
+Le componenti di $\Rot \fb$ sono:
+\begin{equation}
+(\Rot \fb)_i\coloneqq\epsilon_{ijk}f_{k,j},
+\end{equation}
+dove $\epsilon_{ijk}$ è il simbolo di Ricci \eqref{Ricci}, sicché
+\begin{equation}
+\Rot \fb=(f_{3,2}-f_{2,3})\,\eb_{1}+(f_{1,3}-f_{3,1})\,\eb_2 + (f_{2,1}-f_{1,2})\,\eb_3.
+\end{equation}
+
+La divergenza di un campo tensoriale $\Tb$ è l'unico campo vettoriale $\Div \Tb$ che soddisfa l'uguaglianza
+\begin{equation}
+\Div \Tb \cdot \ab =(\Div \Tb ^\top \ab)
+\end{equation}
+per ogni vettore $\ab$ costante. Scegliendo $\ab = \eb_i$, si ha
+\begin{equation}
+(\Div \Tb)_i=\Div \Tb \cdot\eb_i =\Div (\Tb^\top \eb_i)=(\Tb^\top \eb_i)_{j,j}=\Big((\Tb ^\top)_{ji}\Big),_{j}=T_{ij,j}.
+\end{equation}
+
+Il rotore di un campo tensoriale $\Tb$ è l'unico campo tensoriale $\Rot \Tb$ che soddisfa
+\begin{equation}\label{RotT}
+(\Rot \Tb) \ab =\Rot (\Tb ^\top \ab)
+\end{equation} 
+per ogni vettore $\ab$ costante. Le sue componenti sono
+\begin{equation}
+	(\Rot \Tb)_{ij}=\epsilon_{ipq}T_{jq,p}.
+\end{equation}
+
+
+Dati un campo scalare $\varphi$, due campi vettoriali $\ub$, $\vb$ e un campo tensoriale $\Tb$ sufficientemente regolari, valgono le seguenti identità.
+\begin{equation}\label{identitadiff}
+\begin{aligned}
+&\nabla(\varphi\mathbf{v})=\varphi\nabla\mathbf{v}+\mathbf{v}\otimes\nabla\varphi,\\
+& \nabla(\mathbf{u}\cdot\mathbf{v})=(\nabla\mathbf{u})^\top\mathbf{v}+(\nabla\mathbf{v})^\top\mathbf{u},\\
+&\Div(\varphi\mathbf{v})=\varphi\Div\mathbf{v}+\mathbf{v}\cdot\nabla\varphi,\\
+&\Div(\mathbf{u}\otimes\mathbf{v})=(\Div \vb)\mathbf{u}+(\nabla\mathbf{u})\mathbf{v},\\
+&\Div(\mathbf{T}^{\top}\mathbf{v})=\mathbf{T}\cdot\nabla\mathbf{v}+\mathbf{v}\cdot\Div\mathbf{T},\\
+& \Div(\varphi\mathbf{T})=\varphi\Div\mathbf{T}+\Tb\cdot\nabla\varphi,\\
+&\Rot(\varphi\mathbf{v})=\varphi\Rot\vb+(\nabla\varphi)\times\mathbf{v},\\
+& \operatorname{tr}(\Rot \Tb)=0 \; {\rm se}\; \Tb \in \Sym,\\
+&\Rot \Tb =(\Div \wb)\Ib-\nabla \wb \; \textrm{se $\Tb\in \Skw$ e $\wb$ è l'assiale di $\Tb$}.
+\end{aligned}
+\end{equation}
+
+%\begin{exercise}
+%Dimostrare la \eqref{identitadiff}$_{8}$.
+%\begin{svolgimento}
+%Usando la rappresentazione per componenti abbiamo
+%\begin{equation}
+%\operatorname{tr}(\Rot \Tb)=(\Rot \Tb)_{ii}=\epsilon_{ipq}T_{ip,q}=\epsilon_{1pq}T_{1q,p}+\epsilon_{2pq}T_{2q,p}+\epsilon_{3pq}T_{3q,p}+
+%\end{equation}
+%
+%
+%\end{svolgimento}
+%\end{exercise}
+
+Per un campo scalare $\varphi$ e un campo vettoriale $\vb$, definiamo l'operatore di Laplace, o Laplaciano, come
+\begin{equation}
+	\Delta\varphi\coloneqq \Div \nabla\varphi, \qquad \Delta \vb \coloneqq \Div \nabla \vb;
+\end{equation}
+per un campo tensoriale $\Tb$,  $\Delta \Tb$ è l'unico campo tensoriale tale che
+\begin{equation}
+	(\Delta \Tb)\ab =\Delta(\Tb \ab),
+\end{equation}
+per ogni vettore costante $\ab$. Usando le componenti:
+\begin{equation}
+	\Delta T_{ij}= T_{ij, kk}.
+\end{equation}
+
+
+Concludiamo richiamando il \textit{Teorema della Divergenza}:
+Sia $\Omega$ una regione limitata, con frontiera $\partial\Omega$. Assumiamo che siano dati un campo scalare $\varphi$, un campo vettoriale $\vb$ e un campo tensoriale $\Tb$, con $\Omega$ il dominio di ciascuno di questi campi. Sia $\nb$ il versore  uscente normale alla frontiera $\partial\Omega$ di $\Omega$. Allora
+\begin{equation}\label{theodiv}
+	\begin{aligned}
+		&\int_{\partial \Omega}\varphi\mathbf{n}=\int_\Omega\nabla\varphi, \\
+		&\int_{\partial \Omega}\mathbf{v}\cdot\mathbf{n}  =\int_\Omega\Div \vb, \\
+	&	\int_{\partial\Omega}\mathbf{Tn} =\int_\Omega\Div\mathbf{T}. 
+	\end{aligned}
+\end{equation}
+%
+%\section{Coordinate curvilinee}
+%I problemi dell'elasticità  che affrontiamo possiedono simmetrie intrinseche che si prestano meglio a essere sfruttate mediante l'uso di sistemi di coordinate ad hoc, poiché le basi vettoriali e tensoriali associate consentono rappresentazioni convenienti dei campi di interesse e delle loro trasformazioni sotto l'azione degli operatori differenziali. In questo sezione raccogliamo una minima parte di materiale di base di geometria differenziale.
+%
+%Sia \( \mathbf{x} \) la posizione di un punto. Insieme alle sue coordinate cartesiane \( x_i \), associamo a \( \mathbf{x} \) uno o più insiemi di coordinate curvilinee 
+%\( \zeta^i \), ovvero \( N \)-uple ordinate di numeri reali, ciascuna delle quali è tale che la seguente corrispondenza sia  biettiva:
+%\[
+%(\zeta^1, \ldots, \zeta^N) \leftrightarrow \mathbf{x} \leftrightarrow (x_1, \ldots, x_N).
+%\]
+%
+%Due insiemi di \( N \) vettori di base sono definiti in ogni punto \( \xb \): quelli che compongono la \textit{base covariante}:
+%\[
+%\mathbf{g}_i := \partial_{\zeta^i} \mathbf{x} = \partial_{\zeta^i} x
+%\]
+%e quelli che compongono la \textit{base controvariante}:
+%\[
+%\mathbf{g}^i := \nabla \zeta^i.
+%\]
+%
+%Sebbene nessuno dei due tipi di base sia, in generale, ortogonale o costituito da vettori unitari, segue dalle definizioni (3.1) e (3.2) che:
+%\[
+%\mathbf{g}^i \cdot \mathbf{g}_k = \delta^i_k.
+%\]
+%
+%Due rappresentazioni diadiche equivalenti in termini di vettori base possono essere date per il \textit{tensore identità} \( \Ib \), precisamente:  
+%\[
+%\Ib = \mathbf{g}_i \otimes \mathbf{g}^i = \mathbf{g}^i \otimes \mathbf{g}_i.
+%\]
+%
+%Per un qualsiasi vettore \( \mathbf{v} \), questa relazione implica che:  
+%\[
+%\mathbf{v} = \Ib\mathbf{v} = (\mathbf{g}^i \cdot \mathbf{v}) \mathbf{g}_i = (\mathbf{g}_i \cdot \mathbf{v}) \mathbf{g}^i, \tag{3.3}
+%\]
+%dove le componenti \textit{covarianti} e \textit{controvarianti} di \( \mathbf{v} \) sono, rispettivamente,  
+%\[
+%v_i := \mathbf{v} \cdot \mathbf{g}_i \quad \text{e} \quad v^i := \mathbf{v} \cdot \mathbf{g}^i,
+%\]
+%da cui segue:  
+%\[
+%\mathbf{v} = v^i \mathbf{g}_i = v_i \mathbf{g}^i. \tag{3.4}
+%\]
+%
+%Ora, l'operazione di considerare le componenti cartesiane di un vettore non ha alcun effetto sulle dimensioni fisiche, poiché tutti i vettori di una base cartesiana sono adimensionali. Invece, quando si usano coordinate curvilinee generali, le dimensioni fisiche di \( v^i \) e \( v_i \) possono essere diverse tra loro e diverse da quelle di \( \mathbf{v} \), perché uno o più dei vettori base possono avere dimensioni non nulle.  
+%Nelle applicazioni, questo fatto può offuscare la percezione fisica di una quantità che subisce manipolazioni algebriche o differenziali. 
+%Mostreremo come viene di solito risolto questo potenziale problema.
+%
+%\subsection{Coordinate Ortogonali, Basi Fisiche}
+%
+%Iniziamo con l'esempio più semplice delle coordinate polari.
+%
+%\subsubsection{Coordinate Polari}
+%
+%Sia \( N = 2 \), e scegliamo:
+%\[
+%\zeta^1 = \rho, \quad \zeta^2 = \vartheta.
+%\]
+%
+%Il vettore posizione di un punto è dato da:  
+%\[
+%\xb = x_\alpha e_\alpha = \rho \hat{e}(\vartheta),
+%\]
+%dove  
+%\[
+%x_1 = \rho \cos \vartheta, \quad x_2 = \rho \sin \vartheta,
+%\]
+%quindi, in particolare:  
+%\[
+%\eb(\vartheta) = \cos \vartheta \, e_1 + \sin \vartheta \, e_2;
+%\]
+%e dove  
+%\[
+%\rho^2 = x_1^2 + x_2^2 = \xb \cdot \xb, \quad \tan \vartheta = \frac{x_2}{x_1} = \frac{\xb \cdot \eb_2}{\xb \cdot \eb_1}. \tag{3.5}
+%\]
+%
+%Applicando (3.1) e (3.2), otteniamo:  
+%\[
+%\gb_1 = \partial_\rho \xb = \eb(\vartheta), \quad \gb_2 = \partial_\vartheta \xb = \rho \eb'(\vartheta),
+%\]
+%per la base covariante, e  
+%\[
+%\gb^1 = \nabla \rho = \frac{\partial \rho}{\partial x_\alpha} \eb_\alpha = \eb(\vartheta), \quad \gb^2 = \nabla \vartheta = \frac{\partial \vartheta}{\partial x_\alpha} \eb_\alpha = \rho^{-1} \eb'(\vartheta), 
+%\]
+%per la base controvariante. Di conseguenza, il tensore identità bidimensionale ha le seguenti rappresentazioni:
+%
+%
+%
+%
+%\section{Operatori differenziali in coordinate curvilinee}
+%\begin{equation}
+%\nabla \varphi= \varphi_{,\alpha}\gb^\alpha=\varphi_{,\rho}\eb(\vartheta)+\rho^{-1}\varphi_{,\vartheta}\eb'(\vartheta)
+%\end{equation}
+%
+%\begin{equation}
+%\nabla\nabla\varphi=(\nabla \varphi,_\alpha)\otimes\gb^\alpha
+%\end{equation}
+%
+%\begin{equation}
+%	\Delta\varphi=  \operatorname{tr}(\nabla\nabla\varphi)=(\nabla \varphi,_\alpha)\cdot\gb^\alpha=\varphi_{,\alpha\alpha}+\frac{1}{\rho}\varphi,_{\rho}+\frac{1}{\rho^2}\varphi_{,\vartheta\vartheta}
+%\end{equation}
+%
+%\begin{equation}
+%\Delta\Delta \varphi= 
+%\frac{\partial^4 \varphi}{\partial \rho^4} 
+%+ \frac{2}{\rho} \frac{\partial^3 \varphi}{\partial \rho^3} 
+%+ \frac{1}{\rho^2} \frac{\partial^2 \varphi}{\partial \rho^2} 
+%- \frac{1}{\rho^3} \frac{\partial \varphi}{\partial \rho} 
+%+ \frac{2}{\rho^4} \frac{\partial^2 \varphi}{\partial \vartheta^2} 
+%+ \frac{2}{\rho^2} \frac{\partial^4 \varphi}{\partial \rho^2 \partial \vartheta^2} 
+%+ \frac{1}{\rho^4} \frac{\partial^4 \varphi}{\partial \vartheta^4}.
+%\end{equation}
+% 
+
+
+%% Ripristina la numerazione standard delle equazioni e dei capitoli
+%\chapter{Capitolo 2}
+%\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+%\setcounter{equation}{0} % Reset del contatore delle equazioni
+%\renewcommand{\thesection}{\thechapter.\arabic{section}}
+%\setcounter{section}{0} % Reset del contatore delle sezioni

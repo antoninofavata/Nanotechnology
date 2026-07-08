@@ -1,0 +1,257 @@
+
+	
+\chapter{Bilancio di Energia e Sbilancio di Entropia}
+
+Oltre alle leggi di bilancio delle forze, la risposta di un corpo è governata da  
+\begin{itemize}
+	\item[(i)] la legge di bilancio dell'energia e  
+	\item[(ii)] una legge di sbilancio dell'entropia.
+\end{itemize}
+
+Queste due leggi sono note come  \textit{prima} e  \textit{seconda legge della termodinamica}. Come già fatto nel caso del bilancio di forze e momenti, formuleremo inizialmente queste due leggi in modo globale per le parti \( \Pi \), e successivamente, utilizzando il requisito che le parti sottostanti siano arbitrarie e il lemma di localizzazione, deriveremo forme locali delle leggi sotto forma di equazioni differenziali alle derivate parziali.
+
+
+\section{Bilancio di Energia: Prima Legge della Termodinamica}
+Definiamo  \textit{moto}  una famiglia mono-parametrica di deformazioni:
+	\[
+	\mathcal{M} = \left\{ \fb_t \mid t \in T \subset \mathbb{R} \right\}, \qquad 	(\xb, t) \mapsto \yb = \fb(\xb, t) = \fb_t(x);
+	\]
+il parametro $t$ indica tipicamente il \textit{tempo}. In un moto possiamo definire la \textit{velocità}
+
+	\[
+	\mathbf{v}(\xb) = \partial_t \yb = \partial_t \fb(\xb, t)= \partial_t \ub(\xb, t).
+	\]
+
+Un coppia costituita da \( \Mc \) e da un campo tensoriale simmetrico \( \Tb \), con \( T(\cdot, t) \) liscio per ogni \( t \in T \), è chiamata un \textit{processo dinamico}.
+
+In aggiunta alla descrizione del moto e all'associato sforzo, saremo interessati a descrivere l'evoluzione di un sistema materiale in termini dei suoi stati termici e meccanici, analizzando dunque un \textit{processo termodinamico}, in cui considereremo non solo sforzo e deformazione, ma anche quantità come temperatura, energia interna, entropia, flusso di calore.
+
+Vediamo adesso quali sono le leggi che governano i processi termodinamici.
+
+La \textit{prima legge della termodinamica} rappresenta un bilancio tra il tasso di variazione dell'energia interna e il tasso al quale l'energia  è trasferita, sotto forma di calore, ad una parte  \( \Pi \) più la potenza meccanica spesa. Nel seguito ci limiteremo a considerare piccole deformazioni.
+
+Introduciamo l'\textit{energia interna} $E(\Pi)$ della parte $\Pi$, espressa in termini di una densità di energia interna per unità di volume $\varepsilon$:
+\begin{equation}
+	E(\Pi) = \int_{\Pi} \varepsilon.
+\end{equation}
+
+La sua derivata temporale, che indichiamo con $\dot{E}(\Pi)$ rappresenta il tasso di aggiunta di energia alla parte $\Pi$.
+Consideriamo due tipi di apporto energetico:
+
+\begin{enumerate}
+	\item \textit{Sorgenti Meccaniche}. Il sistema di forze  che agisce su $\Pi$, in virtù del fatto che i punti di $\Pi$ assumono una verta velocità durante il moto, spende potenza. In particolare, definiamo la \textit{potenza delle forze} agenti su $\Pi$, o \textit{potenza esterna} la quantità
+	\begin{equation}\label{Wext}
+		\Wc^{\rm ext}(\Pi)= \int_{\Pi} \bb \cdot \vb + \int_{\partial \Pi} \tb\cdot \vb.
+	\end{equation}
+
+Il primo contributo è la potenza spesa dalle forze di volume, mentre il secondo la potenza spesa dalle tensioni che agiscono sulla frontiera di $\Pi$, che adesso abbiamo assunto totalmente interna a $\Omega$.
+
+Usando il teorema di Cauchy, possiamo scrivere che 
+	
+\begin{equation}
+		\Wc^{\rm ext}(\Pi)=	\int_{\Pi} \bb \cdot \vb + \int_{\partial \Pi} \Tb \nb\cdot \vb = \int_{\Pi} \bb \cdot \vb + \int_{\Pi} \Div(\Tb^\top\vb);
+	\end{equation}
+usando l'identità \eqref{identitadiff}$_5$ e rammentando che $\Tb\in\Sym$, otteniamo che 
+\begin{equation}
+		\Wc^{\rm ext}(\Pi)	= \int_{\Pi} (\Div\Tb+\bb) \cdot \vb +  \Tb \cdot \dot{\Eb},
+\end{equation}
+dove abbiamo indicato con
+\begin{equation}
+\dot\Eb=\sym \nabla \dot \ub=\sym \nabla \vb
+\end{equation}
+la \textit{velocità di deformazione}. Ricordando che, per l'equazione puntuale di equilibrio $\Div\Tb+\bb=\mathbf{0}$, concludiamo che
+\begin{equation}
+	\Wc^{\rm ext}(\Pi)= \int_{\Pi}  \Tb \cdot \dot{\Eb}=	\Wc^{\rm int}(\Pi),
+\end{equation}
+dove $\Wc^{\rm int}(\Pi)$ indica la \textit{potenza interna}, o \textit{potenza dello sforzo}. Abbiamo quindi concluso che la potenza esterna eguaglia la potenza dello sforzo.
+
+\item \textit{Sorgenti termiche}. Indichiamo con $\Qc(\Pi)$ il\textit{ trasferimento di calore} alla parte $\Pi$, che consta di due contributi: uno dato dal \textit{flusso di calore} $\qb$ trasferito a $\Pi$ tramite la sua frontiera $\partial\Pi$ e una \textit{sorgente interna} di calore $r$ (generata, ad esempio, da reazioni chimiche, radiazioni, etc):
+\begin{equation}
+	\Qc(\Pi) = -\int_{\partial \Pi} \qb\cdot \mathbf{n} + \int_{\Pi} r.
+\end{equation}
+Il segno negativo nel primo contributo è dovuto al fatto che, essendo $\nb$ la normale uscente a $\partial\Pi$, richiediamo che il trasferimento di calore sia non negativo quando il flusso è entrante in $\partial\Pi$. 
+
+\begin{remark}
+Le dimensioni fisiche del flusso di calore e della sorgente interna di calore sono rispettivamente
+\begin{equation}
+[\qb]=\left[\frac{{\rm energia}}{{\rm tempo}\times{\rm area}} \right], \qquad [r]=\left[\frac{{\rm energia}}{{\rm tempo}\times{\rm volume}} \right]
+\end{equation}
+\end{remark}
+
+
+Utilizzando il teorema della divergenza, il trasferimento di calore $\Qc (\Pi)$ può essere riscritto come
+\begin{equation}
+\Qc(\Pi)= \int_{\Pi}(-\Div \qb +r).
+\end{equation}
+
+
+\end{enumerate}
+
+
+Possiamo a questo punto stabilire che il bilancio di energia corrisponde alla seguente richiesta:
+\begin{equation}
+\dot{E}(\Pi)=\Wc^{\rm int}(\Pi)+\Qc (\Pi),
+\end{equation}
+ovvero
+\begin{equation}
+\left(  \int_{\Pi}\varepsilon\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}= \int_{\Pi} \Tb \cdot \dot{\Eb} - \Div \, \mathbf{q} + r
+\end{equation}
+Poiché $\Pi$ non dipende dal tempo, possiamo quindi stabilire che 
+\begin{equation}
+\int_{\Pi}\dot{\varepsilon}= \int_{\Pi}  \Tb \cdot \dot{\Eb} - \Div \, \mathbf{q} + r.
+\end{equation}
+Utilizzando il solito lemma di localizzazione otteniamo allora la seguente
+
+\begin{definition}
+\textit{\textbf{Equazione locale di bilancio dell'energia}}:
+\begin{equation}\label{bilen}
+\dot{\varepsilon} =\Tb \cdot \dot{\Eb} - \Div \, \mathbf{q} + r.
+\end{equation}
+\end{definition}
+
+
+\section{Sbilancio di Entropia: Seconda Legge della Termodinamica}
+La spesa di potenza rappresenta un trasferimento macroscopico di energia, poiché è calcolata utilizzando la velocità dei punti materiali. Consideriamo il calore come una forma aggiuntiva di trasferimento di energia dovuta alle \textit{fluttuazioni} di atomi e/o molecole, e l'\textit{entropia} come una misura del disordine nel sistema indotto da queste fluttuazioni: maggiore è il grado di disordine, maggiore è l'entropia. Come per l'energia, regioni del corpo  possiedono entropia, e l'entropia può fluire da una regione all'altra e anche da una regione verso il mondo esterno. Ma, diversamente dall'energia, alle parti del corpo è consentito \textit{produrre} entropia.
+
+Introduciamo la \textit{produzione interna di entropia} della parte $\Pi$
+\begin{equation}
+\Delta (\Pi)=\int_{\Pi}\delta,
+\end{equation}
+dove $\delta$ ne rappresenta la densità. Ammettiamo che questa produzione  abbia due contributi:
+\begin{equation}
+\Delta(\Pi)= \dot{\Hc}(\Pi)-\Dc(\Pi);
+\end{equation}
+$\dot{\Hc}(\Pi)$ rappresenta il tasso a cui l'entropia di $\Pi$ cresce; $\Dc(\Pi)$ è invece il tasso a cui l'entropia è trasferita a $\Pi$.
+
+La premessa di base che i sistemi tendano ad aumentare il loro grado di disordine si manifesta nella richiesta che la produzione interna di entropia sia non negativa in ogni regione $\Pi$:
+\begin{equation}
+	\Delta(\Pi)\geq 0.
+\end{equation}
+
+Come per l'energia, assumiamo che esista un campo scalare $\eta$, la \textit{densità di entropia} tale che 
+\begin{equation}
+	\Hc(\Pi)=\int_{\Pi}\eta.
+\end{equation} 
+In analogia con il trasferimento di calore, supponiamo che l'apporto di entropia sia caratterizzato da un flusso $\hb$ e una sorgente $s$:
+\begin{equation}
+	\Dc(\Pi)=-\int_{\partial\Pi}\hb \cdot \nb +\int_{\Pi} s,
+\end{equation}
+da cui otteniamo
+\begin{equation}\label{sbentr}
+\left( \int_{\Pi}\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq -\int_{\partial\Pi}\hb \cdot \nb +\int_{\Pi} s,
+\end{equation}
+che rappresenta la forma che diamo alla seconda legge della termodinamica, nel presente contesto.
+
+\begin{remark}
+La teoria che stiamo costruendo è coerente con due celebri affermazioni di \textsc{Rudolph Clausius}:
+\begin{itemize}
+	\item \textit{Die Energie des Weltalls ist konstant }(l'energia dell'universo è costante).
+	\item \textit{Die Entropie des Weltalls strebt einem Maximum zu}  (l'entropia dell'universo tende ad un massimo).
+\end{itemize}
+La parola \textit{Weltall} può essere più prosaicamente sostituita da sistema isolato, ovvero un sistema per cui $\qb\cdot \nb=\hb\cdot \nb=0$ e $r=s=0$; in questo caso, il bilancio di energia e lo sbilancio di entropia si riducono a 
+\begin{equation}
+\left(\int_{\Pi}\varepsilon\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}=0, \qquad \left( \int_{\Pi}\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq 0,
+\end{equation}
+che corrospondono alle due frasi di Clausius.
+\end{remark}
+
+Un'ipotesi fondamentale della teoria relaziona il flusso di entropia e di calore e le due sorgenti; in particolare si assume che esista un campo scalare $\vartheta>0$, la \textit{temperatura assoluta}, tale
+ che
+ \begin{equation}
+ \hb =\frac{\qb}{\vartheta}, \qquad s=\frac{r}{\vartheta}.
+ \end{equation}
+ 
+ Flusso di entropia e flusso di calore hanno la stessa direzione e non può annullarsi l'uno senza l'altro. L'ipotesi riflette il fatto che un flusso di calore ha differenti effetti entropici a seconda della temperatura in cui avviene; in particolare, il calore ricevuto a basse temperature è più ``efficace'' di quello ricevuto ad alte temperature.
+ 
+ Possiamo quindi scrivere lo sbilancio di entropia \eqref{sbentr} nella forma della
+ 
+ \begin{definition}
+ \noindent \textbf{\textit{Disuguaglianza di Clausius-Duhem}}:
+ \begin{equation}
+ 	\left( \int_{\Pi}\eta \right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}\geq -\int_{\partial\Pi}\frac{\qb}{\vartheta} \cdot \nb +\int_{\Pi} \frac{s}{\vartheta}.
+ \end{equation}
+ \end{definition}
+ 
+ Utilizzando il solito lemma di localizzazione perveniamo alla 
+ \begin{definition}
+\textbf{\textit{Disequazione (locale) di sbilancio di entropia}}:
+\begin{equation}
+	\dot \eta \geq -\Div \left( \frac{\qb}{\vartheta} \right)+\frac{r}{\vartheta}
+\end{equation}
+ \end{definition}
+ e all'espressione della densità di produzione interna di entropia
+ \begin{equation}\label{delta}
+ \delta=\dot{\eta}+\Div \left( \frac{\qb}{\vartheta} \right)-\frac{r}{\vartheta}\geq 0.
+ \end{equation}
+ 
+ Quando all'interno di un sistema avvengono processi irreversibili, come la conduzione di calore, si ha una produzione interna di entropia $\delta$, che misura il tasso di entropia generata per unità di volume a causa di tali processi irreversibili. Abbiamo visto come la temperatura assoluta $\vartheta$ serva come fattore che scala la conversione della produzione di entropia in energia dissipata. La quantità
+\begin{equation}
+\gamma\coloneqq\delta\vartheta
+\end{equation}
+rappresenta il \textit{tasso di dissipazione di energia} (o \textit{potenza dissipata}) per unità di volume nel sistema. Infatti, in un sistema termodinamico, il secondo principio della termodinamica stabilisce che la produzione di entropia è sempre associata a una perdita di energia disponibile: questa perdita si manifesta come dissipazione di energia interna.
+
+Utilizzando la \eqref{delta}, possiamo scrivere la potenza dissipata come
+\begin{equation}
+	\gamma=\vartheta\dot\eta+\vartheta\Div \left( \frac{\qb}{\vartheta} \right)-r\geq 0.
+\end{equation}
+
+Utilizzando l'identità \eqref{identitadiff}$_3$, possiamo dedurre che
+\begin{equation}
+\Div \left( \frac{\qb}{\vartheta} \right)=\nabla\left(\frac{1}{\vartheta}\right)\cdot\qb +\frac{1}{\vartheta}\Div \qb =-\frac{1}{\vartheta^2}\nabla\vartheta\cdot \qb +\frac{1}{\vartheta}\Div \qb 
+\end{equation}
+ e quindi
+ \begin{equation}\label{disga}
+	\gamma=\vartheta\dot\eta-\frac{1}{\vartheta}\nabla\vartheta\cdot \qb +\Div \qb -r\geq 0.
+ \end{equation}
+ 
+ Utilizzando l'equazione locale di bilancio dell'energia \eqref{bilen} possiamo stabilire allora che
+\begin{equation}
+	\gamma=\vartheta\dot\eta-\frac{1}{\vartheta}\nabla\vartheta\cdot \qb +\Tb \cdot \dot{\Eb}-\dot{\varepsilon}\geq 0. 
+\end{equation}
+Se la quantità $\gamma=\delta\vartheta$ rappresenta potenza dissipata per unità di volume, ossia la densità di energia che viene convertita in calore e aumenta l'entropia del sistema a causa di processi irreversibili, possiamo interpretare la quantità $\vartheta\eta$ come la densità di energia  ``intrappolata'' nell'entropia del sistema. 
+La differenza tra la densità di energia totale $\varepsilon$ e quella ``intrappolata'' nell'entropia rappresenta l'energia a disposizione del sistema. Introduciamo dunque l'\textit{energia libera di Helmholtz} per unità di volume
+\begin{equation}
+\psi=\varepsilon-\vartheta\eta.
+\end{equation}
+ 
+ La \eqref{disga} può allora essere riscritta come la
+ \begin{definition}
+\textbf{\textit{Disuguaglianza di dissipazione ridotta}}:
+\begin{equation}\label{DDR}
+-\gamma=\dot{\psi}+\eta \dot{\vartheta}-\Tb\cdot\dot{\Eb}+\frac{1}{\vartheta}\qb \cdot \nabla \vartheta\leq 0.
+\end{equation}
+\end{definition} 
+I termini della \eqref{DDR} hanno le dimensioni di (energia)/tempo. Integrando sulla parte $\Pi$ possiamo interpretare i vari termini:
+\begin{equation}
+\underbrace{\int_{\Pi}\gamma}_{{\rm dissipazione}\geq 0}=\underbrace{\int_{\partial \Pi}\Tb \nb \cdot \vb +\int_{\Pi}\bb\cdot \vb}_{{\rm potenza\; esterna}}-
+\underbrace{\left(\int_{\Pi}\psi\right)^{\mathop{\vcenter{\hbox{\Large$\cdot$}}}}}_{\scriptsize \shortstack{\text{tasso di variazione} \\ \text{dell'energia libera}}}
+-\underbrace{\int_{\Pi}\eta \dot{\vartheta}+\frac{1}{\vartheta}\qb \cdot \nabla\vartheta}_{\text{energia termica}}
+\end{equation}
+
+Dettagliamo meglio il significato dell'ultimo contributo, l'energia termica. L'entropia $\eta$ è associata all'energia ``immagazzinata'' termicamente nel sistema. A temperature più elevate, ogni unità di entropia corrisponde a una quantità maggiore di energia termica. Quando la temperatura varia con il tempo $\dot{\vartheta}$, anche l'energia termica associata a questa entropia cambia. In altre parole, il termine $\eta\dot{\vartheta}$ rappresenta l'energia termica per unità di volume che viene aggiunta o sottratta dal sistema per via del cambiamento della temperatura. Se $\dot{\vartheta}$ è positivo, la temperatura aumenta, e quindi il sistema guadagna energia termica; se $\dot{\vartheta}$ è negativo, il sistema perde energia termica.
+
+Il secondo termine  riguarda il flusso di calore $\qb$ e il gradiente di temperatura $\nabla\vartheta$. La quantità $\frac{1}{\vartheta}\qb \cdot \nabla\vartheta$ rappresenta la dissipazione interna associata alla conduzione del calore. In particolare, $\qb \cdot \nabla\vartheta$ descrive quanto calore fluisce attraverso il sistema in presenza di un gradiente di temperatura; dividendo per $\vartheta$, otteniamo una quantità proporzionale alla generazione o assorbimento di entropia associato a questo flusso di calore, che si riflette nel cambiamento dell'energia termica del sistema.
+
+
+\begin{remark}\label{bb}
+Le forze di volume $\bb$ possono essere decomposte in una parte inerziale ed una non inerziale 
+\begin{equation}
+\bb =\bb^{({\rm in})}+\bb^{({\rm ni})},
+\end{equation}
+essendo le forze inerziali legate all'accelerazione e alla densità di massa $\rho$:
+\begin{equation}
+\bb^{({\rm in})}=-\rho \ddot{\ub}=-\rho \dot{\vb}.
+\end{equation}
+Se si fa questo, l'equazione di bilancio delle forze diventa un'\textit{equazione di evoluzione}, che regola la dinamica dei corpi continui, interpretabile come un bilancio della quantità di moto,
+\begin{equation}
+\Div \Tb+\bb^{({\rm ni})}=\dot{\pb},
+\end{equation}
+essendo $\pb\coloneqq\rho \vb$ la \textit{quantità di moto}. La potenza esterna può allora essere valutata come segue:
+\begin{equation}
+	\Wc^{\rm ext}(\Pi)= \int_{\Pi} \bb^{({\rm ni})} \cdot \vb-\rho \dot{\vb} \cdot \vb + \int_{\partial \Pi} \Tb\nb\cdot \vb=\int_{\Pi} \bb^{({\rm ni})} \cdot \vb-\pb \cdot \dot{\vb} + \int_{\partial \Pi} \Tb\nb\cdot \vb.
+\end{equation}
+Il termine $-\pb \cdot \dot{\vb}$ ha un'analogia formale e fisica con il termine $-\eta \dot{\vartheta}$ presente nell'energia termica: così come la quantità di moto più essere pensata come una misura della \textit{riluttanza alla quiete} della materia, così l'entropia può essere pensata come una misura della \textit{riluttanza all'ordine}.
+\end{remark}
+
+	
+	
