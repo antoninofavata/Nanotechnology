@@ -1,0 +1,205 @@
+\chapter{Statistical Mechanics Primer}\label{statmech}
+
+The Cauchy--Born rule of the previous chapter bridges the atomistic and continuum descriptions in a single, restrictive regime: zero temperature, perfect affine deformation, no thermal motion whatsoever. Real crystals vibrate. To go beyond this restriction --- and, more importantly, to construct continuum fields such as density, momentum and stress for a \textit{general} atomistic system, not just a perfect crystal deforming affinely --- we need a rigorous notion of what it means to average over the erratic, thermally agitated motion of an enormous number of atoms. This is the business of statistical mechanics, and it is the necessary preparation for the Irving--Kirkwood--Noll and Hardy procedures of the next two chapters, both of which are, at bottom, prescriptions for computing a particular kind of average over atomic motion.
+
+\section{Microstates, Macrostates, and Phase Space}
+
+Consider again a system of $N$ atoms, as in Chapter~\ref{atomdescr}, with instantaneous positions $\yb^1,\ldots,\yb^N$. Classically, a complete description of the mechanical state of the system requires, in addition to the positions, the momenta $\pb^\alpha = m^\alpha\vb^\alpha$ of every atom.
+
+\begin{definition}
+	A \textit{microstate} of a system of $N$ atoms is the complete list of positions and momenta $(\yb^1,\ldots,\yb^N,\pb^1,\ldots,\pb^N)$ of every atom. The space of all microstates, of dimension $6N$, is the \textit{phase space} of the system, denoted $\Gamma$; a microstate is therefore a single point of $\Gamma$.
+\end{definition}
+
+A \textit{macrostate}, by contrast, is specified by a handful of macroscopic, measurable quantities --- energy, volume, temperature, stress --- of exactly the kind that appear in the continuum theory of the earlier chapters. The chasm between the two descriptions is enormous: for a macroscopic sample, $N\sim10^{23}$, so that $\Gamma$ has of order $10^{23}$ dimensions, while a macrostate is pinned down by a handful of numbers. Consequently, an astronomical number of distinct microstates --- distinct arrangements and motions of the individual atoms --- are compatible with one and the same macrostate.
+
+\begin{remark}\label{rem:statmechprogramme}
+	This enormous redundancy is not a nuisance to be eliminated; it is the very reason continuum mechanics works at all. A macroscopic observable, such as the ones appearing throughout these notes, is not associated with a single microstate, but is, in some precise sense to be made explicit in this chapter, an \textit{average} over the set of microstates compatible with the macrostate of interest. This is precisely the perspective that the Irving--Kirkwood--Noll and Hardy procedures will make operational: continuum fields are averages of phase functions --- functions of atomic positions and momenta --- not properties of any single, instantaneous atomic configuration.
+\end{remark}
+
+\section{Hamiltonian Dynamics and Liouville's Theorem}
+
+For a conservative system, the time evolution of a microstate is governed by Hamilton's equations. Concatenating the $3N$ scalar components of $\{\yb^\alpha\}$ and $\{\pb^\alpha\}$ into a single point $\yb=(y_1,\ldots,y_{3N})$, $\pb=(p_1,\ldots,p_{3N})$ of the $6N$-dimensional phase space $\Gamma$, and letting
+\begin{equation}
+	H(\yb,\pb) = T(\pb) + V^{\rm int}(\yb), \qquad T(\pb) = \sum_{i=1}^{3N}\frac{p_i^2}{2m_i},
+\end{equation}
+denote the Hamiltonian --- the total mechanical energy, kinetic $T$ plus potential $V^{\rm int}$ of \eqref{Vint} --- the equations of motion take the canonical form
+\begin{equation}\label{hameqs}
+	\dot y_i = \frac{\partial H}{\partial p_i}, \qquad \dot p_i = -\frac{\partial H}{\partial y_i}, \qquad i=1,\ldots,3N.
+\end{equation}
+
+\begin{remark}
+	Equation \eqref{hameqs} is nothing but Newton's second law, $\dot p_i = -\partial V^{\rm int}/\partial y_i$ = force, rewritten in a form that treats positions and momenta symmetrically; this symmetry is what makes phase space, rather than the $3N$-dimensional configuration space of positions alone, the natural arena for statistical mechanics.
+\end{remark}
+
+Two elementary consequences of \eqref{hameqs} matter throughout the rest of this chapter. First, since $H$ has no explicit time dependence, $\dd H/\dd t = \sum_i(\partial H/\partial y_i)\dot y_i + (\partial H/\partial p_i)\dot p_i = \sum_i(-\dot p_i\dot y_i+\dot y_i\dot p_i)=0$: energy is conserved along every trajectory, which is therefore confined to the hypersurface $H(\yb,\pb)=E$ for some constant $E$. Second, and considerably less obvious, is the following.
+
+\begin{theorem}[Liouville's theorem]\label{thm:liouville}
+	Let $R(t)$ be a region of phase space obtained by evolving, according to Hamilton's equations, every point of some initial region $R(0)$. Then the phase-space volume $V_\Gamma(t)=\int_{R(t)}\dd\yb\,\dd\pb$ is constant in time:
+	\begin{equation}\label{liouvillevol}
+		\frac{\dd V_\Gamma}{\dd t} = 0.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Regard the $6N$ phase-space coordinates $(\yb,\pb)$ as a single point $\zb=(z_1,\ldots,z_{6N})$ flowing through $\Gamma$ with velocity $\wb=\dot\zb$; by \eqref{hameqs}, $\wb$ has components $\dot y_i=\partial H/\partial p_i$ and $\dot p_i=-\partial H/\partial y_i$. The material derivative of $V_\Gamma(t)$ is then given by Reynolds' transport theorem \eqref{reyn} of Chapter~1, applied in $\Gamma$ exactly as it was applied in physical space for a material region there:
+	\begin{equation}
+		\frac{\dd V_\Gamma}{\dd t} = \int_{R(t)} \dive_\Gamma\wb \;\dd\yb\,\dd\pb,
+	\end{equation}
+	where $\dive_\Gamma$ denotes the divergence with respect to all $6N$ phase-space coordinates. But
+	\begin{equation}
+		\dive_\Gamma\wb = \sum_{i=1}^{3N}\left(\frac{\partial \dot y_i}{\partial y_i}+\frac{\partial \dot p_i}{\partial p_i}\right) = \sum_{i=1}^{3N}\left(\frac{\partial^2H}{\partial y_i\partial p_i}-\frac{\partial^2H}{\partial p_i\partial y_i}\right)=0
+	\end{equation}
+	identically, by equality of mixed partial derivatives. Hence $\dd V_\Gamma/\dd t=0$.
+\end{proof}
+
+\begin{remark}
+	Theorem~\ref{thm:liouville} says that Hamiltonian flow in phase space is \textit{incompressible} --- exactly the kinematic condition $\dive\vb=0$ familiar from the mass balance of Chapter~1, now imposed automatically by the structure of Hamilton's equations rather than by a constitutive restriction. The shape of a region of phase space can distort arbitrarily as the system evolves; its volume cannot.
+\end{remark}
+
+Since a probability, once assigned to a comoving region of phase space, evolves exactly like the mass of a comoving material region --- and Liouville's theorem plays here the role that conservation of mass plays there --- we can immediately write down the evolution equation for a probability density on phase space. Let $f(\yb,\pb;t)\geq0$ be a \textit{distribution function}: a probability density on $\Gamma$, normalized so that $\int_\Gamma f\,\dd\yb\,\dd\pb=1$, with $f\,\dd\yb\,\dd\pb$ the probability of finding the system's microstate in the volume element $\dd\yb\,\dd\pb$ at time $t$. Applying Reynolds' transport theorem to the probability $\int_{R(t)}f\,\dd\yb\,\dd\pb$ carried by a comoving region, and using $\dive_\Gamma\wb=0$, gives $\int_{R(t)}\dot f\,\dd\yb\,\dd\pb=0$ for every comoving $R(t)$, hence $\dot f=0$ pointwise:
+\begin{equation}\label{liouvilleeq}
+	\frac{\partial f}{\partial t} + \sum_{i=1}^{3N}\left(\frac{\partial f}{\partial y_i}\dot y_i + \frac{\partial f}{\partial p_i}\dot p_i\right) = 0, \qquad\text{i.e.}\qquad \frac{\partial f}{\partial t} + \sum_{i=1}^{3N}\left(\frac{\partial f}{\partial y_i}\frac{\partial H}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial H}{\partial y_i}\right) = 0.
+\end{equation}
+
+\begin{definition}
+	Equation \eqref{liouvilleeq} is \textit{Liouville's equation}. A distribution function is \textit{stationary} if $\partial f/\partial t=0$; one verifies directly that any $f$ that depends on $(\yb,\pb)$ only through the Hamiltonian, $f=\widehat f(H(\yb,\pb))$, satisfies \eqref{liouvilleeq} identically, since $\partial f/\partial y_i = \widehat f'(H)\,\partial H/\partial y_i$ and likewise for $p_i$, so that the bracketed sum in \eqref{liouvilleeq} vanishes term by term.
+\end{definition}
+
+\begin{remark}\label{rem:equalapriori}
+	Liouville's equation \eqref{liouvilleeq} is the tool that the Irving--Kirkwood--Noll procedure of the next chapter will use to derive the continuum continuity equation and momentum balance directly from atomistic dynamics --- there, $f$ will depend on position and time explicitly, describing a genuinely nonequilibrium system, whereas the stationary distributions of this chapter describe systems in thermodynamic equilibrium.
+\end{remark}
+
+\section{Ensemble Averages, Time Averages, and the Ergodic Hypothesis}
+
+A macroscopic observable $A$ --- temperature, pressure, stress --- is associated with some function $A(\yb,\pb)$ of the microstate, called a \textit{phase function}: for instance, temperature is related to the instantaneous kinetic energy $T(\pb)$. Two, quite different, notions of ``averaging'' this phase function suggest themselves.
+
+\begin{definition}
+	The \textit{time average} of a phase function $A$, along the trajectory $(\yb(t),\pb(t))$ generated by a given initial condition, is
+	\begin{equation}
+		\overline{A} \;\coloneqq\; \lim_{\Delta t\to\infty}\frac1{\Delta t}\int_0^{\Delta t} A(\yb(\tau),\pb(\tau))\,\dd\tau.
+	\end{equation}
+	The \textit{ensemble average} (or \textit{phase average}) of $A$, with respect to a distribution function $f$, is
+	\begin{equation}\label{ensembleavg}
+		\langle A\rangle \;\coloneqq\; \int_\Gamma A(\yb,\pb)\,f(\yb,\pb;t)\,\dd\yb\,\dd\pb.
+	\end{equation}
+\end{definition}
+
+The time average is, in principle, exactly what a real, single, physical measurement records --- and what a molecular dynamics simulation computes. It is, however, essentially useless for analytical work: computing it requires solving for the actual trajectory of a $6N$-dimensional, chaotic dynamical system, which is neither analytically nor numerically tractable for $N\sim10^{23}$. The ensemble average, by contrast, requires no trajectory at all --- only the distribution function $f$, characterizing the macroscopic constraints imposed on the system --- and is the object statistical mechanics is built to compute. The entire justification for the theory rests, therefore, on the two being equal:
+\begin{equation}\label{ergodic}
+	\overline{A} \;=\; \langle A\rangle,
+\end{equation}
+a statement known as the \textit{ergodic hypothesis}.
+
+\begin{remark}
+	The naive version of \eqref{ergodic}, going back to Boltzmann, asserted that a system, given enough time, visits every microstate compatible with its macroscopic constraints, so that a long-time average automatically samples the entire relevant region of phase space with the correct statistical weight. This literal statement was shown, already in 1913, to be topologically untenable: a one-dimensional trajectory cannot fill a higher-dimensional hypersurface. The rigorous justification of \eqref{ergodic}, due to von Neumann and Birkhoff (1931--1932), replaces ``visiting every microstate'' with the weaker and subtler property of \textit{metric indecomposability}: no part of the constrained phase space, other than a set of zero probability, can be dynamically inaccessible from any other part. We will not pursue the mathematical theory of ergodicity further; we record \eqref{ergodic} as a hypothesis --- extremely well supported empirically for the systems of interest in this course --- rather than as a theorem derived from first principles. The interested reader is referred to \cite{TadmorMiller}, Section~7.2.3, for a careful historical and technical account.
+\end{remark}
+
+\begin{remark}
+	It is exactly the identity \eqref{ergodic} that licenses two, superficially very different, practical procedures used later in this part of the course: the Irving--Kirkwood--Noll construction of continuum fields as \textit{ensemble} averages \eqref{ensembleavg}, and the Hardy construction, which is more naturally interpreted as a \textit{spatial} or \textit{temporal} average over a molecular dynamics trajectory --- i.e.\ a computable proxy for $\overline{A}$. The ergodic hypothesis is what guarantees that these two, computed by entirely different means, are estimating the same underlying quantity.
+\end{remark}
+
+\section{The Microcanonical Ensemble}
+
+The simplest macroscopic constraint one can impose on a system is isolation: fixed number of atoms $N$, fixed volume $V$, fixed total energy $E$. The set of microstates compatible with this constraint is the \textit{microcanonical}, or $NVE$, ensemble.
+
+Since the trajectory of an isolated system is confined to the hypersurface $H=E$ (Section~2 above), and a stationary distribution function depends on $(\yb,\pb)$ only through $H$ (Liouville's equation), the only stationary distribution consistent with \textit{equal a priori probability} of every microstate of energy $E$ is uniform on this hypersurface. Because a probability density cannot be uniform and nonzero on a set of measure zero (a hypersurface has zero volume in the full $6N$-dimensional phase space), one instead spreads the distribution over a thin shell of energies between $E$ and $E+\Delta E$, for some small tolerance $\Delta E$ representing the unavoidable imprecision in specifying the energy of a system that is never, in practice, perfectly isolated:
+\begin{equation}\label{microdist}
+	f_{\rm mc}(\yb,\pb) = \begin{cases} 1/[D(E)\Delta E] & \text{if } E\leq H(\yb,\pb) \leq E+\Delta E, \\ 0 & \text{otherwise,}\end{cases} \qquad D(E)\coloneqq\frac{\dd V_\Gamma}{\dd E},
+\end{equation}
+where $V_\Gamma(E)=\int_{H\leq E}\dd\yb\,\dd\pb$ is the phase-space volume enclosed by the energy hypersurface $H=E$, and $D(E)$ --- the rate at which this volume grows with $E$ --- is the \textit{density of states}. The normalization in \eqref{microdist} follows since $D(E)\Delta E \approx V_\Gamma(E+\Delta E)-V_\Gamma(E)$ is precisely the volume of the thin shell itself.
+
+\subsection*{Entropy and temperature}
+
+The connection between this purely geometric construction and thermodynamics is one of the most important results in statistical mechanics. Consider two isolated systems $A$ and $B$, of energies $E^A_0,E^B_0$, brought into weak thermal contact (able to exchange energy, but negligibly perturbed by the contact itself) inside a combined isolated system of total energy $E=E^A_0+E^B_0$. Because the number of accessible microstates $D(E)\Delta E$ grows overwhelmingly fast with $E$ for a macroscopic number of atoms (Exercise~\ref{ex:doscount}), the energy $E^A$ realized by system $A$ once equilibrium is reached is, for all practical purposes, the value that \textit{maximizes} the number of microstates of the combined system,
+\begin{equation}
+	D^A(E^A)\,D^B(E-E^A),
+\end{equation}
+i.e.\ the solution of $\partial_{E^A}\ln D^A(E^A) = \partial_{E^B}\ln D^B(E^B)$, with $E^B=E-E^A$. Comparing this condition for equilibrium with the thermodynamic one, $\partial S^A/\partial E^A = \partial S^B/\partial E^B$ (equality of $1/\vartheta$ across a diathermal partition, cf.\ the discussion around the entropy inequality of Chapter~\ref{constheory}), identifies, up to an additive constant and a choice of units,
+\begin{equation}\label{boltzmannS}
+	S = k_B\ln\bigl[D(E)\Delta E\bigr],
+\end{equation}
+the celebrated \textit{Boltzmann entropy formula}, with $k_B=8.617\times10^{-5}\,\mathrm{eV/K}$ Boltzmann's constant. The corresponding statistical-mechanical temperature follows exactly as in continuum thermodynamics,
+\begin{equation}\label{statT}
+	\frac1\vartheta = \frac{\partial S}{\partial E}.
+\end{equation}
+
+\begin{remark}
+	Equations \eqref{boltzmannS}--\eqref{statT} are the promised microscopic foundation for the entropy $\eta$ and temperature $\vartheta$ that entered the continuum theory of Chapter~\ref{constheory} as primitive, undefined quantities restricted only by the second law. Here they are \textit{derived}: $S$ is nothing but $k_B$ times the logarithm of a count of microstates, and $\vartheta$ is simply the parameter conjugate to energy in that count. The specific (per unit mass) continuum entropy density $\eta$ of the earlier chapters corresponds, in this microscopic picture, to $S$ divided by the total mass of the system --- the passage from the extensive, whole-system quantity $S$ of this chapter to the pointwise field $\eta(\yb,t)$ of continuum thermodynamics is exactly the kind of construction the Hardy procedure of Chapter~4 will make precise.
+\end{remark}
+
+\begin{exercise}\label{ex:doscount}
+	Consider $N$ identical, noninteracting atoms confined to a volume, so that $H(\pb) = \sum_{i=1}^{3N}p_i^2/(2m)$ depends only on the momenta (an ideal gas). Show that the phase-space volume enclosed by $H\leq E$ is $V_\Gamma(E) = C_{3N}(2mE)^{3N/2}$ for some constant $C_{3N}$ depending only on the dimension $3N$ (the volume of a Euclidean ball of radius $r=\sqrt{2mE}$ in $3N$ dimensions is proportional to $r^{3N}$), and deduce that $D(E)\propto E^{3N/2-1}$. Conclude that, for $N\sim10^{23}$, $D(E)$ is an almost inconceivably rapidly increasing function of $E$ --- which is precisely the property invoked above to argue that $D^A(E^A)D^B(E-E^A)$ has an overwhelmingly sharp maximum.
+\end{exercise}
+
+\section{The Canonical Ensemble}
+
+The microcanonical ensemble describes a perfectly isolated system --- a mathematical idealization. Far more common, physically, is a system in weak thermal contact with a much larger reservoir (a ``heat bath'') held at fixed temperature $\vartheta$, free to exchange energy with it while its own volume and number of atoms remain fixed: the \textit{canonical}, or $NV\vartheta$, ensemble.
+
+Repeating the weak-contact argument of the previous section, but now for a system $A$ of interest exchanging energy with a reservoir $B$ so much larger that $E\approx E^B$ throughout, one finds that the distribution function for system $A$ alone, after eliminating the (now irrelevant) energy of the reservoir in favor of its temperature $\vartheta$ via \eqref{statT}, takes the Boltzmann form
+\begin{equation}\label{canonicaldist}
+	f_{\rm c}(\yb,\pb;\vartheta) = \frac1{Z}\,\exp\!\left(-\frac{H(\yb,\pb)}{k_B\vartheta}\right), \qquad Z(\vartheta) \coloneqq \int_\Gamma \exp\!\left(-\frac{H(\yb,\pb)}{k_B\vartheta}\right)\dd\yb\,\dd\pb,
+\end{equation}
+where $Z$, the normalization constant required by $\int_\Gamma f_{\rm c}\,\dd\yb\,\dd\pb=1$, is the \textit{partition function}. Because $H=T(\pb)+V^{\rm int}(\yb)$ splits additively into a purely kinetic and a purely configurational part, the phase-space integral in \eqref{canonicaldist} factors,
+\begin{equation}\label{Zfactor}
+	Z = Z^K Z^V, \qquad Z^K = \int_{\Gamma_{\pb}}\!e^{-T(\pb)/k_B\vartheta}\,\dd\pb, \qquad Z^V = \int_{\Gamma_{\yb}}\!e^{-V^{\rm int}(\yb)/k_B\vartheta}\,\dd\yb,
+\end{equation}
+into a kinetic factor $Z^K$, always computable in closed form (a product of $3N$ elementary Gaussian integrals, Example~\ref{ex:einstein} below), and a configurational integral $Z^V$, which encodes the entire nontrivial dependence on the interatomic potential.
+
+\begin{definition}
+	The \textit{Helmholtz free energy} of a system in the canonical ensemble is
+	\begin{equation}\label{helmholtz}
+		\Psi(\vartheta) \coloneqq -k_B\vartheta\ln Z(\vartheta).
+	\end{equation}
+\end{definition}
+
+\begin{remark}\label{rem:helmforward}
+	Equation \eqref{helmholtz} is exactly the object anticipated, without derivation, in the ``Limits of Validity'' discussion of Chapter~\ref{CBrule}: once atoms are allowed to vibrate thermally about their mean lattice positions, it is $\Psi(\Fb,\vartheta)$ --- the free energy of the thermally fluctuating crystal held at fixed mean deformation $\Fb$ --- rather than the bare, zero-temperature potential energy $V^{\rm int}(\Fb)$ of \eqref{Wcb}, that must enter the strain energy density. We do not pursue this finite-temperature extension of the Cauchy--Born rule further in this course; see \cite{TadmorMiller}, Chapter~11, for the complete construction.
+\end{remark}
+
+The internal energy, in the canonical ensemble, is the ensemble average of the Hamiltonian --- no longer exactly conserved, as it was in the microcanonical ensemble, but fluctuating about a well-defined mean as energy is exchanged with the reservoir:
+\begin{equation}\label{Ucanon}
+	U = \langle H\rangle = -\frac{\partial \ln Z}{\partial\beta}, \qquad \beta\coloneqq\frac1{k_B\vartheta}.
+\end{equation}
+
+\begin{example}[The classical Einstein solid and the Dulong--Petit law]\label{ex:einstein}
+	As a first, elementary application of \eqref{Zfactor}--\eqref{Ucanon} to a solid, model a crystal of $N$ atoms as $N$ independent three-dimensional harmonic oscillators: each atom $\alpha$ vibrates about its lattice site with displacement $\ub^\alpha$ and potential energy $\tfrac12 k|\ub^\alpha|^2$, for some effective spring constant $k$ (this is, in essence, the harmonic, small-vibration idealization of the interatomic potential $\phi$ of Chapter~\ref{atomdescr}, and the simplest possible model of the ``thermal vibration'' that the zero-temperature Cauchy--Born rule ignores entirely). The Hamiltonian,
+	\begin{equation}
+		H = \sum_{\alpha=1}^N\left[\frac{|\pb^\alpha|^2}{2m}+\frac12 k|\ub^\alpha|^2\right],
+	\end{equation}
+	is a sum of $6N$ independent quadratic terms: $3N$ momentum components and $3N$ displacement components. Each contributes one elementary Gaussian factor to $Z$; using $\int_{-\infty}^\infty e^{-ax^2}\dd x=\sqrt{\pi/a}$ for the $3N$ momentum integrals ($a=1/2mk_B\vartheta$) and for the $3N$ displacement integrals ($a=k/2k_B\vartheta$),\footnote{We drop the conventional normalization factor $1/(N!h^{3N})$ of \eqref{Zfactor}: being independent of $\vartheta$, it affects the additive constant in $\ln Z$ and hence in the entropy, but not the internal energy \eqref{Ucanon} or the heat capacity computed below.} we obtain
+	\begin{equation}
+		Z = \bigl(2\pi m k_B\vartheta\bigr)^{3N/2}\left(\frac{2\pi k_B\vartheta}{k}\right)^{3N/2} = \bigl(2\pi k_B\vartheta\bigr)^{3N}\left(\frac{m}{k}\right)^{3N/2}.
+	\end{equation}
+	Hence $\ln Z = 3N\ln(2\pi k_B\vartheta) + \text{const}$, and, from \eqref{Ucanon} (using $U=k_B\vartheta^2\,\partial\ln Z/\partial\vartheta$, equivalent to $-\partial\ln Z/\partial\beta$),
+	\begin{equation}\label{einsteinU}
+		U = 3N k_B\vartheta,
+	\end{equation}
+	so that each of the $6N$ quadratic terms in $H$ contributes, on average, exactly $\tfrac12 k_B\vartheta$ to the internal energy --- an instance of the general \textit{equipartition theorem} for classical Hamiltonians quadratic in their coordinates. The heat capacity at constant volume follows immediately,
+	\begin{equation}\label{dulongpetit}
+		c_V = \frac{\partial U}{\partial \vartheta} = 3N k_B,
+	\end{equation}
+	i.e.\ $c_V = 3R$ per mole ($R=N_A k_B\approx8.314\,\mathrm{J/(mol\,K)}$, so $c_V\approx24.9\,\mathrm{J/(mol\,K)}$), independent of $N$, of the mass $m$, and --- strikingly --- of the spring constant $k$, i.e.\ of the material itself. This is the \textit{Dulong--Petit law}, an old (1819) empirical rule that our microscopic model here derives from first principles; it agrees, to within a few percent, with the measured room-temperature heat capacity of most crystalline solids (e.g.\ copper, $c_V\approx24.5\,\mathrm{J/(mol\,K)}$; aluminum, $c_V\approx24.2\,\mathrm{J/(mol\,K)}$).
+\end{example}
+
+\begin{remark}
+	The classical Einstein solid of Example~\ref{ex:einstein} is not the last word: measured heat capacities of real solids drop sharply below the Dulong--Petit value at low temperature, tending to zero as $\vartheta\to0$ rather than remaining fixed at $3Nk_B$ --- a failure of the \textit{classical} treatment, traceable to the fact that at low temperature the quantization of the oscillators' energy levels (which we have entirely ignored, treating the atoms as classical particles throughout this course) can no longer be neglected. Correcting this requires quantum statistical mechanics (the quantum Einstein and Debye models), which lies outside the scope of these notes; what survives, and what we have used throughout, is the classical machinery --- phase space, ensembles, Liouville's equation --- developed in this chapter, which remains exact whenever thermal energies are large compared to the spacing between quantum energy levels, the regime relevant to most of the mechanical problems addressed in this course.
+\end{remark}
+
+\section{The Grand Canonical Ensemble}
+
+For completeness, we record the third classical ensemble, although --- unlike the microcanonical and canonical ensembles --- it will not be needed again in this course: the crystals we study exchange energy with their surroundings (through thermal vibration) but not, in any of the constructions developed here, atoms. The \textit{grand canonical}, or $\mu V\vartheta$, ensemble describes a system in weak contact with a reservoir that fixes not only its temperature $\vartheta$ but also its \textit{chemical potential} $\mu$, allowing both energy and particle number $N$ to fluctuate.
+
+\begin{definition}
+	The grand canonical distribution function, on the union of the phase spaces $\Gamma_N$ for every possible particle number $N=0,1,2,\ldots$, is
+	\begin{equation}
+		f_{\rm gc}(\yb,\pb,N;\vartheta,\mu) = \frac1{\Xi}\exp\!\left(-\frac{H_N(\yb,\pb)-\mu N}{k_B\vartheta}\right), \qquad \Xi(\vartheta,\mu)\coloneqq\sum_{N=0}^\infty\int_{\Gamma_N} \exp\!\left(-\frac{H_N-\mu N}{k_B\vartheta}\right)\dd\yb\,\dd\pb,
+	\end{equation}
+	where $H_N$ is the Hamiltonian of an $N$-atom system and $\Xi$ is the \textit{grand partition function}.
+\end{definition}
+
+\begin{remark}
+	The derivation of $f_{\rm gc}$ follows the same weak-contact argument used for the canonical ensemble in the previous section, now allowing the reservoir to exchange both energy \textit{and} particles with the system of interest, and identifying $\mu$, exactly as $\vartheta$ was identified before it, from the equilibrium condition between system and reservoir (equality of chemical potential replaces equality of temperature); we do not repeat the argument here and refer the reader to \cite{Reif}, Chapter~9, for the complete construction. The grand canonical ensemble is indispensable whenever particle exchange matters --- open systems, adsorption, alloys with variable composition, chemical reactions --- none of which arise in the constant-composition, closed crystalline solids that are the subject of this course; we mention it here purely so that the triad of classical ensembles announced in the introduction to this part of the course is complete.
+\end{remark}
+
+\bigskip
+With the machinery of this chapter in hand --- phase space, Liouville's equation, and the identification of continuum fields as ensemble averages (Remark~\ref{rem:statmechprogramme}) --- we are finally equipped to construct genuinely general continuum fields, density, momentum and stress, directly from atomistic dynamics, without the restrictive affine, zero-temperature assumptions of the Cauchy--Born rule. This is the subject of the Irving--Kirkwood--Noll procedure, to which we turn next.

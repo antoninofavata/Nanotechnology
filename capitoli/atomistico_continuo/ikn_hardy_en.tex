@@ -1,0 +1,386 @@
+\chapter{The Irving--Kirkwood--Noll Procedure}\label{IKN}
+
+The Cauchy--Born rule of Chapter~\ref{CBrule} bridges kinematics --- a single tensor $\Fb$ dictates the motion of every atom --- but says nothing about how to define a stress \textit{field}, or a density field, for an atomistic system in general: one with defects, free surfaces, thermal fluctuations, or simply no underlying periodicity at all. The statistical-mechanical apparatus of Chapter~\ref{statmech} supplies exactly the missing ingredient, anticipated in Remark~\ref{rem:statmechprogramme}: a macroscopic field is an \textit{ensemble average} of a suitably chosen phase function. Making this precise --- choosing the phase functions so that their ensemble averages automatically satisfy the balance laws of continuum mechanics --- is the content of the procedure developed independently by Irving and Kirkwood (1950) and put into closed analytical form by Noll (1955). We follow the unified treatment of \cite{TadmorMiller}, Section~8.2.
+
+\section{Pointwise Fields as Expectation Values}
+
+Consider a system of $N$ atoms with instantaneous phase-space coordinates $(\yb^1,\ldots,\yb^N,\pb^1,\ldots,\pb^N)\in\Gamma$, evolving under a (generally nonstationary) distribution function $f(\yb^1,\ldots,\pb^N;t)$, as in Chapter~\ref{statmech}. We seek to associate with this discrete, microscopic system continuum fields --- density, momentum density, stress --- defined at every point $\yb$ of space and every instant $t$, and to do so in a way that is not tied to any particular crystal structure or deformation state.
+
+The probability per unit volume of finding atom $\alpha$ at the spatial point $\yb$ is $\langle\delta(\yb^\alpha-\yb)\rangle$, where $\delta$ denotes the three-dimensional Dirac delta.\footnote{This is the ordinary Dirac delta of distribution theory; it bears no relation to the local dissipation density $\delta$ of Chapter~\ref{constheory}, and the two never appear together.} Weighting by the atomic mass $m^\alpha$ and summing over all atoms gives the natural candidate for a pointwise mass density field,
+\begin{equation}\label{rhopt}
+	\rho^{\rm pt}(\yb;t) \;\coloneqq\; \sum_{\alpha=1}^N m^\alpha\,\big\langle\delta(\yb^\alpha-\yb)\big\rangle.
+\end{equation}
+The superscript ``pt'' (pointwise) flags that this field, although defined at every point $\yb$, is not yet the smooth macroscopic field $\rho(\yb,t)$ of the earlier chapters of these notes: it still fluctuates on the atomic scale, and the relation between the two is the subject of the next chapter.
+
+\begin{remark}
+	It is tempting to define a pointwise velocity field by the naive analogue $\vb^{\rm pt}(\yb;t)\coloneqq\sum_\alpha\langle\vb^\alpha\delta(\yb^\alpha-\yb)\rangle$; this is dimensionally wrong, since the right-hand side carries units of velocity per unit volume, not velocity. The correct definition follows instead from requiring the atomic momentum to reproduce the continuum momentum density $\pb\coloneqq\rho\vb$ already introduced in Chapter~1: we \textit{define} the pointwise momentum density and velocity fields by
+	\begin{equation}\label{ppt}
+		\pb^{\rm pt}(\yb;t) \;\coloneqq\; \sum_{\alpha=1}^N m^\alpha\vb^\alpha\,\big\langle\delta(\yb^\alpha-\yb)\big\rangle, \qquad \vb^{\rm pt}(\yb;t)\coloneqq\frac{\pb^{\rm pt}(\yb;t)}{\rho^{\rm pt}(\yb;t)},
+	\end{equation}
+	so that $\vb^{\rm pt}$ is, by construction, the velocity of the center of mass of the atoms sampled by the delta function at $\yb$.
+\end{remark}
+
+\section{Worked Example: Time Averages and a First Glimpse of Molecular Dynamics}\label{sec:ho_example}
+
+Definition \eqref{rhopt} defines $\rho^{\rm pt}$ as an \textit{ensemble} average, computed from a distribution function $f$ over the entire phase space $\Gamma$. In practice, however, one essentially never has access to $f$ directly. What one \textit{can} compute --- by hand, for a toy system; numerically, via \textit{molecular dynamics} (MD), for a realistic one --- is a single trajectory, obtained by integrating Hamilton's equations \eqref{hameqs} forward in time from some initial condition. The ergodic hypothesis \eqref{ergodic} is precisely what licenses using such a trajectory, instead of $f$, to evaluate $\rho^{\rm pt}$: it asserts that the long-time average along the trajectory equals the ensemble average. We now verify this explicitly, in closed form, for the simplest possible system.
+
+\paragraph{Setup.} Take $N=1$ atom of mass $m$, confined to one dimension, bound by a harmonic potential $V^{\rm int}(y^1)=\tfrac12 k(y^1)^2$ about the origin (a crude, but exactly solvable, model of an atom vibrating about its lattice site, in the spirit of the Einstein solid of Example~\ref{ex:einstein}). Since $N=1$ and the motion is one-dimensional, we drop the atom label and the boldface, writing $y(t)\equiv y^1(t)$, $p(t)\equiv p^1(t)$. Hamilton's equations \eqref{hameqs} give the familiar harmonic trajectory, of energy $E$ and angular frequency $\omega=\sqrt{k/m}$,
+\begin{equation}\label{ho_traj}
+	y(t) = A\sin(\omega t+\varphi), \qquad p(t) = m\omega A\cos(\omega t+\varphi), \qquad A = \sqrt{2E/k},
+\end{equation}
+a closed, periodic orbit of period $T=2\pi/\omega$ in the phase plane $(y,p)$ (Figure~\ref{fig:phaseorbit}).
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.15]
+		\fill[black!12] (0,0) ellipse (1.95 and 1.41);
+		\fill[white] (0,0) ellipse (1.8 and 1.3);
+		\draw[thick,bluSapienza] (0,0) ellipse (1.8 and 1.3);
+		\draw[-{Latex[length=2.2mm]}] (-2.35,0) -- (2.35,0) node[right]{$y$};
+		\draw[-{Latex[length=2.2mm]}] (0,-1.75) -- (0,1.75) node[above]{$p$};
+		\draw[dashed,black!50] (1.8,0) -- (1.8,-0.18);
+		\node[below,font=\scriptsize] at (1.8,-0.18) {$A$};
+		\draw[dashed,black!50] (-1.8,0) -- (-1.8,-0.18);
+		\node[below,font=\scriptsize] at (-1.8,-0.18) {$-A$};
+		\node[left,font=\scriptsize] at (-0.08,1.3) {$m\omega A$};
+		\node[left,font=\scriptsize] at (-0.08,-1.3) {$-m\omega A$};
+		\draw[-{Latex[length=2mm]},bluSapienza,thick] (1.8,0.28) -- (1.8,-0.28);
+		\draw[-{Latex[length=2mm]},bluSapienza,thick] (0.28,-1.3) -- (-0.28,-1.3);
+		\draw[-{Latex[length=2mm]},bluSapienza,thick] (-1.8,-0.28) -- (-1.8,0.28);
+		\draw[-{Latex[length=2mm]},bluSapienza,thick] (-0.28,1.3) -- (0.28,1.3);
+		\fill[rossoSapienza] (1.27,0.919) circle (1.6pt);
+		\node[above right,font=\scriptsize,rossoSapienza] at (1.27,0.919) {$(y(t),p(t))$};
+	\end{tikzpicture}
+	\caption{The phase-space orbit of the one-dimensional harmonic oscillator \eqref{ho_traj}: a single, deterministic trajectory (blue), traversed clockwise, that visits every point of the energy curve $H(y,p)=E$. The thin shaded annulus indicates the microcanonical shell $[E,E+\dd E]$ of Chapter~\ref{statmech}: as $\dd E\to0$ it collapses onto the trajectory itself.}
+	\label{fig:phaseorbit}
+\end{figure}
+
+\paragraph{The time-averaged density.} By \eqref{rhopt} specialized to a single, deterministic trajectory (an ensemble average over a distribution concentrated on one microstate reduces to evaluation along that microstate's orbit), the time-averaged pointwise density at position $y\in(-A,A)$ is
+\begin{equation}\label{ho_timeavg}
+	\overline{\rho^{\rm pt}}(y) \;\coloneqq\; \lim_{\tau\to\infty}\frac{m}{\tau}\int_0^\tau \delta\big(y(t)-y\big)\,\dd t \;=\; \frac{m}{T}\int_0^T \delta\big(y(t)-y\big)\,\dd t,
+\end{equation}
+the trajectory being periodic. Within one period, the oscillator passes through any given $y\in(-A,A)$ exactly twice --- once moving in each direction --- each time spending a duration $\dd t = \dd y/|\dot y(y)|$ near it, where $|\dot y(y)|=\omega\sqrt{A^2-y^2}$ from \eqref{ho_traj}. Hence
+\begin{equation}
+	\int_0^T \delta\big(y(t)-y\big)\,\dd t = \frac{2}{|\dot y(y)|} = \frac{2}{\omega\sqrt{A^2-y^2}},
+\end{equation}
+and, using $T=2\pi/\omega$,
+\begin{equation}\label{ho_density}
+	\boxed{\;\overline{\rho^{\rm pt}}(y) = \frac{m}{\pi\sqrt{A^2-y^2}}, \qquad |y|<A.\;}
+\end{equation}
+This is the classical ``bathtub'' distribution: the density is minimal at $y=0$, where the oscillator moves fastest, and diverges (integrably) at the turning points $y=\pm A$, where it slows to a halt before reversing --- exactly the intuition that an oscillator spends most of its time near the extremes of its swing. One checks directly that $\int_{-A}^{A}\overline{\rho^{\rm pt}}(y)\,\dd y=m$, as it must.
+
+\begin{remark}[Verification of the ergodic hypothesis]
+	Formula \eqref{ho_density} can be obtained a second, independent way: as the genuine \textit{ensemble} average of $\rho^{\rm pt}$ over the microcanonical distribution \eqref{microdist} at energy $E=\tfrac12kA^2$. The density of states of a harmonic oscillator is constant, $D(E)=2\pi/\omega$ (Exercise~\ref{ex:doscount} adapted to one atom in one dimension), and the marginal probability of finding the phase point within $\dd y$ of $y$, regardless of $p$, works out to $2m\,\dd y/\big(|p(y)|\,D(E)\big)$ with $|p(y)|=m\omega\sqrt{A^2-y^2}$ --- which reduces, after substitution, to exactly \eqref{ho_density} again. That the two computations --- one a time average along a single trajectory, the other an ensemble average over the microcanonical shell --- agree exactly is not a coincidence: it is the ergodic hypothesis \eqref{ergodic}, verified here in the one case simple enough to check by hand.
+\end{remark}
+
+\paragraph{From this toy model to molecular dynamics.} The trajectory \eqref{ho_traj} could be written down in closed form only because $N=1$ and the potential is harmonic. For a realistic system --- $N$ ranging from hundreds to billions of atoms, interacting through a generally anharmonic, many-body potential $V^{\rm int}$ --- Hamilton's equations \eqref{hameqs} have no analytical solution, and one resorts to \textit{molecular dynamics}: starting from some initial configuration $(\yb^1_0,\ldots,\pb^N_0)$, the equations of motion are integrated numerically, one small time step $\Delta t$ at a time (the \textit{velocity Verlet} algorithm being the standard choice, prized for its excellent long-time energy conservation), producing an explicit, discrete-time trajectory $\big(\yb^\alpha(t_i),\pb^\alpha(t_i)\big)$, $i=1,\ldots,N_\tau$. Exactly the calculation performed by hand in \eqref{ho_timeavg} is then carried out numerically: any IKN field --- density, momentum density, or the Noll stress \eqref{Nollstress} itself --- is estimated not as an ensemble average, which would require knowing $f$, but as a time average over the computed trajectory,
+\begin{equation}\label{md_timeavg}
+	\langle A\rangle \;\approx\; \overline{A} \;=\; \frac{1}{N_\tau}\sum_{i=1}^{N_\tau} A\big(\yb^1(t_i),\ldots,\pb^N(t_i)\big),
+\end{equation}
+the discrete-time counterpart of \eqref{ergodic}, and the same replacement that underlies the practical, time-averaged Hardy stress formulas of the next chapter (Eqns.~\eqref{hardyrhotime}--\eqref{hardyTVtime}). This is, in essence, all a molecular dynamics simulation \textit{is}: a numerical trajectory generator, coupled with the time-averaging identity \eqref{md_timeavg} used to extract macroscopic, continuum-like quantities from it. The algorithmic details --- integrators, boundary conditions, thermostats for controlling temperature --- are the subject of a dedicated treatment elsewhere (\cite{TadmorMiller}, Chapter~9); what matters for our purposes is only this logical link, which closes the circle opened in Chapter~\ref{statmech}: ensemble averages are the theoretical object of interest, time averages along computable trajectories are what one actually evaluates, and the ergodic hypothesis is the (generally unprovable, but overwhelmingly well-supported) assumption that guarantees the two agree.
+
+\section{The Rate-of-Change Identity}
+
+Both $\rho^{\rm pt}$ and $\pb^{\rm pt}$ are ensemble averages $\langle A\rangle=\int_\Gamma A f\,\dd\yb\,\dd\pb$ of phase functions $A$ (here $A=m^\alpha\delta(\yb^\alpha-\yb)$ and $A=m^\alpha\vb^\alpha\delta(\yb^\alpha-\yb)$, summed over $\alpha$) that carry no \textit{explicit} time dependence of their own --- all the time dependence of $\langle A\rangle$ enters through the evolving distribution $f(t)$. To check that these fields obey the continuum balance laws, we need $\partial\langle A\rangle/\partial t$, and for this Liouville's equation \eqref{liouvilleeq} is exactly the required tool.
+
+\begin{theorem}[Rate-of-change identity]\label{thm:rateofchange}
+	For any phase function $A(\yb^1,\ldots,\pb^N)$ with no explicit time dependence,
+	\begin{equation}\label{rateofchange}
+		\frac{\partial}{\partial t}\langle A\rangle \;=\; \left\langle \sum_{\alpha=1}^N\left(\vb^\alpha\cdot\frac{\partial A}{\partial\yb^\alpha} - \frac{\partial V^{\rm int}}{\partial\yb^\alpha}\cdot\frac{\partial A}{\partial\pb^\alpha}\right)\right\rangle.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Differentiating $\langle A\rangle=\int_\Gamma Af\,\dd\yb\,\dd\pb$ under the integral sign and using Liouville's equation \eqref{liouvilleeq} (with $\partial H/\partial\pb^\alpha=\vb^\alpha$, $\partial H/\partial\yb^\alpha=\partial V^{\rm int}/\partial\yb^\alpha$, since the kinetic part $T(\pb)$ of $H$ does not depend on $\yb$) gives
+	\begin{equation}
+		\frac{\partial}{\partial t}\langle A\rangle = \int_\Gamma A\,\frac{\partial f}{\partial t}\,\dd\yb\,\dd\pb = -\sum_\alpha\int_\Gamma A\left(\vb^\alpha\cdot\frac{\partial f}{\partial\yb^\alpha} - \frac{\partial V^{\rm int}}{\partial\yb^\alpha}\cdot\frac{\partial f}{\partial\pb^\alpha}\right)\dd\yb\,\dd\pb.
+	\end{equation}
+	Integrate each term by parts over $\Gamma$. Since $\vb^\alpha=\pb^\alpha/m^\alpha$ does not depend on $\yb^\alpha$,
+	\begin{equation}
+		-\int_\Gamma A\,\vb^\alpha\cdot\frac{\partial f}{\partial\yb^\alpha}\,\dd\yb\,\dd\pb = -\int_\Gamma \vb^\alpha\cdot\frac{\partial(Af)}{\partial\yb^\alpha}\,\dd\yb\,\dd\pb + \int_\Gamma f\,\vb^\alpha\cdot\frac{\partial A}{\partial\yb^\alpha}\,\dd\yb\,\dd\pb,
+	\end{equation}
+	and the first integral on the right is a divergence in $\yb^\alpha$ of the compactly-decaying quantity $Af$, hence vanishes upon integration (the distribution function and all physically admissible phase functions decay at infinity). Identically, since $\partial V^{\rm int}/\partial\yb^\alpha$ does not depend on $\pb^\alpha$,
+	\begin{equation}
+		\int_\Gamma A\,\frac{\partial V^{\rm int}}{\partial\yb^\alpha}\cdot\frac{\partial f}{\partial\pb^\alpha}\,\dd\yb\,\dd\pb = -\int_\Gamma f\,\frac{\partial V^{\rm int}}{\partial\yb^\alpha}\cdot\frac{\partial A}{\partial\pb^\alpha}\,\dd\yb\,\dd\pb,
+	\end{equation}
+	again after discarding a vanishing boundary term. Collecting the surviving terms over all $\alpha$ gives \eqref{rateofchange}.
+\end{proof}
+
+\begin{remark}
+	Identity \eqref{rateofchange} is the atomistic, statistical-mechanical analogue of the abstract transport theorem \eqref{reyn}: it converts a time derivative of an ensemble average into the ensemble average of an explicitly computable phase function, built from velocities and interatomic forces alone. Every balance law of continuum mechanics recovered below --- conservation of mass, balance of momentum --- is obtained by a single, mechanical application of \eqref{rateofchange} to an appropriately chosen $A$.
+\end{remark}
+
+\section{Conservation of Mass}
+
+Apply \eqref{rateofchange} to $A=\rho^{\rm pt}(\yb;t)=\sum_\alpha m^\alpha\delta(\yb^\alpha-\yb)$, regarding $\yb$ as a fixed field point (not a phase-space variable). Since $\delta(\yb^\alpha-\yb)$ depends on $\pb^\beta$ for no $\beta$, the second sum in \eqref{rateofchange} vanishes identically, leaving
+\begin{equation}
+	\frac{\partial\rho^{\rm pt}}{\partial t} = \left\langle\sum_\alpha m^\alpha \vb^\alpha\cdot\frac{\partial}{\partial\yb^\alpha}\delta(\yb^\alpha-\yb)\right\rangle = -\dive_{\yb}\left\langle\sum_\alpha m^\alpha\vb^\alpha\,\delta(\yb^\alpha-\yb)\right\rangle,
+\end{equation}
+where we used $\partial\delta(\yb^\alpha-\yb)/\partial\yb^\alpha = -\partial\delta(\yb^\alpha-\yb)/\partial\yb$ and pulled the (now $\yb^\alpha$-independent) divergence in $\yb$ outside the ensemble average. Recognizing the definition \eqref{ppt} of $\pb^{\rm pt}$ on the right,
+\begin{equation}\label{ikncontinuity}
+	\frac{\partial\rho^{\rm pt}}{\partial t} + \dive\big(\rho^{\rm pt}\vb^{\rm pt}\big) = 0,
+\end{equation}
+which is precisely the Eulerian form of the local mass balance \eqref{masbal} of Chapter~1 (there written in material-derivative form, $\dot\rho+\rho\dive\vb=0$; the two are equivalent via $\dot\rho=\partial_t\rho+\vb\cdot\grad\rho$). The pointwise definitions \eqref{rhopt}--\eqref{ppt}, built from nothing but Dirac deltas and ensemble averages, satisfy conservation of mass \textit{identically}, with no approximation.
+
+\section{Balance of Momentum and the Pointwise Stress Tensor}
+
+We now repeat the argument for momentum, applying \eqref{rateofchange} to $A=\pb^{\rm pt}(\yb;t)=\sum_\alpha m^\alpha\vb^\alpha\delta(\yb^\alpha-\yb)$. This time both terms in \eqref{rateofchange} contribute (the momentum $\pb^\alpha=m^\alpha\vb^\alpha$ enters $A$ directly, so $\partial A/\partial\pb^\beta\neq0$), and a computation entirely parallel to the one above --- differentiating under the ensemble average, using $\partial\delta(\yb^\alpha-\yb)/\partial\yb^\alpha=-\partial\delta(\yb^\alpha-\yb)/\partial\yb$, and separating the resulting flux term into a mean-velocity part and a fluctuation part, $\vb^\alpha=\vb^{\rm pt}+\vb^\alpha_{\rm rel}$ --- yields, after some algebra we do not reproduce here (it is identical in spirit to the mass balance computation, only more laborious; see \cite{TadmorMiller}, Section~8.2.4, for every step),
+\begin{equation}\label{ikn_mombal}
+	\dive\Tb^{\rm pt} + \bb^{\rm pt} = \frac{\partial\pb^{\rm pt}}{\partial t} + \dive\big(\pb^{\rm pt}\otimes\vb^{\rm pt}\big),
+\end{equation}
+the Eulerian balance of linear momentum, generalizing the static equation \eqref{bDiv} of Chapter~1 to the dynamic case, where $\bb^{\rm pt}(\yb;t)\coloneqq-\sum_\alpha\big\langle(\partial V^{\rm ext}/\partial\yb^\alpha)\,\delta(\yb^\alpha-\yb)\big\rangle$ is the pointwise force per unit volume due to external fields (gravity, an applied field), and the pointwise stress splits additively into a kinetic and a potential (configurational) contribution,
+\begin{equation}\label{Tptsplit}
+	\Tb^{\rm pt} = \Tb^{{\rm pt},K} + \Tb^{{\rm pt},V}, \qquad \Tb^{{\rm pt},K}(\yb;t) \coloneqq -\sum_{\alpha=1}^N m^\alpha\big\langle \vb^\alpha_{\rm rel}\otimes\vb^\alpha_{\rm rel}\,\delta(\yb^\alpha-\yb)\big\rangle, \qquad \vb^\alpha_{\rm rel}\coloneqq\vb^\alpha-\vb^{\rm pt}(\yb;t),
+\end{equation}
+with $\Tb^{{\rm pt},V}$ --- the contribution of the interatomic forces --- determined, up to an additive divergence-free field, by the differential equation
+\begin{equation}\label{TptVdiv}
+	\dive\Tb^{{\rm pt},V}(\yb;t) = \left\langle \sum_\alpha \left(-\frac{\partial V^{\rm int}}{\partial\yb^\alpha}\right)\delta(\yb^\alpha-\yb)\right\rangle.
+\end{equation}
+The kinetic contribution $\Tb^{{\rm pt},K}$ is already an explicit, computable expression --- manifestly symmetric, since $\vb^\alpha_{\rm rel}\otimes\vb^\alpha_{\rm rel}$ is. It is a momentum flux due to the random, thermal part of each atom's velocity: exactly the microscopic origin of \textit{kinetic pressure}, familiar from the ideal-gas law. The nontrivial task --- solving \eqref{TptVdiv} for an explicit $\Tb^{{\rm pt},V}$ --- is the content of the rest of this chapter.
+
+\subsection*{The central-force decomposition}
+
+By the same translational and rotational invariance of $V^{\rm int}$ already invoked in Chapter~\ref{atomdescr}, the total interatomic force on atom $\alpha$ can be written as a sum of pairwise, central contributions,
+\begin{equation}\label{centralforce}
+	-\frac{\partial V^{\rm int}}{\partial\yb^\alpha} = \sum_{\beta\neq\alpha}\phi'(r^{\alpha\beta})\,\frac{\yb^{\alpha\beta}}{r^{\alpha\beta}}, \qquad \yb^{\alpha\beta}\coloneqq\yb^\beta-\yb^\alpha, \qquad r^{\alpha\beta}\coloneqq|\yb^{\alpha\beta}|,
+\end{equation}
+exactly the pair-potential force already used in the Cauchy--Born stress formula \eqref{Pcb}. (For a general, non-pairwise potential the decomposition \eqref{centralforce} still holds, with $\phi'(r^{\alpha\beta})\yb^{\alpha\beta}/r^{\alpha\beta}$ replaced by a more general central term $f^{\alpha\beta}$, at the price that the decomposition into pairwise contributions is not unique --- a first source of the non-uniqueness discussed below.) Substituting \eqref{centralforce} into \eqref{TptVdiv},
+\begin{equation}\label{TptVsum}
+	\dive\Tb^{{\rm pt},V}(\yb;t) = \left\langle \sum_{\substack{\alpha,\beta\\\alpha\neq\beta}} \phi'(r^{\alpha\beta})\,\frac{\yb^{\alpha\beta}}{r^{\alpha\beta}}\,\delta(\yb^\alpha-\yb)\right\rangle.
+\end{equation}
+The right-hand side is a sum, over all ordered pairs of atoms, of a bond force weighted by a single Dirac delta centered on \textit{one endpoint} of the bond ($\yb^\alpha$) --- an oddly asymmetric-looking object to appear as the divergence of a stress. Irving and Kirkwood's original 1950 treatment stopped here, resorting to a Taylor expansion of the difference of two Dirac deltas to obtain an \textit{approximate}, series solution. It took Noll, five years later, to notice that an \textit{exact}, closed-form solution exists.
+
+\section{Noll's Closed-Form Solution}\label{sec:Noll}
+
+The key observation is that \eqref{TptVsum} can first be rewritten, using the elementary identity $\langle B\rangle=\int_{\yb'\in\mathbb R^3}\langle B\,\delta(\yb^\beta-\yb')\rangle\,\dd\yb'$ (valid for any phase function $B$, since inserting $\int\delta(\yb^\beta-\yb')\dd\yb'=1$ changes nothing), as an integral over an \textit{explicit second point} $\yb'$:
+\begin{equation}\label{TptVsum2}
+	\dive\Tb^{{\rm pt},V}(\yb;t) = \int_{\yb'\in\mathbb R^3}\left\langle \sum_{\substack{\alpha,\beta\\\alpha\neq\beta}} \phi'(r^{\alpha\beta})\,\frac{\yb^{\alpha\beta}}{r^{\alpha\beta}}\,\delta(\yb^\alpha-\yb)\,\delta(\yb^\beta-\yb')\right\rangle \dd\yb'.
+\end{equation}
+Writing $F(\yb,\yb')\coloneqq \sum_{\alpha\neq\beta}\phi'(r^{\alpha\beta})\dfrac{\yb^{\alpha\beta}}{r^{\alpha\beta}}\big\langle\delta(\yb^\alpha-\yb)\delta(\yb^\beta-\yb')\big\rangle$, notice that $F$ is \textit{antisymmetric} in its two arguments,
+\begin{equation}\label{Fantisym}
+	F(\yb',\yb) = -F(\yb,\yb'),
+\end{equation}
+because swapping $\yb\leftrightarrow\yb'$ amounts to relabeling $\alpha\leftrightarrow\beta$ in the sum, under which $r^{\alpha\beta}=r^{\beta\alpha}$ is unchanged (it depends only on the distance between the pair) while $\yb^{\alpha\beta}=-\yb^{\beta\alpha}$ flips sign. Equation \eqref{TptVsum2} thus has exactly the form $\dive\Tb^{{\rm pt},V}(\yb)=\int_{\yb'}F(\yb,\yb')\,\dd\yb'$, with $F$ antisymmetric --- and this structure alone, independently of the physical origin of $F$, is enough to produce a closed-form divergence-solution, by the following lemma.
+
+\begin{theorem}[Noll's lemma, 1955]\label{thm:noll}
+	Let $F(\yb,\yb')$ be a vector-valued function of two points $\yb,\yb'\in\mathbb R^3$, antisymmetric in the sense $F(\yb',\yb)=-F(\yb,\yb')$, and decaying suitably at infinity. Define, for a bond vector $\zb\in\mathbb R^3$,
+	\begin{equation}\label{noll_g}
+		\gb(\yb,\zb) \coloneqq \int_0^1 F\big(\yb+s\zb,\;\yb-(1-s)\zb\big)\,\dd s.
+	\end{equation}
+	Then
+	\begin{equation}\label{noll_lemma}
+		\int_{\yb'\in\mathbb R^3} F(\yb,\yb')\,\dd\yb' = -\frac12\,\dive_{\yb}\int_{\zb\in\mathbb R^3} \gb(\yb,\zb)\otimes\zb \;\dd\zb.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Fix $\yb$ and work in components; write $g_i(\yb,\zb)$ for the $i$-th component of $\gb$. By the chain rule, since both arguments $\yb+s\zb$ and $\yb-(1-s)\zb$ of $F$ depend on $\yb$ with unit coefficient,
+	\begin{equation}
+		\frac{\partial g_i}{\partial y_j}(\yb,\zb) = \int_0^1 \big[D_1F_i + D_2F_i\big]_j\big(\yb+s\zb,\yb-(1-s)\zb\big)\,\dd s,
+	\end{equation}
+	where $D_1F_i,D_2F_i$ denote the gradient of $F_i$ with respect to its first and second argument, respectively. Contracting with $z_j$ and recognizing the resulting expression as a total derivative with respect to $s$ along the path $s\mapsto(\yb+s\zb,\yb-(1-s)\zb)$ --- since $\dd(\yb+s\zb)/\dd s=\zb$ and $\dd(\yb-(1-s)\zb)/\dd s=\zb$ as well ---
+	\begin{equation}
+		\frac{\partial g_i}{\partial y_j}(\yb,\zb)\,z_j = \int_0^1 \frac{\dd}{\dd s}\Big[F_i\big(\yb+s\zb,\yb-(1-s)\zb\big)\Big]\dd s = F_i(\yb+\zb,\yb) - F_i(\yb,\yb-\zb),
+	\end{equation}
+	by the fundamental theorem of calculus. Hence
+	\begin{equation}
+		\left[\dive_{\yb}\int_{\zb}\gb(\yb,\zb)\otimes\zb\,\dd\zb\right]_i = \int_{\zb\in\mathbb R^3}\frac{\partial g_i}{\partial y_j}(\yb,\zb)\,z_j\,\dd\zb = \int_{\zb\in\mathbb R^3}\Big[F_i(\yb+\zb,\yb)-F_i(\yb,\yb-\zb)\Big]\dd\zb.
+	\end{equation}
+	Apply the antisymmetry \eqref{Fantisym} to the first term, $F_i(\yb+\zb,\yb)=-F_i(\yb,\yb+\zb)$, so that
+	\begin{equation}
+		\left[\dive_{\yb}\int_{\zb}\gb\otimes\zb\,\dd\zb\right]_i = -\int_{\zb}\Big[F_i(\yb,\yb+\zb) + F_i(\yb,\yb-\zb)\Big]\dd\zb.
+	\end{equation}
+	In the first integral substitute $\yb'=\yb+\zb$, and in the second $\yb'=\yb-\zb$; both substitutions range over all of $\mathbb R^3$ with unit Jacobian as $\zb$ does, so each integral equals $\int_{\yb'}F_i(\yb,\yb')\,\dd\yb'$, and
+	\begin{equation}
+		\dive_{\yb}\int_{\zb}\gb(\yb,\zb)\otimes\zb\,\dd\zb = -2\int_{\yb'}F(\yb,\yb')\,\dd\yb',
+	\end{equation}
+	which is \eqref{noll_lemma} after dividing by $-2$.
+\end{proof}
+
+Applying Theorem~\ref{thm:noll} to \eqref{TptVsum2}, with $\yb^{\pm}(\zb,s)\coloneqq\yb\pm$ as in \eqref{noll_g}, i.e.\ $\yb^+\coloneqq\yb+s\zb$ (playing the role of $\yb^\alpha$) and $\yb^-\coloneqq\yb-(1-s)\zb$ (playing the role of $\yb^\beta$), we read off an \textit{explicit, closed-form} expression for the potential part of the pointwise stress:
+\begin{equation}\label{Nollstress}
+	\boxed{\;\Tb^{{\rm pt},V}(\yb;t) = \frac12\int_{\zb\in\mathbb R^3}\frac{\zb\otimes\zb}{|\zb|}\left[\int_0^1\left\langle\sum_{\substack{\alpha,\beta\\\alpha\neq\beta}}\phi'(r^{\alpha\beta})\,\delta(\yb^\alpha-\yb^+)\,\delta(\yb^\beta-\yb^-)\right\rangle\dd s\right]\dd\zb.\;}
+\end{equation}
+This is the \textit{Noll stress}. Its derivation involved no approximation of any kind --- no Taylor expansion, no truncation --- and it holds for any interatomic model whose force decomposes centrally as in \eqref{centralforce}.
+
+\begin{remark}[Physical interpretation]
+	Equation \eqref{Nollstress} says that the potential stress at a point $\yb$ is a superposition, over every possible bond length and direction $\zb$ and every position $s$ along that bond, of the expectation value of the force in a bond that happens to pass through $\yb$: the two delta functions pin atom $\alpha$ at $\yb^+=\yb+s\zb$ and atom $\beta$ at $\yb^-=\yb-(1-s)\zb$, which is to say, they pin the bond so that it threads exactly through the point $\yb$, at fractional position $s$ along its length. Although \eqref{Nollstress} looks formidable, this is its entire content: sum the force-times-direction of every bond through $\yb$, weighted appropriately.
+\end{remark}
+
+\begin{remark}[Symmetry]
+	Since $\zb\otimes\zb$ is symmetric, $\Tb^{{\rm pt},V}$ in \eqref{Nollstress} is symmetric; combined with the manifest symmetry of $\Tb^{{\rm pt},K}$ noted after \eqref{Tptsplit}, the full pointwise stress tensor \eqref{Tptsplit} is symmetric, hence automatically consistent with the balance of angular momentum (which we have not separately imposed) --- for any classical, pairwise-central interatomic model.
+\end{remark}
+
+\begin{remark}[Non-uniqueness of the pointwise stress]\label{rem:nonuniqueness}
+	Formula \eqref{Nollstress} is not unique, for two independent reasons.
+	\begin{enumerate}
+		\item \textit{Freedom in the force decomposition.} The passage from the total force on an atom to a sum of pairwise central contributions, \eqref{centralforce}, is unique for a genuine pair potential $V^{\rm int}=\frac12\sum\phi(r^{\alpha\beta})$, but not for a general many-body potential: different, physically equivalent ways of writing the same total force as a sum over neighbors (different continuously differentiable extensions of $V^{\rm int}$, in the language of \cite{TadmorMiller}, Section~5.8.2) lead to different central-force fields $f^{\alpha\beta}$, and hence to different Noll stresses via \eqref{Nollstress}.
+		\item \textit{Freedom to add a divergence-free field.} Equation \eqref{TptVdiv} determines $\Tb^{{\rm pt},V}$ only up to $\dive\Tb^\sharp=\mathbf0$; any such $\Tb^\sharp$ can be added to \eqref{Nollstress} without affecting the momentum balance \eqref{ikn_mombal} in the slightest.
+	\end{enumerate}
+	Neither ambiguity is a defect of the derivation: it is an intrinsic feature of trying to assign a stress \textit{pointwise} to a discrete system, in which only integrated, or spatially averaged, quantities are physically meaningful. We will see in the next chapter that these ambiguities become negligible once the pointwise stress is spatially averaged over a domain large compared to the range of the interatomic potential --- exactly the separation-of-scales condition already familiar from the discussion of the Representative Volume Element in Section~\ref{sep_scales}.
+\end{remark}
+
+\section{Worked Example: The Time-Averaged Stress of a Vibrating Bond}\label{sec:diatomic}
+
+A student first encountering \eqref{Nollstress} might reasonably ask: given an actual molecular dynamics trajectory, could I just compute this pointwise stress and be done --- skip Hardy's machinery of the next chapter altogether? We now compute $\Tb^{{\rm pt},V}$ explicitly, time-averaged, for the simplest possible system with a genuine bond, and see exactly what goes wrong.
+
+\paragraph{Setup.} Take two atoms of equal mass $m$, in one dimension, interacting through a harmonic bond, $\phi(r)=\tfrac12k_b(r-a)^2$, so that $\phi'(r)=k_b(r-a)$ ($a$ the equilibrium bond length, $k_b$ the bond stiffness). Working in the center-of-mass frame, with the center of mass fixed at the origin, the two atomic positions are $y^1(t)=-r(t)/2$ and $y^2(t)=+r(t)/2$, where the bond length $r(t)$ performs harmonic motion about $a$ (Hamilton's equations for the relative coordinate, with reduced mass $\mu=m/2$),
+\begin{equation}\label{bondmotion}
+	r(t) = a + B\sin(\omega t+\varphi), \qquad \omega=\sqrt{2k_b/m}, \qquad 0<B<a,
+\end{equation}
+$B$ being the amplitude of the bond's oscillation (``breathing'') about its equilibrium length.
+
+\paragraph{The instantaneous pointwise stress.} For this single, deterministic microstate (no ensemble average is needed --- or rather, it is trivial, concentrated on one trajectory), Eqn.~\eqref{TptVdiv} integrates directly in one dimension: with the central force on atom 1 equal to $+\phi'(r(t))$ and on atom 2 equal to $-\phi'(r(t))$ (Newton's third law),
+\begin{equation}
+	\frac{\partial\sigma^{{\rm pt},V}}{\partial y}(y;t) = \phi'(r(t))\Big[\delta\big(y-y^1(t)\big) - \delta\big(y-y^2(t)\big)\Big],
+\end{equation}
+which integrates, requiring $\sigma^{{\rm pt},V}\to0$ as $y\to-\infty$, to
+\begin{equation}\label{instpulse}
+	\sigma^{{\rm pt},V}(y;t) = \phi'\big(r(t)\big)\,\mathbb{1}_{\big(y^1(t),\,y^2(t)\big)}(y) = k_b\big(r(t)-a\big)\,\mathbb{1}_{\left(-\frac{r(t)}2,\,\frac{r(t)}2\right)}(y).
+\end{equation}
+At any fixed instant, then, the pointwise stress is a rectangular pulse: constant at the (possibly negative, i.e.\ compressive) value $k_b(r(t)-a)$ between the two instantaneous atomic positions, and identically zero outside --- precisely the ``crisscrossed,'' atom-resolved character anticipated in the closing remarks below. This pulse is not even continuous, let alone smooth, and both its height and its width change from one instant to the next as the bond breathes.
+
+\paragraph{The time-averaged stress.} Averaging \eqref{instpulse} over one period $T=2\pi/\omega$ using \eqref{bondmotion}, a point $y>0$ is covered by the pulse exactly when $r(t)>2y$, i.e.\ when $\sin(\omega t+\varphi)>s_0\coloneqq(2y-a)/B$; writing $\theta_0\coloneqq\arcsin(s_0)$ (well defined whenever $|y-a/2|<B/2$, i.e.\ $y$ lies within the bond's range of motion) and integrating $k_bB\sin\theta$ over the interval $\theta\in(\theta_0,\pi-\theta_0)$ during which the point is covered,
+\begin{equation}
+	\overline{\sigma^{{\rm pt},V}}(y) = \frac{1}{2\pi}\int_{\theta_0}^{\pi-\theta_0} k_bB\sin\theta\,\dd\theta = \frac{k_bB}{\pi}\cos\theta_0 = \frac{k_bB}{\pi}\sqrt{1-\left(\frac{2y-a}{B}\right)^2},
+\end{equation}
+valid for $\tfrac{a-B}2<y<\tfrac{a+B}2$ --- exactly the range of motion of atom 2 --- and, by the symmetric argument (or simply $y\mapsto-y$), the mirror image for $y<0$. Collecting all three regions (and checking that the formula vanishes continuously at both endpoints of its domain, matching the neighboring zero regions),
+\begin{equation}\label{avgpulse}
+	\overline{\sigma^{{\rm pt},V}}(y) = \begin{cases} 0, & |y|<\dfrac{a-B}2,\\[2mm] \dfrac{k_bB}{\pi}\sqrt{1-\left(\dfrac{2|y|-a}{B}\right)^2}, & \dfrac{a-B}2<|y|<\dfrac{a+B}2,\\[3mm] 0, & |y|>\dfrac{a+B}2.\end{cases}
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.0]
+		\draw[-{Latex[length=2.2mm]}] (-4.2,0) -- (4.2,0) node[right]{$y$};
+		\draw[-{Latex[length=2.2mm]}] (0,-0.3) -- (0,2.1) node[above]{$\overline{\sigma^{{\rm pt},V}}(y)$};
+		\draw[thick,bluSapienza,domain=1.101:2.499,samples=60,smooth,variable=\y] plot ({\y},{1.7*sqrt(max(0,1-((\y-1.8)/0.7)^2))});
+		\draw[thick,bluSapienza,domain=-2.499:-1.101,samples=60,smooth,variable=\y] plot ({\y},{1.7*sqrt(max(0,1-((-\y-1.8)/0.7)^2))});
+		\draw[thick,bluSapienza] (-4.1,0) -- (-2.5,0);
+		\draw[thick,bluSapienza] (-1.1,0) -- (1.1,0);
+		\draw[thick,bluSapienza] (2.5,0) -- (4.1,0);
+		\draw[dashed,black!50] (1.1,0) -- (1.1,-0.15); \node[below,font=\scriptsize] at (1.1,-0.15){$\frac{a-B}2$};
+		\draw[dashed,black!50] (2.5,0) -- (2.5,-0.15); \node[below,font=\scriptsize] at (2.5,-0.15){$\frac{a+B}2$};
+		\draw[dashed,black!50] (-1.1,0) -- (-1.1,-0.15); \node[below,font=\scriptsize] at (-1.1,-0.15){$-\frac{a-B}2$};
+		\draw[dashed,black!50] (-2.5,0) -- (-2.5,-0.15); \node[below,font=\scriptsize] at (-2.5,-0.15){$-\frac{a+B}2$};
+	\end{tikzpicture}
+	\caption{The time-averaged pointwise stress \eqref{avgpulse} of the vibrating bond: two symmetric, semicircular bumps of amplitude $k_bB/\pi$, centered on the range of motion of each atom, separated by an exactly vanishing stress in the region always spanned by the bond and zero beyond the bond's full excursion. Even after time-averaging, the field is continuous but not differentiable at its four corners --- a residual, atom-scale fingerprint that a genuinely smooth continuum stress field should not have.}
+	\label{fig:diatomicstress}
+\end{figure}
+
+\begin{remark}[Why the raw time average is not enough]
+	Formula \eqref{avgpulse} is a considerable improvement on the wildly oscillating pulse \eqref{instpulse}: it is a fixed, finite function of $y$, obtained by legitimately invoking the ergodic hypothesis exactly as in Section~\ref{sec:ho_example}. Yet it is still not what one would call a continuum stress field. Deep within the bond ($|y|<(a-B)/2$, always spanned regardless of phase) the average vanishes identically --- the bond spends equal time in tension and compression there, and the two cancel exactly. All of the nonzero signal is squeezed into two thin shells, of width $B$, exactly tracking where each individual atom happens to sit at some point in its oscillation; there, the pulse's presence or absence is correlated with the sign of the instantaneous force, and the correlation survives averaging. The result --- an exact semicircle, continuous but with a vertical tangent at each of its four corners --- is a clean formula, but its shape is dictated entirely by the microscopic geometry of a single bond, not by any macroscopic length scale. This is exactly the problem flagged in Remark~\ref{rem:nonuniqueness}: what is missing is a spatial average over a scale larger than the bond itself. Supplying that average is the subject of the Hardy procedure, to which we turn next.
+\end{remark}
+
+\bigskip
+The Irving--Kirkwood--Noll construction achieves everything set out at the start of the chapter: density, momentum density and stress, defined as ensemble averages of explicit phase functions, satisfying the continuum balance laws of mass and momentum identically, for an atomistic system of arbitrary complexity --- crystalline, defected, amorphous, or fluid, in or out of thermal equilibrium. What it does \textit{not} yet deliver, as Section~\ref{sec:diatomic} just showed by direct computation, is a field one could actually plot and call a stress: $\Tb^{\rm pt}(\yb;t)$, built from literal Dirac deltas and instantaneous atomic positions, is exactly as singular and atomically-resolved as the underlying discrete system, exhibiting a sharp, crisscrossed pattern concentrated along the instantaneous bonds rather than the smooth field a macroscopic observer would measure --- and even time-averaging, on its own, only smooths this partway, as the semicircular bumps of Figure~\ref{fig:diatomicstress} attest. Turning $\Tb^{\rm pt}$ into a genuinely smooth, computable macroscopic stress field --- and, in the process, resolving the non-uniqueness of Remark~\ref{rem:nonuniqueness} in a definite, practical way --- is the task of the Hardy procedure, to which we turn next.
+
+\chapter{The Hardy Procedure}\label{Hardy}
+
+\section{From Dirac Deltas to a Smooth Localization Function}
+
+The singularity of the pointwise fields of Chapter~\ref{IKN} traces to a single source: the Dirac delta $\delta(\yb^\alpha-\yb)$, which samples an atom's contribution to a field only at the single instant its position coincides \textit{exactly} with $\yb$. Hardy's 1982 procedure \cite{TadmorMiller} replaces this all-or-nothing sampling with a smooth \textit{localization function} (also called a weighting function) $w:\mathbb R^3\to\mathbb R$, required only to satisfy
+\begin{equation}\label{wnorm}
+	w(\rb)\geq0, \qquad \int_{\mathbb R^3} w(\rb)\,\dd\rb = 1,
+\end{equation}
+normalized, like a probability density, to unit total weight; $w$ typically has compact support, or at least decays rapidly, over a length scale $\ell_w$ that sets the spatial resolution of the resulting macroscopic field --- precisely the averaging length scale already invoked, on physical grounds, in the discussion of the Representative Volume Element (Section~\ref{sep_scales}). Three standard choices, all functions only of $r=|\rb|$ by isotropy, illustrate the range of possibilities: the uniform (top-hat) window
+\begin{equation}
+	\widehat w(r) = \begin{cases} 1/V_w & r\leq r_w,\\ 0 & r>r_w,\end{cases} \qquad V_w = \tfrac43\pi r_w^3,
+\end{equation}
+a Gaussian, $\widehat w(r)=\pi^{-3/2}r_w^{-3}\exp(-r^2/r_w^2)$, and a compactly-supported quartic spline that vanishes smoothly, together with its first two derivatives, at $r=r_w$. The choice of $w$ is, in a precise sense, arbitrary --- exactly as arbitrary as the choice of strain-gauge size in an experimental stress measurement, to which it is directly analogous: a continuum stress field is inherently a length-scale-dependent notion, atomistically as much as experimentally, and $w$ is where that length scale enters the theory.
+
+\begin{remark}
+	Because $A(\yb;t)=\int_{\mathbb R^3}w(\yb'-\yb)\,A^{\rm pt}(\yb';t)\,\dd\yb'$ is a spatial \textit{convolution}, it is linear in $A^{\rm pt}$; consequently, any pointwise field satisfying a \textit{linear} balance law (as $\rho^{\rm pt}$, $\pb^{\rm pt}$ and $\Tb^{\rm pt}$ all do) yields, after spatial averaging, a smoothed field satisfying the identical balance law. Averaging with $w$ therefore does not need to be justified separately at the level of the balance laws: it is automatic.
+\end{remark}
+
+\section{Hardy's Smooth Continuum Fields}
+
+Convolving the pointwise density \eqref{rhopt} and momentum density \eqref{ppt} with $w$ gives the Hardy density and momentum density,
+\begin{equation}\label{hardyrho}
+	\rho(\yb;t) = \sum_{\alpha=1}^N m^\alpha\big\langle w(\yb^\alpha-\yb)\big\rangle, \qquad \pb(\yb;t) = \sum_{\alpha=1}^N m^\alpha\big\langle \vb^\alpha\,w(\yb^\alpha-\yb)\big\rangle,
+\end{equation}
+simply Dirac deltas replaced by $w$ throughout \eqref{rhopt}--\eqref{ppt} (indeed, formally, $\delta$ is the $\ell_w\to0$ limit of $w$, so \eqref{hardyrho} reduces to \eqref{rhopt}--\eqref{ppt} in that limit). The kinetic part of the stress follows identically,
+\begin{equation}\label{hardyTK}
+	\Tb^K(\yb;t) = -\sum_{\alpha=1}^N m^\alpha\big\langle \vb^\alpha_{\rm rel}\otimes\vb^\alpha_{\rm rel}\,w(\yb^\alpha-\yb)\big\rangle, \qquad \vb^\alpha_{\rm rel}=\vb^\alpha-\vb(\yb;t)\coloneqq\vb^\alpha-\pb(\yb;t)/\rho(\yb;t).
+\end{equation}
+
+The potential part requires more care, since it is $\Tb^{{\rm pt},V}$ that must be convolved with $w$, not the raw force sum. Substituting the Noll stress \eqref{Nollstress} into $\Tb^V(\yb;t)=\int_{\yb'} w(\yb'-\yb)\Tb^{{\rm pt},V}(\yb';t)\,\dd\yb'$ and changing variables from $(\yb',\zb,s)$ to the two actual bond endpoints (a computation we again omit --- see \cite{TadmorMiller}, Section~8.2.5, eqs.~8.143--8.146 --- since it is a bookkeeping exercise in the change of integration variables, not a new physical idea) collapses the triple integral back down to a sum over actual atom pairs, at the price of replacing the Dirac deltas by an integrated weight along each bond:
+\begin{equation}\label{hardyTV}
+	\Tb^V(\yb;t) = \frac12\sum_{\substack{\alpha,\beta\\\alpha\neq\beta}}\left\langle \phi'(r^{\alpha\beta})\,\frac{\yb^{\alpha\beta}\otimes\yb^{\alpha\beta}}{r^{\alpha\beta}}\,b^{\alpha\beta}(\yb)\right\rangle, \qquad b^{\alpha\beta}(\yb) \coloneqq \int_0^1 w\big((1-s)\yb^\alpha+s\yb^\beta - \yb\big)\,\dd s.
+\end{equation}
+The scalar $b^{\alpha\beta}(\yb)\in[0,\,\max w]$ is the \textit{bond function}: it is the integral of the localization weight $w$ along the straight segment joining atom $\alpha$ to atom $\beta$, parametrized by $s\in[0,1]$, and it is this factor --- rather than a delta function pinning the bond exactly through $\yb$ --- that determines how much of the force in the bond $\alpha\beta$ is attributed to the point $\yb$.
+
+\begin{remark}[Geometric interpretation of the bond function]\label{rem:bondfunction}
+	$b^{\alpha\beta}(\yb)$ has a transparent geometric meaning: it measures how much of the bond $\alpha\beta$ lies within the support of $w$ centered at $\yb$. If $w$ is the uniform window of radius $r_w$, $b^{\alpha\beta}(\yb)$ is (up to the normalization $1/V_w$) simply the length of the portion of the segment $[\yb^\alpha,\yb^\beta]$ that falls inside the ball of radius $r_w$ about $\yb$: zero if the bond misses the ball entirely, equal to $1/V_w$ times the full bond length if the bond is entirely contained in it, and a smoothly interpolated fraction in between as $\yb$ sweeps across the bond. This is exactly the mechanism by which Hardy's construction cures the singularity of the pointwise fields: instead of a bond contributing all its force at once, at the instant a Dirac delta happens to land on it, the bond force is smeared continuously along the bond's length according to how the averaging window overlaps it.
+\end{remark}
+
+\begin{remark}[The practical, time-averaged form]\label{rem:hardytime}
+	Equations \eqref{hardyrho}--\eqref{hardyTV} are still ensemble averages, and hence still, strictly speaking, uncomputable without the distribution function $f$. In practice --- exactly as discussed in Section~\ref{sec:ho_example} --- one replaces $\langle\cdot\rangle$ by a time average over a molecular dynamics trajectory sampled at $N_\tau$ instants $t_1,\ldots,t_\tau$ within a window of length $\tau$, invoking the ergodic hypothesis \eqref{ergodic} in its discrete-time form \eqref{md_timeavg}:
+	\begin{equation}\label{hardyrhotime}
+		\rho(\yb;t) \approx \frac{1}{N_\tau}\sum_{i=1}^{N_\tau}\sum_{\alpha=1}^N m^\alpha\,w\big(\yb^\alpha(t_i)-\yb\big),
+	\end{equation}
+	\begin{equation}\label{hardyTVtime}
+		\Tb^V(\yb;t) \approx \frac{1}{2N_\tau}\sum_{i=1}^{N_\tau}\sum_{\substack{\alpha,\beta\\\alpha\neq\beta}} \phi'\big(r^{\alpha\beta}(t_i)\big)\,\frac{\yb^{\alpha\beta}(t_i)\otimes\yb^{\alpha\beta}(t_i)}{r^{\alpha\beta}(t_i)}\,b^{\alpha\beta}\big(\yb;t_i\big),
+	\end{equation}
+	with $\Tb^K$ time-averaged identically. These are precisely the expressions --- due, in this explicit form, to Hardy (1982) --- that MD postprocessing tools use to report a ``stress per atom'' or a coarse-grained stress field from a simulated trajectory; the only theoretical input beyond Section~\ref{sec:Noll} is the same ergodic replacement already verified by hand for the harmonic oscillator.
+\end{remark}
+
+The total Hardy stress is $\Tb=\Tb^K+\Tb^V$, and, by the linearity remark above, it satisfies the same balance of momentum, in smoothed form, as $\Tb^{\rm pt}$ did.
+
+\section{Reduction to the Virial Stress}
+
+As a check, and as the source of a widely used special case, take $w$ to be the uniform window over a fixed domain $\Omega$ (of any shape, not necessarily a ball) containing $\yb$, and approximate the bond function by counting only bonds \textit{entirely} contained in $\Omega$ (discarding the small correction from bonds that cross its boundary). Equations \eqref{hardyTK}--\eqref{hardyTV} then collapse to
+\begin{equation}\label{virial}
+	\Tb(\yb;t) \approx \frac{1}{{\rm Vol}(\Omega)}\left[-\sum_{\alpha\in\Omega} m^\alpha\big\langle\vb^\alpha_{\rm rel}\otimes\vb^\alpha_{\rm rel}\big\rangle + \frac12\sum_{\substack{\alpha,\beta\in\Omega\\\alpha\neq\beta}}\big\langle\phi'(r^{\alpha\beta})\,\yb^{\alpha\beta}\otimes\yb^{\alpha\beta}/r^{\alpha\beta}\big\rangle\right],
+\end{equation}
+the classical \textit{virial stress} of a finite atomic cluster --- the discrete analogue of the Cauchy stress formula \eqref{Pcb} of the Cauchy--Born chapter, now including the finite-temperature kinetic contribution. The neglected boundary bonds contribute a correction that scales with the surface area of $\Omega$, while the retained terms scale with its volume; as ${\rm Vol}(\Omega)\to\infty$ the surface-to-volume ratio vanishes (compare Section~\ref{surffrac}) and the virial stress and the full Hardy stress with uniform weighting coincide exactly. This is the thermodynamic-limit resolution, promised in Remark~\ref{rem:nonuniqueness}, of the pointwise stress's non-uniqueness: whichever admissible force decomposition or divergence-free field one starts from, the spatially averaged stress converges to the same limit as the averaging domain grows large compared to the potential's range (\cite{TadmorMiller}, Section~8.3.4).
+
+\begin{remark}[Why ``virial''?]\label{rem:virialname}
+	The name is not decorative: it names an actual, older theorem, of which \eqref{virial} is the tensorial descendant. In 1870, Rudolf Clausius defined the \textit{virial} of a system of $N$ atoms (from the Latin \textit{vis}, force) as the scalar
+	\begin{equation}
+		W \coloneqq \sum_{\alpha=1}^N \yb^\alpha\cdot\fb^\alpha,
+	\end{equation}
+	where $\fb^\alpha=-\partial V^{\rm int}/\partial\yb^\alpha$ is the total force on atom $\alpha$, and showed --- by an argument entirely analogous to the equipartition computation of Example~\ref{ex:einstein}, applied to the position, rather than the momentum, degrees of freedom --- that its ensemble (or long-time) average obeys $\langle W\rangle = -2\langle T^{\rm vib}\rangle$, twice the (negative of the) average vibrational kinetic energy. Splitting $\fb^\alpha$ into its external and internal parts as in \eqref{ikn_mombal}, this \textit{virial theorem} yields, for a system in a container of volume $V$, Clausius's original formula for the pressure,
+	\begin{equation}\label{clausiuspressure}
+		pV = Nk_B\vartheta + \langle W^{\rm int}\rangle, \qquad W^{\rm int}\coloneqq\sum_{\alpha=1}^N \yb^\alpha\cdot\fb^{{\rm int},\alpha},
+	\end{equation}
+	an ideal-gas term $Nk_B\vartheta$ corrected by the internal virial $W^{\rm int}$ of the interatomic forces --- zero for a true ideal gas, recovering the ordinary gas law. A short computation (pairing each ordered pair $(\alpha,\beta)$ with $(\beta,\alpha)$ and using the central-force decomposition \eqref{centralforce}) shows that $W^{\rm int}=-\tfrac12\sum_{\alpha\neq\beta}\phi'(r^{\alpha\beta})\,r^{\alpha\beta}$, the same double sum, with the same compensating factor $\tfrac12$, that appears in the potential part of \eqref{virial}: indeed $W^{\rm int}=-\,{\rm Vol}(\Omega)\,{\rm tr}\,\Tb^V$ exactly. The trace of our tensorial stress formula thus reproduces, up to sign and a factor of the volume, Clausius's scalar pressure formula \eqref{clausiuspressure} for the special case of an isotropic state. This is the precise sense in which \eqref{virial} \textit{is} a virial: it is the natural tensor generalization, via the Irving--Kirkwood--Noll and Hardy machinery of this part of the course, of a relation Clausius obtained by much more elementary means --- and considerably before either statistical mechanics or continuum mechanics had reached the atomistic bridge built in these two chapters.
+\end{remark}
+
+\section{Worked Example: Density and Stress of a Uniform One-Dimensional Chain}\label{ex:hardychain}
+
+To make the abstract formulas \eqref{hardyrho} and \eqref{hardyTV} concrete, consider an infinite, one-dimensional chain of identical atoms of mass $m$, at rest (so the kinetic parts \eqref{hardyTK} vanish and no ensemble average is needed --- a single, deterministic microstate), at uniform reference spacing $a$: $y^n = na$, $n\in\mathbb Z$. Let each atom interact only with its two nearest neighbors through a pair potential $\phi$, so that every bond carries the same force magnitude $f\coloneqq\phi'(a)$; take a one-dimensional, normalized localization function $w(y)\geq0$, $\int_{-\infty}^\infty w(y)\,\dd y=1$, with no further assumption on its shape.
+
+\paragraph{Density.} The pointwise density is the singular Dirac comb $\rho^{\rm pt}(y)=m\sum_n\delta(y-na)$: an object that is zero almost everywhere and infinite at every lattice site, and clearly not a sensible candidate for a macroscopic field. The Hardy density,
+\begin{equation}
+	\rho(y) = m\sum_{n\in\mathbb Z} w(y-na),
+\end{equation}
+is, by contrast, a smooth (as smooth as $w$ itself), finite, and manifestly periodic function of $y$ with period $a$. In the limit of a broad window, $\ell_w\gg a$, the sum resolves so many lattice sites that $\rho(y)$ becomes essentially constant, equal to the macroscopic value $m/a$: indeed, for \textit{any} normalized $w$, the periodized sum $\sum_n w(y-na)$ averages, over one period, to exactly $\frac1a\int_{-\infty}^\infty w=\frac1a$, so $\rho(y)$ oscillates around $m/a$ with an amplitude that shrinks as $\ell_w/a$ grows --- a first, explicit illustration of the smoothing produced by spatial averaging.
+
+\paragraph{Stress.} Consider next the potential part of the stress. Every bond $(n,n{+}1)$ carries the same force magnitude $f$; by \eqref{hardyTV}, specialized to one dimension (where $\zb\otimes\zb/|\zb|$ is simply the bond length $a$, and it is customary to quote the stress per unit cross-sectional area, here normalized to $1$),
+\begin{equation}
+	\sigma^V(y) = \sum_{n\in\mathbb Z} f\,b^{n,n+1}(y), \qquad b^{n,n+1}(y) = \int_0^1 w\big(na+sa-y\big)\,\dd s = \frac1a\int_{na}^{(n+1)a} w(y'-y)\,\dd y',
+\end{equation}
+where we substituted $y'=na+sa$. The bond function $b^{n,n+1}(y)$ is exactly $1/a$ times the weight $w$ integrates over the segment $[na,(n+1)a]$: it rises from $0$ to a maximum and back to $0$ as $y$ sweeps across the bond, tracing out the shape of $w$ itself (Remark~\ref{rem:bondfunction}). Summing over every bond in the chain, and using that the segments $[na,(n+1)a]$ tile the real line exactly as $n$ ranges over $\mathbb Z$,
+\begin{equation}
+	\sigma^V(y) = \frac{f}{a}\sum_{n\in\mathbb Z}\int_{na}^{(n+1)a}w(y'-y)\,\dd y' = \frac{f}{a}\int_{-\infty}^\infty w(y'-y)\,\dd y' = \frac{f}{a},
+\end{equation}
+by the normalization \eqref{wnorm} --- \textit{exactly}, for every $y$, and for \textit{any} choice of localization function $w$, however narrow or broad. The individual bond functions $b^{n,n+1}(y)$ ramp up and down as $y$ moves along the chain --- each bond's force is smeared continuously across its length, precisely as described in Remark~\ref{rem:bondfunction} --- yet the sum over all bonds reconstructs the uniform macroscopic stress $\sigma=f/a$ with no residual dependence on $y$ or on the shape of $w$. This exact cancellation is special to the fully periodic, defect-free chain considered here (in a crystal with defects, free surfaces, or thermal disorder, the Hardy stress genuinely varies with $y$, and with the choice of $w$ through its resolution length $\ell_w$); it is nonetheless a reassuring consistency check, showing that Hardy's construction reproduces, for the simplest possible atomistic system, exactly the constant stress state a continuum description would predict.
+
+\paragraph{Kinetic contribution and the total, finite-temperature stress.} The calculation above describes a chain at rest, useful for isolating the potential part of the stress, but it is worth completing it to see what an actual molecular dynamics code, sampling a chain vibrating at temperature $\vartheta$, would report as the total stress $\sigma=\sigma^K+\sigma^V$. Let each atom $n$ now vibrate about its lattice site, $y^n(t)=na+u^n(t)$, with peculiar (relative) velocity $v^n_{\rm rel}(t)=\dot u^n(t)$ entering the kinetic part \eqref{hardyTK}, here in its one-dimensional, time-averaged form (Remark~\ref{rem:hardytime}):
+\begin{equation}
+	\sigma^K(y) = -\sum_{n\in\mathbb Z} m\,\overline{\big(v^n_{\rm rel}\big)^2}\;w(y-na).
+\end{equation}
+By the equipartition theorem --- already established, for the closely related three-dimensional Einstein solid, in Example~\ref{ex:einstein} --- each atom's one-dimensional vibrational kinetic energy averages, at temperature $\vartheta$, to $\overline{\tfrac12m(v^n_{\rm rel})^2}=\tfrac12k_B\vartheta$, independent of $n$. Substituting $m\,\overline{(v^n_{\rm rel})^2}=k_B\vartheta$ and reusing exactly the periodization identity already exploited for the density above (any normalized $w$, summed over the lattice, averages to $1/a$),
+\begin{equation}\label{sigmaK1D}
+	\sigma^K(y) = -k_B\vartheta\sum_{n\in\mathbb Z}w(y-na) \;\longrightarrow\; -\frac{k_B\vartheta}{a} = -n_{\rm at}k_B\vartheta,
+\end{equation}
+in the same macroscopically-averaged sense as $\rho\to m/a$ above (here $n_{\rm at}=1/a$ is the one-dimensional number density) --- the familiar kinetic, or ``ideal-gas,'' pressure contribution, now derived from the Hardy formalism rather than postulated. Adding the potential part already computed,
+\begin{equation}\label{totalchainstress}
+	\boxed{\;\sigma(y) = \sigma^K(y)+\sigma^V(y) = \frac{f}{a} - \frac{k_B\vartheta}{a} = \frac{\phi'(a)-k_B\vartheta}{a}.\;}
+\end{equation}
+This is exactly the number a molecular dynamics ``compute stress'' command would return for this system: a bond, or virial, contribution $\phi'(a)/a$, set by the mechanical stretch of the chain, and a kinetic contribution $-k_B\vartheta/a$, set by its temperature, added together --- and, unlike the wildly non-smooth pointwise field of Section~\ref{sec:diatomic} or the individual, position-dependent bond functions, a single clean number, with no residual dependence on the shape or width of the averaging window $w$: exactly the practical payoff promised at the end of Chapter~\ref{IKN}.
+
+\section{Closing Remarks}
+
+With the Irving--Kirkwood--Noll and Hardy procedures in hand, the atomistic-to-continuum bridge announced at the start of this part of the course is complete, at three different levels of restriction. The Cauchy--Born rule of Chapter~\ref{CBrule} applies to a perfect crystal deforming affinely at zero temperature; the finite-temperature extension sketched in Remark~\ref{rem:helmforward}, resting on the statistical mechanics of Chapter~\ref{statmech}, extends it to thermal equilibrium; and the Irving--Kirkwood--Noll and Hardy procedures of this chapter remove every remaining restriction, defining density, momentum and stress fields --- satisfying, identically, the same balance laws developed from first principles in Chapter~1 of these notes --- for an atomistic system of arbitrary structure, arbitrarily far from equilibrium. It is a fitting point at which to close this part of the course: what began, in Chapter~\ref{failureCM}, as a catalogue of the failures of classical continuum mechanics at the nanoscale, has been resolved not by abandoning the continuum framework, but by showing, level by level, exactly how it emerges from the discrete, atomistic reality beneath it.

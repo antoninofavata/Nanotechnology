@@ -82,22 +82,71 @@
 \contentsline {section}{\numberline {9.8}Material symmetries}{98}{section.9.8}%
 \contentsline {section}{\numberline {9.9}Isotropic materials}{101}{section.9.9}%
 \contentsline {section}{\numberline {9.10}Interpretation of the Elastic Constants}{103}{section.9.10}%
-\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {IV}}{Appendices}}{107}{part.4}%
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {IV}}{Atomistic-to-Continuum Bridging}}{107}{part.4}%
 \ttl@stoptoc {default@3}
 \ttl@starttoc {default@4}
-\contentsline {chapter}{\numberline {1}Elements of algebra and tensor analysis}{109}{chapter.1}%
-\contentsline {section}{\numberline {A.1}Vectors}{109}{section.1.1}%
-\contentsline {section}{\numberline {A.2}Second-order tensors}{110}{section.1.2}%
-\contentsline {subsubsection}{Dyadic product}{110}{section*.8}%
-\contentsline {subsubsection}{Basis for Lin}{111}{section*.9}%
-\contentsline {subsubsection}{Transpose tensor}{111}{section*.10}%
-\contentsline {subsubsection}{Composition of tensors}{112}{section*.11}%
-\contentsline {subsubsection}{Symmetric and skew-symmetric tensors}{112}{section*.12}%
-\contentsline {subsubsection}{Trace of a tensor. Scalar product. Norm}{112}{section*.13}%
-\contentsline {subsubsection}{Inverse tensor}{114}{section*.14}%
-\contentsline {subsubsection}{Determinant}{114}{section*.15}%
-\contentsline {subsubsection}{Orthogonal tensors}{114}{section*.16}%
-\contentsline {subsubsection}{Eigenvalues and eigenvectors. Spectral Theorem}{115}{section*.17}%
-\contentsline {section}{\numberline {A.3}Vector and Tensor Analysis}{116}{section.1.3}%
-\contentsline {chapter}{Bibliography}{118}{equation.1.3.6}%
+\contentsline {chapter}{\numberline {10}Failure of Classical Continuum Mechanics at the Nanoscale}{109}{chapter.10}%
+\contentsline {section}{\numberline {10.1}The Continuum Hypothesis and Its Length-Scale Assumptions}{109}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Surface-to-Volume Ratio Scaling and Its Mechanical Consequences}{110}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Size Effects in Elastic Moduli}{111}{section.10.3}%
+\contentsline {section}{\numberline {10.4}The Representative Volume Element and Its Breakdown at the Nanoscale}{111}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Summary: Two Ways Forward}{112}{section.10.5}%
+\contentsline {chapter}{\numberline {11}The Atomistic Description of Matter}{113}{chapter.11}%
+\contentsline {section}{\numberline {11.1}From Fields to Atoms}{113}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Crystals: Lattice and Basis}{114}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Interatomic Potentials}{115}{section.11.3}%
+\contentsline {chapter}{\numberline {12}The Cauchy--Born Rule}{117}{chapter.12}%
+\contentsline {section}{\numberline {12.1}The Cauchy--Born Hypothesis: Affine Deformation of the Lattice}{117}{section.12.1}%
+\contentsline {section}{\numberline {12.2}From Interatomic Potential to Strain Energy Density}{118}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Linearization: Recovery of Elastic Constants}{119}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Worked Example: Elastic Constants of Solid Argon}{120}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Limits of Validity}{122}{section.12.5}%
+\contentsline {chapter}{\numberline {13}Statistical Mechanics Primer}{125}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Microstates, Macrostates, and Phase Space}{125}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Hamiltonian Dynamics and Liouville's Theorem}{126}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Ensemble Averages, Time Averages, and the Ergodic Hypothesis}{127}{section.13.3}%
+\contentsline {section}{\numberline {13.4}The Microcanonical Ensemble}{128}{section.13.4}%
+\contentsline {section}{\numberline {13.5}The Canonical Ensemble}{130}{section.13.5}%
+\contentsline {section}{\numberline {13.6}The Grand Canonical Ensemble}{132}{section.13.6}%
+\contentsline {chapter}{\numberline {14}The Irving--Kirkwood--Noll Procedure}{133}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Pointwise Fields as Expectation Values}{133}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Worked Example: Time Averages and a First Glimpse of Molecular Dynamics}{134}{section.14.2}%
+\contentsline {paragraph}{Setup.}{134}{section*.13}%
+\contentsline {paragraph}{The time-averaged density.}{134}{section*.14}%
+\contentsline {paragraph}{From this toy model to molecular dynamics.}{135}{section*.15}%
+\contentsline {section}{\numberline {14.3}The Rate-of-Change Identity}{136}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Conservation of Mass}{137}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Balance of Momentum and the Pointwise Stress Tensor}{137}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Noll's Closed-Form Solution}{138}{section.14.6}%
+\contentsline {section}{\numberline {14.7}Worked Example: The Time-Averaged Stress of a Vibrating Bond}{140}{section.14.7}%
+\contentsline {paragraph}{Setup.}{140}{section*.17}%
+\contentsline {paragraph}{The instantaneous pointwise stress.}{141}{section*.18}%
+\contentsline {paragraph}{The time-averaged stress.}{141}{section*.19}%
+\contentsline {chapter}{\numberline {15}The Hardy Procedure}{143}{chapter.15}%
+\contentsline {section}{\numberline {15.1}From Dirac Deltas to a Smooth Localization Function}{143}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Hardy's Smooth Continuum Fields}{144}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Reduction to the Virial Stress}{145}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Worked Example: Density and Stress of a Uniform One-Dimensional Chain}{146}{section.15.4}%
+\contentsline {paragraph}{Density.}{146}{section*.20}%
+\contentsline {paragraph}{Stress.}{146}{section*.21}%
+\contentsline {paragraph}{Kinetic contribution and the total, finite-temperature stress.}{147}{section*.22}%
+\contentsline {section}{\numberline {15.5}Closing Remarks}{148}{section.15.5}%
+\contentsline {part}{\@mypartnumtocformat {\EnsureStandardFontEncoding {V}}{Appendices}}{149}{part.5}%
+\ttl@stoptoc {default@4}
+\ttl@starttoc {default@5}
+\contentsline {chapter}{\numberline {1}Elements of algebra and tensor analysis}{151}{chapter.1}%
+\contentsline {section}{\numberline {A.1}Vectors}{151}{section.1.1}%
+\contentsline {section}{\numberline {A.2}Second-order tensors}{152}{section.1.2}%
+\contentsline {subsubsection}{Dyadic product}{152}{section*.23}%
+\contentsline {subsubsection}{Basis for Lin}{153}{section*.24}%
+\contentsline {subsubsection}{Transpose tensor}{153}{section*.25}%
+\contentsline {subsubsection}{Composition of tensors}{154}{section*.26}%
+\contentsline {subsubsection}{Symmetric and skew-symmetric tensors}{154}{section*.27}%
+\contentsline {subsubsection}{Trace of a tensor. Scalar product. Norm}{154}{section*.28}%
+\contentsline {subsubsection}{Inverse tensor}{156}{section*.29}%
+\contentsline {subsubsection}{Determinant}{156}{section*.30}%
+\contentsline {subsubsection}{Orthogonal tensors}{156}{section*.31}%
+\contentsline {subsubsection}{Eigenvalues and eigenvectors. Spectral Theorem}{157}{section*.32}%
+\contentsline {section}{\numberline {A.3}Vector and Tensor Analysis}{158}{section.1.3}%
+\contentsline {chapter}{Bibliography}{160}{equation.1.3.6}%
 \contentsfinish 

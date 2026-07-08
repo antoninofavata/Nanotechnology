@@ -1,0 +1,420 @@
+\chapter{Failure of Classical Continuum Mechanics at the Nanoscale}\label{failureCM}
+
+The theory developed in the preceding parts of these notes --- kinematics, balance laws, and constitutive equations --- rests on a single, largely implicit assumption: that matter can be treated as a continuum, i.e. that at every point $\xb$ of the body we may unambiguously assign a density, a velocity, a stress. This assumption is enormously successful at the scale of everyday engineering structures. It is not automatically valid at the nanoscale, and understanding \textit{why} it may fail is the necessary starting point for the rest of this part of the course.
+
+\section{The Continuum Hypothesis and Its Length-Scale Assumptions}
+
+\begin{definition}
+	A body $\Bc$ admits a \textit{continuum description} at a material point $\xb$ if there exists a neighborhood of $\xb$, of characteristic size $L$, over which
+	\begin{enumerate}
+		\item the physical fields of interest (density, stress, temperature, \ldots) can be defined as smooth, differentiable functions of position, and
+		\item these fields are insensitive to the precise choice of $L$, within a suitable range.
+	\end{enumerate}
+\end{definition}
+
+Real matter is, of course, discrete: it is made of atoms, arranged either periodically (crystals) or disordered (glasses, liquids). A continuum field such as the mass density $\rho(\xb)$ is in reality obtained by an averaging process over some sampling volume surrounding $\xb$: one counts the mass of atoms inside a small ball of radius $L$ centered at $\xb$, and divides by its volume. This averaged quantity is meaningful --- i.e.\ it is a well-defined function of $\xb$ alone, independent of the details of $L$ --- only if there exists a \textit{separation of scales}:
+\begin{equation}\label{sep_scales}
+	\ell_{\rm mat}\ \ll\ L\ \ll\ L_{\rm struct},
+\end{equation}
+where $\ell_{\rm mat}$ is the characteristic microstructural length (interatomic spacing, lattice parameter, grain size) and $L_{\rm struct}$ is the characteristic length of the structure or of the field gradients we wish to resolve (the size of a nanoparticle, the wavelength of a stress variation, the radius of curvature of a crack tip). If $L$ can be chosen so that both inequalities hold, the averaged field is essentially independent of $L$ over a wide intermediate range, and a continuum description is legitimate: this is precisely the situation for a steel beam, where $\ell_{\rm mat}\sim 10^{-10}\,\mathrm{m}$ and $L_{\rm struct}\sim 10^{-2}\,\mathrm{m}$ or larger, leaving many orders of magnitude of freedom in choosing $L$.
+
+\begin{remark}
+	The continuum hypothesis is therefore not a statement about matter being ``truly'' continuous --- it never is --- but a statement about the existence of a window of length scales, expressed by \eqref{sep_scales}, over which discreteness can be averaged away without loss of predictive content. When this window closes, the continuum fields either become ill-defined, or retain a residual, unavoidable dependence on the averaging scale $L$ itself.
+\end{remark}
+
+At the nanoscale, $L_{\rm struct}$ --- the size of the object under study, be it a nanowire, a thin film, a nanoparticle, or the region near a crystal defect --- approaches $\ell_{\rm mat}$. The separation of scales \eqref{sep_scales} then fails not because $\ell_{\rm mat}$ has changed, but because $L_{\rm struct}$ has shrunk to meet it. The remainder of this chapter examines three concrete manifestations of this failure.
+
+\section{Surface-to-Volume Ratio Scaling and Its Mechanical Consequences}
+
+Consider a cube of material of side $L$. Its volume scales as $L^3$ and its surface area as $L^2$, so that the surface-to-volume ratio scales as
+\begin{equation}
+	\frac{S}{V}\sim \frac{L^2}{L^3}=\frac{1}{L}.
+\end{equation}
+This ratio diverges as $L\to 0$: shrinking a body increases, without bound, the relative weight of its boundary compared to its bulk.
+
+To appreciate the physical content of this scaling, consider a roughly spherical nanoparticle of radius $R$, built from a crystal of lattice parameter $a$. An atom can be considered to lie ``at the surface'' if it sits within one atomic layer, i.e.\ a shell of thickness $\sim a$, of the outer boundary. The fraction of atoms belonging to this shell is approximately
+\begin{equation}\label{surffrac}
+	\frac{N_{\rm surf}}{N_{\rm tot}}\ \approx\ 1-\left(1-\frac{a}{R}\right)^{3}\ \approx\ \frac{3a}{R}\qquad (a\ll R).
+\end{equation}
+For a macroscopic grain, $R/a\sim 10^{6}$--$10^{8}$ and the surface fraction \eqref{surffrac} is utterly negligible: essentially every atom sees the same, bulk, environment, which is exactly the microscopic justification for assigning a single, position-independent constitutive response to the material. For a nanoparticle with $R\sim 5\,\mathrm{nm}$ and $a\sim 0.3$--$0.4\,\mathrm{nm}$, however, $N_{\rm surf}/N_{\rm tot}$ is of order $20$--$30\%$: a substantial fraction of the atoms are undercoordinated, experience a different local bonding environment than bulk atoms, and consequently possess a different local energy, stiffness, and equilibrium spacing than the interior.
+
+\begin{remark}
+	Surface atoms are not simply ``a smaller, similar version'' of the bulk: because they lack neighbors on one side, they generally relax inward or outward relative to the ideal bulk lattice positions, an effect entirely absent in classical continuum theory, where the boundary is a mathematical surface with no independent energetic identity beyond the traction or displacement boundary conditions we choose to impose on it.
+\end{remark}
+
+This observation motivates the notion of \textit{surface energy} and \textit{surface stress} as excess quantities, over and above the bulk energy density $W$, associated with the creation of a free surface --- concepts that have no counterpart in the classical (bulk) continuum theory developed so far, and that become dominant, rather than negligible, once $R\sim\ell_{\rm mat}$.
+
+\section{Size Effects in Elastic Moduli}
+
+A direct mechanical consequence of the scaling above is that the \textit{effective} elastic moduli of a nanoscale object --- the moduli one would infer by treating it, from the outside, as a homogeneous continuum body of the same overall shape --- generically depend on its size, and depart from the bulk (macroscopic) values as the characteristic dimension shrinks toward $\ell_{\rm mat}$.
+
+Qualitatively, if we picture the total elastic energy of a loaded nanostructure as the sum of a bulk contribution scaling as $L^3$ and a surface contribution scaling as $L^2$,
+\begin{equation}
+	\Pi(L)\ \sim\ W_{\rm bulk}\,L^3 + \gamma_s\, L^2,
+\end{equation}
+with $\gamma_s$ a surface energy density, then the ratio of the surface to the bulk contribution scales as $\gamma_s/(W_{\rm bulk}L)$, growing without bound as $L\to0$. An effective modulus extracted from $\Pi(L)$ therefore necessarily acquires a size dependence of the generic form $E_{\rm eff}(L) = E_{\rm bulk}\left(1 + c\,\ell^\ast/L\right)$, for some material- and geometry-dependent constant $c$ and length $\ell^\ast$ related to surface elastic properties. Depending on the sign of the surface elastic constants, nanostructures can be found experimentally and computationally to be either stiffer or more compliant than the corresponding bulk material, with the deviation from bulk behavior growing as $L$ decreases --- in sharp contrast with classical elasticity, in which $E$ is a material constant, entirely independent of specimen size.
+
+\begin{remark}
+	Size-dependent elastic response is only one instance of a much broader class of nanoscale size effects: yield strength, fracture toughness, and thermal conductivity are all found, experimentally and computationally, to depend on the size of the specimen once that size approaches $\ell_{\rm mat}$ or the characteristic length of the relevant deformation mechanism (e.g.\ the dislocation spacing). Classical continuum mechanics, being scale-free once material constants are fixed, cannot predict any such dependence: nothing in the field equations \eqref{fieldeq} changes if we rescale $\xb\mapsto\lambda\xb$ for a homogeneous body, unless $L$ itself enters the constitutive law explicitly.
+\end{remark}
+
+\section{The Representative Volume Element and Its Breakdown at the Nanoscale}
+
+The classical way of reconciling a discrete microstructure with a continuum description is the notion of a \textit{Representative Volume Element} (RVE): a sampling region, of size $L_{\rm RVE}$, over which microscopic quantities (stress, strain, density) are averaged to define the corresponding continuum field at a point.
+
+\begin{definition}
+	A \textit{Representative Volume Element} is a subregion of a heterogeneous or discrete body, of characteristic size $L_{\rm RVE}$, such that:
+	\begin{enumerate}
+		\item $L_{\rm RVE}$ is large enough, compared to $\ell_{\rm mat}$, that averaged quantities computed over it are statistically stable, i.e.\ insensitive to which particular RVE (among many, similarly placed) is chosen;
+		\item $L_{\rm RVE}$ is small enough, compared to $L_{\rm struct}$, that the averaged quantities can be regarded as attached to a single material point $\xb$, without smearing out the macroscopic field gradients of interest.
+	\end{enumerate}
+\end{definition}
+
+The RVE is thus precisely the practical embodiment of the separation-of-scales window \eqref{sep_scales}: it must simultaneously satisfy $\ell_{\rm mat}\ll L_{\rm RVE}\ll L_{\rm struct}$. Whenever such an $L_{\rm RVE}$ exists, the two conditions above are compatible and a meaningful continuum field can be constructed by RVE-averaging; the classical balance laws and constitutive theory developed in the preceding chapters then apply.
+
+\begin{remark}
+	Note that the two requirements above are logically independent and, in general, in tension with one another: enlarging $L_{\rm RVE}$ improves statistical stability (condition 1) but degrades spatial resolution (condition 2). The existence of an RVE is therefore the existence of a nonempty intermediate range of length scales that reconciles the two.
+\end{remark}
+
+At the nanoscale, this reconciliation is no longer possible. As $L_{\rm struct}$ shrinks toward $\ell_{\rm mat}$, the window $\ell_{\rm mat}\ll L_{\rm RVE}\ll L_{\rm struct}$ closes: there is no longer room for an $L_{\rm RVE}$ that is simultaneously large enough for statistical stability and small enough for spatial resolution. Concretely, a nanoparticle of radius $R\sim 5\,\mathrm{nm}$ containing a few thousand atoms simply \textit{is} its own microstructure: there is no sub-region of it that is both ``large'' compared to the lattice spacing and ``small'' compared to the particle itself, in the sense required for RVE-averaging to make sense. Every atom matters individually to the response of the whole object.
+
+\begin{example}
+	Consider estimating $L_{\rm RVE}$ for a polycrystalline metal with grain size $d_g \sim 10\,\mu\mathrm{m}$ and lattice parameter $a\sim 0.3\,\mathrm{nm}$, used in a structural component of size $L_{\rm struct}\sim 1\,\mathrm{cm}$. Choosing $L_{\rm RVE}\sim 100\,\mu\mathrm{m}$ (containing $\sim 10^3$ grains, hence excellent statistics) satisfies both $a\ll L_{\rm RVE}$ and $L_{\rm RVE}\ll L_{\rm struct}$ comfortably: this is why continuum plasticity works so well for structural metals. Now shrink the same component to a thin film of thickness $L_{\rm struct}\sim 50\,\mathrm{nm}$: no choice of $L_{\rm RVE}$ can be both much larger than $d_g$ and much smaller than $L_{\rm struct}$, since $d_g$ already exceeds $L_{\rm struct}$. The RVE construction collapses well before we even reach the atomic scale.
+\end{example}
+
+\section{Summary: Two Ways Forward}
+
+The failures catalogued in this chapter are not failures of continuum mechanics as a mathematical framework --- the kinematics, the balance laws, and the general structure of constitutive theory developed in the previous parts of these notes remain internally consistent. What fails, at the nanoscale, is the \textit{justification} for treating the fields entering that framework as smooth functions of position, obtained by an averaging process that has become ill-posed.
+
+Two complementary strategies restore a rigorous connection between the discrete, atomistic description of matter and the continuum fields of mechanics, and they form the subject of the remainder of this part of the course:
+\begin{enumerate}
+	\item[(i)] the \textit{Cauchy--Born rule} (Chapter~\ref{CBrule}), which postulates a direct kinematic link between the macroscopic deformation gradient $\Fb$ and the motion of individual atoms in a crystal lattice, allowing the constitutive response --- the strain energy density $W(\Fb)$ itself --- to be computed directly from an interatomic potential, without ever invoking an RVE average;
+	\item[(ii)] the \textit{Irving--Kirkwood--Noll} and \textit{Hardy} procedures (Chapters to follow), which construct continuum fields such as density, momentum, and stress as rigorously defined statistical averages over the atomic degrees of freedom, valid at finite temperature and away from the restrictive assumption of an affine, defect-free deformation.
+\end{enumerate}
+
+\chapter{The Atomistic Description of Matter}\label{atomdescr}
+
+Before we can put the atomistic and the continuum viewpoints into correspondence, we must equip ourselves with a minimal vocabulary for the former. Everything in these notes, up to this point, has been phrased in terms of continuum fields --- $\rho(\xb)$, $\Tb(\xb)$, $W(\Fb)$ --- defined at every point of a body regarded as an idealized, structureless continuum. We now, deliberately, change viewpoint: the fundamental objects become the positions of individual atoms, and every continuum quantity we will use from here on must eventually be recovered \textit{from} them, rather than postulated independently. This chapter collects the essential geometric and physical notions --- crystal lattices and interatomic potentials --- needed to do so; a much more complete treatment can be found in \cite{TadmorMiller}, Chapter~3, from which the essential content of this chapter is distilled.
+
+\section{From Fields to Atoms}
+
+In the atomistic description, a solid is a collection of $N$ point masses (the atomic nuclei, the electrons having been eliminated from the description --- the Born--Oppenheimer approximation, which we take for granted throughout) occupying positions $\yb^1,\ldots,\yb^N$ in space. The state of the system is entirely specified by these positions (and, for a dynamical description, the associated velocities); there is no field $\rho(\xb)$, no field $\Tb(\xb)$, at this level of description --- only points, and the potential energy $V^{\rm int}(\yb^1,\ldots,\yb^N)$ that governs the force each atom exerts on every other.
+
+\begin{remark}
+	Notation: throughout this part of the course we keep the convention already in force --- bold lowercase letters for vectors, bold uppercase letters for tensors. Following the usage already established for the motion of a continuum body, we write $\xb$ for a \textit{reference} position (a material point, or here a lattice site in the undeformed crystal) and $\yb$ for the corresponding \textit{current}, deformed position; thus $\yb^\alpha$ below denotes the actual, instantaneous position of atom $\alpha$, which will play the role of $\xb^\alpha$ once we come to define a reference, undeformed crystal in Chapter~\ref{CBrule}.
+\end{remark}
+
+\begin{remark}
+	The programme of this part of the course is precisely to show how the continuum fields of the previous chapters can be recovered from this atomistic starting point: the Cauchy--Born rule, developed in the next chapter, recovers the constitutive function $W(\Fb)$ for a perfect crystal deforming affinely; the Irving--Kirkwood--Noll and Hardy procedures, developed afterwards, recover general continuum fields --- density, momentum, stress --- as statistical averages over atomic degrees of freedom, valid also away from the affine, defect-free idealization.
+\end{remark}
+
+\section{Crystals: Lattice and Basis}\label{sec:latticebasis}
+
+Most engineering solids of interest --- metals, ceramics, semiconductors --- are, at least locally, \textit{crystalline}: their atoms are arranged with perfect, indefinitely repeating periodicity. This periodicity is captured by the notion of a Bravais lattice.
+
+\begin{definition}
+	A \textit{Bravais lattice} is the set of points
+	\begin{equation}\label{bravais}
+		\Lambda = \left\{ \xb^{[\ell]} = \ell_i\ab_i \ :\ \ell=(\ell_1,\ell_2,\ell_3)\in\mathbb{Z}^3 \right\},
+	\end{equation}
+	where $\{\ab_1,\ab_2,\ab_3\}$ is a set of three linearly independent vectors, the \textit{primitive lattice vectors}, and $\xb^{[\ell]}$ is the (reference) position of lattice site $\ell$. The parallelepiped spanned by $\ab_1,\ab_2,\ab_3$ is a \textit{primitive unit cell}: it contains exactly one lattice point and, translated by every vector of $\Lambda$, tiles all of space without gaps or overlaps.
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.05]
+		\coordinate (O) at (0,0);
+		\coordinate (A1) at (1.6,0.3);
+		\coordinate (A2) at (0.5,1.4);
+		\foreach \i in {-1,...,3}{
+			\foreach \j in {-1,...,3}{
+				\fill[black!70] ($\i*(A1) + \j*(A2)$) circle (1.6pt);
+			}
+		}
+		\fill[bluSapienza!12] (O) -- (A1) -- ($(A1)+(A2)$) -- (A2) -- cycle;
+		\draw[thick,bluSapienza] (O) -- (A1) -- ($(A1)+(A2)$) -- (A2) -- cycle;
+		\draw[-{Latex[length=2.2mm]},thick,rossoSapienza] (O) -- (A1) node[midway,below]{$\ab_1$};
+		\draw[-{Latex[length=2.2mm]},thick,rossoSapienza] (O) -- (A2) node[midway,left]{$\ab_2$};
+		\fill[rossoSapienza] (O) circle (1.8pt);
+	\end{tikzpicture}
+	\caption{A two-dimensional Bravais lattice, with primitive vectors $\ab_1,\ab_2$ and the associated primitive unit cell (shaded), which tiles the plane without gaps or overlaps under the translations $\ell_1\ab_1+\ell_2\ab_2$.}
+	\label{fig:bravais}
+\end{figure}
+
+Figure~\ref{fig:bravais} illustrates the construction in two dimensions. Note that the choice of primitive vectors is not unique --- any other pair spanning the same lattice, with the same cell area, would do equally well --- and that a Bravais lattice, by itself, is a purely geometric object: a set of points, not yet a crystal.
+
+A crystal is obtained by decorating every lattice point with a \textit{basis}: one or more atoms, at fixed positions relative to the lattice site.
+
+\begin{definition}
+	A \textit{simple (monatomic) crystal} is a Bravais lattice decorated with a single atom per site, so that the atomic positions in the reference (undeformed, zero-temperature) configuration coincide with the lattice points $\xb^{[\ell]}$ of \eqref{bravais}. A \textit{multilattice crystal} is decorated with a \textit{basis} of $N_B\geq 2$ atoms per site, at fixed relative positions $\bar\zb^\lambda$ ($\lambda=0,\ldots,N_B-1$) within the unit cell, so that its atomic positions are $\xb^{[\ell\lambda]} = \ell_i\ab_i + \bar\zb^\lambda$; equivalently, a multilattice crystal can be viewed as $N_B$ interpenetrating simple Bravais lattices, one per value of $\lambda$.
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.95]
+		\begin{scope}
+			\foreach \i in {0,...,3}{
+				\foreach \j in {0,...,2}{
+					\fill[black!75] (\i*0.9,\j*0.9) circle (2.6pt);
+				}
+			}
+			\node at (1.35,-0.7) {\footnotesize (a) simple crystal};
+		\end{scope}
+		\begin{scope}[xshift=5cm]
+			\foreach \i in {0,...,3}{
+				\foreach \j in {0,...,2}{
+					\fill[black!75] (\i*0.9,\j*0.9) circle (2.6pt);
+					\draw[rossoSapienza,fill=white,thick] (\i*0.9+0.4,\j*0.9+0.28) circle (2.6pt);
+				}
+			}
+			\draw[-{Latex[length=2mm]},rossoSapienza,thick] (0,0) -- (0.4,0.28) node[midway,above right,font=\scriptsize]{$\bar\zb^1$};
+			\node at (1.35,-0.7) {\footnotesize (b) crystal with a two-atom basis};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{(a) A simple crystal: one atom per lattice site. (b) A multilattice crystal with a two-atom basis: each lattice site (black) is decorated with an additional atom (white) at the fixed relative position $\bar\zb^1$, so that the structure is equivalently described as two interpenetrating simple lattices.}
+	\label{fig:multilattice}
+\end{figure}
+
+\begin{remark}
+	Most technologically important crystals --- diamond-cubic silicon, hexagonal-close-packed titanium, rock-salt NaCl --- are multilattice crystals in the sense of Figure~\ref{fig:multilattice}(b) rather than simple crystals. The distinction matters for what follows: as we will see in Section~\ref{sec:CBlimits}, the affine Cauchy--Born hypothesis of this chapter applies directly to the lattice vectors $\ab_i$, but the basis vectors $\bar\zb^\lambda$ of a multilattice crystal generally require an additional, independent kinematic ingredient --- a \textit{shift vector} --- to remain in mechanical equilibrium under an applied deformation.
+\end{remark}
+
+\section{Interatomic Potentials}
+
+The second ingredient we need is energetic: a rule assigning a potential energy to any configuration of atomic positions. We restrict attention, throughout this part of the course, to the simplest and most transparent choice.
+
+\begin{definition}
+	A \textit{pair potential} is a function $\phi(r)$ giving the interaction energy of two atoms as a function of their separation $r$ alone. The total interatomic potential energy of a system of $N$ atoms is then
+	\begin{equation}\label{Vint}
+		V^{\rm int}(\yb^1,\ldots,\yb^N) = \frac{1}{2}\sum_{\alpha=1}^N\sum_{\substack{\beta=1\\ \beta\neq\alpha}}^{N} \phi\!\left(r^{\alpha\beta}\right), \qquad r^{\alpha\beta} = \left|\yb^\beta-\yb^\alpha\right|,
+	\end{equation}
+	the factor $\tfrac12$ compensating for the double counting of each pair $(\alpha,\beta)$ in the double sum.
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.35]
+		\clip (-0.15,-1.55) rectangle (3.05,1.9);
+		\draw[-{Latex[length=2.2mm]}] (0,-1.5) -- (0,1.8) node[above]{$\phi(r)$};
+		\draw[-{Latex[length=2.2mm]}] (0,0) -- (3,0) node[right]{$r$};
+		\draw[dashed,black!60] (1.1225,-1) -- (1.1225,0) node[above,font=\scriptsize,black]{};
+		\draw[dashed,black!60] (0,-1) -- (1.1225,-1);
+		\node[below,font=\scriptsize] at (1.1225,0) {$r_0$};
+		\node[left,font=\scriptsize] at (0,-1) {$-\varepsilon$};
+		\draw[thick,bluSapienza,domain=0.92:2.9,samples=150,smooth,variable=\r]
+		plot ({\r},{4*((1/\r)^12-(1/\r)^6)});
+	\end{tikzpicture}
+	\caption{Qualitative shape of a pair potential $\phi(r)$: steeply repulsive at short range (overlapping electron clouds), attractive at intermediate range, and decaying to zero beyond a cutoff radius. The equilibrium bond length $r_0$ minimizes $\phi$, with $\phi(r_0)=-\varepsilon$ the (negative) bond energy; the force between the two atoms is $f(r) = -\phi'(r)$.}
+	\label{fig:pairpotential}
+\end{figure}
+
+Figure~\ref{fig:pairpotential} shows the generic shape shared by essentially all pair potentials used to model solids: a steep repulsive wall at short distance, due to the overlap of electron clouds and the Pauli exclusion principle, an attractive well at intermediate distance, due to bonding, and a decay to zero (in practice, a finite \textit{cutoff radius} $r_{\rm cut}$, beyond which interactions are neglected for computational convenience) at long distance. The equilibrium bond length $r_0$ satisfies $\phi'(r_0)=0$, and the force exerted by atom $\beta$ on atom $\alpha$ is central, i.e.\ directed along the bond,
+\begin{equation}
+	\fb^{\alpha\beta} = \phi'\!\left(r^{\alpha\beta}\right)\frac{\yb^{\beta}-\yb^{\alpha}}{r^{\alpha\beta}},
+\end{equation}
+consistent with $f(r)=-\phi'(r)$ above once one notes that $f(r)$ is the outward (repulsive-positive) component along the bond, while $\fb^{\alpha\beta}$ points from $\alpha$ towards $\beta$: for $r^{\alpha\beta}<r_0$ (repulsive regime, $\phi'<0$), $\fb^{\alpha\beta}$ points away from $\beta$, i.e.\ in the $-(\yb^\beta-\yb^\alpha)$ sense, as it must.
+
+\begin{remark}
+	Real interatomic interactions are, in general, not pairwise: the energy of a bond typically depends on the local environment (the number and arrangement of neighboring atoms), not just on the distance to a single neighbor, and this is captured by more elaborate, many-body potentials (cluster potentials, pair functionals such as the embedded-atom method, bond-order potentials). We will encounter the mechanical signature of this limitation in Remark~\ref{rem:cauchyrel}. For the purposes of this course, however, the pair-potential idealization of \eqref{Vint} already suffices to establish, with full transparency, the structure of the atomistic-to-continuum bridge; the reader is referred to \cite{TadmorMiller}, Chapter~5, for the general, many-body case.
+\end{remark}
+
+With a notion of crystal geometry (Bravais lattices and their basis, Section~\ref{sec:latticebasis}) and a notion of interatomic energy (this section, the pair potential $\phi$) in hand, we can finally ask the question that opens the next chapter: how does a crystal --- an intrinsically discrete object --- respond, at the atomic scale, to a macroscopic deformation?
+
+\chapter{The Cauchy--Born Rule}\label{CBrule}
+
+We now develop the first of the two bridging frameworks announced at the end of Chapter~\ref{failureCM}: a rule that allows the strain energy density of a crystal --- the central constitutive object of the theory of elastic materials, Chapter~\ref{elasticmat} --- to be computed directly from the interaction energy between atoms introduced in Chapter~\ref{atomdescr}, bypassing entirely the need for an RVE average.
+
+Throughout this chapter we restrict attention, as announced, to a \textit{simple crystal} (Chapter~\ref{atomdescr}): a single Bravais lattice $\Lambda=\{\xb^{[\ell]}=\ell_i\ab_i\}$ with one atom per site. Under a deformation of the crystal, each lattice site is displaced from its reference position $\xb^{[\ell]}$ to a current position $\yb^{[\ell]}(t)$. The question addressed by the Cauchy--Born rule is: what is the relation between this atomic-scale motion and the macroscopic deformation gradient $\Fb$ introduced in the kinematic theory of Part~I of these notes?
+
+\section{The Cauchy--Born Hypothesis: Affine Deformation of the Lattice}
+
+The idea, in its original form, is due to Cauchy (1828), who --- studying the elasticity of crystalline solids well before the atomic hypothesis was firmly established --- postulated that the atoms of a crystal behave as material points embedded in, and simply following, the macroscopic deformation.
+
+\begin{definition}[Cauchy--Born rule]\label{def:CB}
+	A crystal is said to deform according to the \textit{Cauchy--Born rule} under an applied, spatially uniform deformation gradient $\Fb$ if every lattice site moves affinely,
+	\begin{equation}\label{CB}
+		\yb^{[\ell]} = \Fb\,\xb^{[\ell]}, \qquad \forall\,\ell\in\mathbb{Z}^3,
+	\end{equation}
+	equivalently, if the primitive lattice vectors transform as $\ab_i\mapsto\Fb\ab_i$ ($i=1,2,3$).
+\end{definition}
+
+Equation \eqref{CB} states that the entire lattice deforms \textit{affinely}: every lattice vector $\ab_i$ is mapped to the current lattice vector $\Fb\ab_i$, and the deformed atomic positions again form a Bravais lattice, now with primitive vectors $\{\Fb\ab_i\}$.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.95]
+		\begin{scope}
+			\coordinate (O) at (0,0);
+			\coordinate (A1) at (1.3,0.2);
+			\coordinate (A2) at (0.3,1.2);
+			\foreach \i in {0,...,2}{
+				\foreach \j in {0,...,2}{
+					\fill[black!75] ($\i*(A1)+\j*(A2)$) circle (1.8pt);
+				}
+			}
+			\draw[-{Latex[length=2mm]},rossoSapienza,thick] (O) -- (A1) node[below]{$\ab_1$};
+			\draw[-{Latex[length=2mm]},rossoSapienza,thick] (O) -- (A2) node[left]{$\ab_2$};
+			\node[font=\footnotesize] at (1.3,-0.85) {reference, $\xb^{[\ell]}=\ell_i\ab_i$};
+		\end{scope}
+		\draw[-{Latex[length=3mm]},ultra thick] (3.0,0.8) -- (4.2,0.8) node[midway,above]{$\Fb$};
+		\begin{scope}[xshift=5.1cm]
+			\coordinate (O) at (0,0);
+			\coordinate (a1) at (1.9,0.6);
+			\coordinate (a2) at (0.1,1.5);
+			\foreach \i in {0,...,2}{
+				\foreach \j in {0,...,2}{
+					\fill[black!75] ($\i*(a1)+\j*(a2)$) circle (1.8pt);
+				}
+			}
+			\draw[-{Latex[length=2mm]},rossoSapienza,thick] (O) -- (a1) node[below]{$\Fb\ab_1$};
+			\draw[-{Latex[length=2mm]},rossoSapienza,thick] (O) -- (a2) node[left]{$\Fb\ab_2$};
+			\node[font=\footnotesize] at (1.5,-0.85) {current, $\yb^{[\ell]}=\Fb\xb^{[\ell]}$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{The Cauchy--Born hypothesis: under a uniform deformation gradient $\Fb$, the entire reference lattice (left) is mapped affinely onto a new Bravais lattice (right), with lattice vectors $\Fb\ab_i$ and every atom moving as $\yb^{[\ell]}=\Fb\xb^{[\ell]}$ --- no relative rearrangement of atoms within the lattice is allowed.}
+	\label{fig:CBmap}
+\end{figure}
+
+\begin{remark}
+	The Cauchy--Born rule is a \textit{kinematic postulate}, not a theorem: nothing in the balance laws developed in the earlier parts of these notes forces the atoms to move affinely. Its status is analogous to that of the constitutive assumptions of Chapter~\ref{constheory}: it restricts, a priori, the class of admissible microscopic motions compatible with a given macroscopic deformation, in exactly the same way that a constitutive equation restricts the class of admissible stress responses. Its justification is a separate matter, addressed in Section~\ref{sec:CBlimits} and, more rigorously, in the statistical-mechanics treatment of Chapters to follow: for a perfect, infinite crystal subjected to a slowly varying deformation, far from any defect or boundary, one can show that the affine assumption \eqref{CB} correctly identifies the energy-minimizing atomic arrangement, at least for centrosymmetric lattices (Exercise~\ref{ex:centrosym}).
+\end{remark}
+
+When the applied deformation $\Fb(\xb)$ varies smoothly with position at the macroscopic scale --- as is always implicitly assumed in continuum mechanics --- the Cauchy--Born rule is applied \textit{locally}: at each material point $\xb$, the lattice in a small neighborhood of $\xb$ is taken to deform affinely according to the local value $\Fb(\xb)$, exactly as in the kinematic theory of Part~I, where the deformation gradient furnishes the local, linearized description of an in general non-uniform deformation.
+
+\section{From Interatomic Potential to Strain Energy Density}
+
+Consider a simple crystal at zero temperature, so that the atomic positions coincide exactly with the lattice sites (no thermal vibration), and let $\phi(r)$ denote a pair potential, i.e.\ the total interatomic potential energy is
+\begin{equation}
+	V^{\rm int} = \frac{1}{2}\sum_{\alpha\neq\beta} \phi\!\left(r^{\alpha\beta}\right), \qquad r^{\alpha\beta} = \left|\yb^\beta - \yb^\alpha\right|,
+\end{equation}
+the sum running over all pairs of atoms $\alpha,\beta$ of the (infinite) crystal, with the factor $\tfrac12$ compensating for the double counting of each pair. Under the Cauchy--Born hypothesis \eqref{CB}, the energy of the crystal becomes a function of $\Fb$ alone: every interatomic vector deforms as $\yb^{\alpha\beta} = \Fb\xb^{\alpha\beta}$, hence $r^{\alpha\beta} = |\Fb\xb^{\alpha\beta}|$ depends on $\Fb$ and on the fixed reference geometry only.
+
+\begin{definition}
+	The \textit{Cauchy--Born strain energy density} (per unit reference volume) of a simple crystal is
+	\begin{equation}\label{Wcb}
+		W(\Fb) \;=\; \frac{1}{\Omega_0}\sum_{\beta\neq 1}^{} \frac{1}{2}\,\phi\!\left(\left|\Fb\xb^{1\beta}\right|\right),
+	\end{equation}
+	where $\Omega_0$ is the volume of the primitive unit cell in the reference configuration, atom $1$ is a representative lattice site, and the sum runs over all its periodic images $\beta$ within the interaction range of $\phi$.
+\end{definition}
+
+Equation \eqref{Wcb} is precisely a constitutive equation of the type postulated in Chapter~\ref{constheory}, $W=\widehat W(\Fb)$ --- except that here $\widehat W$ is not fitted to experimental data, nor left as an unspecified response function restricted only by general principles (frame-indifference, material symmetry): it is \textit{computed}, in closed form, once the interatomic potential $\phi$ and the reference lattice geometry are given.
+
+The corresponding first Piola--Kirchhoff stress follows exactly as in Chapter~\ref{elasticmat}, by differentiation of the strain energy density with respect to $\Fb$:
+\begin{equation}\label{Pcb}
+	\Pb = \frac{\partial W}{\partial \Fb}
+	= \frac{1}{2\Omega_0}\sum_{\beta\neq1} \phi'\!\left(r^{1\beta}\right)\, \frac{\yb^{1\beta}\otimes\xb^{1\beta}}{r^{1\beta}},
+\end{equation}
+having used the chain rule $\partial r^{1\beta}/\partial\Fb = (\yb^{1\beta}\otimes\xb^{1\beta})/r^{1\beta}$, entirely analogous to the derivatives of Chapter~2. Equation \eqref{Pcb} is the atomistic-to-continuum bridge in its most concrete form: a sum over interatomic bonds, on the right, equals a continuum stress tensor, on the left.
+
+\begin{example}\label{ex:1Dchain}
+	Consider a one-dimensional chain of identical atoms, reference spacing $a$, interacting only with their nearest neighbors through a pair potential $\phi(r)$. Under a uniform stretch $F$ (so that $\Fb\to F$, a scalar), the Cauchy--Born rule gives a deformed spacing $r = Fa$. The strain energy per unit reference length is $W(F) = \phi(Fa)/a$, and the first Piola stress (a scalar force, in one dimension) is
+	\begin{equation}
+		P(F) = \frac{\dd W}{\dd F} = \phi'(Fa)\,.
+	\end{equation}
+	This elementary result already displays the essential content of \eqref{Pcb}: the macroscopic stress is nothing but the interatomic force in the bond, made to bear the dimensions of a stress by division by the appropriate reference length (here trivially absorbed, since we work per unit length rather than per unit area).
+\end{example}
+
+\section{Linearization: Recovery of Elastic Constants}
+
+Because $W(\Fb)$ is a function of $\Fb$ alone, it can be expanded about the undeformed state $\Fb=\Ib$ exactly as in Chapter~\ref{elasticmat}, recovering the infinitesimal elastic constants directly from the interatomic potential. Differentiating \eqref{Pcb} once more with respect to $\Fb$ and evaluating at $\Fb=\Ib$ furnishes the (spatial, zero-temperature) elasticity tensor
+\begin{equation}\label{ccb}
+	c_{ijkl} = \frac{1}{2\Omega_0}\sum_{\beta\neq1}\left[\phi''(r^{1\beta}) - \frac{\phi'(r^{1\beta})}{r^{1\beta}}\right]\frac{x_i^{1\beta}x_j^{1\beta}x_k^{1\beta}x_l^{1\beta}}{\left(r^{1\beta}\right)^2},
+\end{equation}
+the sum now running over the reference bonds of the undeformed lattice (cf.\ \cite{TadmorMiller}, Eq.~(11.137)).
+
+\begin{remark}[The Cauchy relations and the Cauchy pressure]\label{rem:cauchyrel}
+	Formula \eqref{ccb} possesses, quite independently of the crystal structure or the specific form of $\phi$, the minor and major symmetries $c_{ijkl}=c_{jikl}=c_{ijlk}=c_{klij}$ familiar from Chapter~\ref{elasticmat}. It possesses, in addition, a symmetry that is \textit{not} generally true of elastic constants, but is a distinctive fingerprint of the pair-potential assumption:
+	\begin{equation}
+		c_{ijkl} = c_{ikjl}.
+	\end{equation}
+	For a cubic crystal in Voigt notation, this extra symmetry reduces to the single relation
+	\begin{equation}\label{cauchypressure}
+		P_C \;\equiv\; c_{12}-c_{44} \;=\;0,
+	\end{equation}
+	known as the vanishing of the \textit{Cauchy pressure}, one of the six classical \textit{Cauchy relations}, which together reduce the number of independent elastic constants of a general anisotropic crystal from $21$ to $15$.
+
+	Equation \eqref{cauchypressure} triggered a celebrated nineteenth-century controversy between the \textit{rari-constant} school (Cauchy, Poisson, Kelvin, Lam\'e), who held the Cauchy relations to be universally valid, and the \textit{multi-constant} school (Green, Stokes, Kirchhoff), who did not. The dispute was settled experimentally by Voigt in 1887: real crystals generally violate \eqref{cauchypressure}. From the vantage point of \eqref{ccb}, the resolution is immediate --- the Cauchy relations are not a property of crystalline elasticity in general, but a mathematical consequence of restricting the interatomic model to \textit{pairwise, central} interactions. They hold, and are experimentally verified, for the two classes of solids in which pairwise central forces genuinely dominate the bonding --- van der Waals and ionic crystals --- and fail for metallically or covalently bonded solids, whose bonds have an explicit, non-pairwise dependence on the local environment (captured, e.g., by the embedded-atom or Tersoff-type potentials briefly mentioned in Section~\ref{sec:CBlimits}).
+\end{remark}
+
+\section{Worked Example: Elastic Constants of Solid Argon}\label{sec:argonexample}
+
+We now put formula \eqref{ccb} to work on a real material, chosen precisely because it satisfies the assumptions behind it: solid argon, a face-centered cubic (fcc) crystal held together by van der Waals bonding, which --- as noted in Remark~\ref{rem:cauchyrel} --- is well described by a pairwise, central potential.
+
+\subsubsection*{The model}
+
+Argon atoms interact through the Lennard--Jones potential
+\begin{equation}
+	\phi(r) = 4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right],
+\end{equation}
+with the standard parameters $\varepsilon = 0.0103\,\mathrm{eV}$ and $\sigma = 3.40\,\text{\AA}$ \cite{AshcroftMermin}. We work, as in Remark~\ref{rem:cauchyrel}'s illustration of the Cauchy pressure, within the \textit{nearest-neighbor} truncation: each atom interacts only with its $12$ nearest neighbors, located, for a conventional cubic cell edge $a_0$, at
+\begin{equation}
+	\xb^{1\beta} = \frac{a_0}{2}(\pm1,\pm1,0),\ \ \frac{a_0}{2}(\pm1,0,\pm1),\ \ \frac{a_0}{2}(0,\pm1,\pm1), \qquad \beta=1,\ldots,12,
+\end{equation}
+all at the common reference distance $r_0 = a_0/\sqrt2$, with primitive-cell volume $\Omega_0 = a_0^3/4$.
+
+\subsubsection*{Equilibrium lattice constant}
+
+At this level of truncation, the cohesive energy per atom is simply $12$ times $\phi(r_0)/2$, i.e.\ a multiple of the pair potential itself; its minimizer therefore coincides with the minimizer of $\phi$,
+\begin{equation}
+	\phi'(r_0)=0 \qquad\Longrightarrow\qquad r_0 = 2^{1/6}\sigma \approx 1.1225\,\sigma,
+\end{equation}
+giving $r_0 \approx 3.82\,\text{\AA}$ and $a_0=\sqrt2\,r_0\approx5.40\,\text{\AA}$ --- about $2\%$ above the measured low-temperature value $a_0\approx5.30\,\text{\AA}$ \cite{KeelerBatchelder1970}. The discrepancy is systematic and instructive: neglecting the (weakly attractive) second- and third-neighbor shells removes part of the cohesion, so the nearest-neighbor model relaxes to a slightly larger spacing than the real crystal.
+
+\subsubsection*{Elastic constants from \texorpdfstring{\eqref{ccb}}{the elasticity formula}}
+
+Because $\phi'(r_0)=0$ at equilibrium, the bracket in \eqref{ccb} reduces to $\phi''(r_0)$ alone. Carrying out the lattice sum in \eqref{ccb} over the $12$ vectors above --- a short exercise in bookkeeping, most efficiently done by grouping the neighbors according to which pair of coordinate axes they lie in, exactly as in the computation of the Cauchy pressure in Remark~\ref{rem:cauchyrel} --- gives the compact closed-form result
+\begin{equation}\label{argonresult}
+	c_{11} = \frac{288\,\varepsilon}{a_0^3}, \qquad c_{12}=c_{44} = \frac{144\,\varepsilon}{a_0^3},
+\end{equation}
+where we have used $\phi''(r_0) = 72\varepsilon/r_0^2$, a standard property of the Lennard--Jones minimum. Notice that $c_{12}=c_{44}$ emerges automatically from the geometry of the fcc lattice sum: this \textit{is} the vanishing Cauchy pressure of Remark~\ref{rem:cauchyrel}, now verified by direct calculation rather than by symmetry counting alone.
+
+\subsubsection*{Numbers}
+
+Using $1\,\mathrm{eV}/\text{\AA}^3 = 160.2\,\mathrm{GPa}$ and the equilibrium $a_0\approx5.40\,\text{\AA}$ found above, \eqref{argonresult} gives
+\begin{equation}
+	c_{11}\approx 3.0\,\mathrm{GPa}, \qquad c_{12}=c_{44}\approx1.5\,\mathrm{GPa}.
+\end{equation}
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{lccc}
+		\toprule
+		& $c_{11}$ (GPa) & $c_{12}$ (GPa) & $c_{44}$ (GPa) \\
+		\midrule
+		Cauchy--Born, nearest-neighbor Lennard--Jones & $3.0$ & $1.5$ & $1.5$ \\
+		Experiment, extrapolated to $0\,\mathrm{K}$ \cite{KeelerBatchelder1970} & $4.4$ & $1.8$ & $1.6$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Elastic constants of solid argon: the nearest-neighbor Cauchy--Born/Lennard--Jones prediction of this section versus low-temperature experimental values.}
+	\label{tab:argon}
+\end{table}
+
+\begin{remark}
+	Table~\ref{tab:argon} deserves two comments, one reassuring and one cautionary.
+
+	The reassuring part: a two-line calculation, using a two-parameter potential fitted to gas-phase properties of argon, predicts solid-state elastic constants correct to within a factor of order unity, with the right ordering $c_{11}>c_{12}\approx c_{44}$ --- a nontrivial success for a theory with essentially no adjustable parameters left to tune.
+
+	The cautionary part concerns the Cauchy pressure. Formula \eqref{argonresult} predicts $c_{12}-c_{44}=0$ \textit{exactly}, yet the measured values give $c_{12}-c_{44}\approx0.2\,\mathrm{GPa}$, small but unambiguously nonzero. Argon is a van der Waals solid precisely of the kind for which Remark~\ref{rem:cauchyrel} predicted the Cauchy relations to hold --- so why the residual violation? The pairwise Lennard--Jones potential does not capture the full physics of van der Waals bonding: three-body dispersion forces (Axilrod--Teller triple-dipole interactions) are known to contribute at the few-percent level to the cohesive energy of rare-gas solids, and, being intrinsically non-pairwise, they violate the Cauchy relations by exactly the mechanism identified in Remark~\ref{rem:cauchyrel}. The size of the observed Cauchy pressure is therefore a direct, quantitative measure of the many-body character of the true interaction --- a nice illustration of the fact that a model's \textit{failures} can be as informative as its successes.
+\end{remark}
+
+\begin{exercise}\label{ex:centrosym}
+	A crystal is \textit{centrosymmetric} if every atom sits at a center of inversion symmetry, so that for every neighbor at relative position $\xb^{\alpha\beta}$ there is another neighbor of the same species at $-\xb^{\alpha\beta}$. Using the central-force decomposition implicit in \eqref{Pcb} (the force between $\alpha$ and $\beta$ is directed along $\yb^{\alpha\beta}$), show that the net force on every atom of an undeformed centrosymmetric simple crystal vanishes identically, and that the crystal remains centrosymmetric --- hence in force equilibrium --- after \textit{any} uniform Cauchy--Born deformation \eqref{CB}, with no need for internal relaxation.
+	\begin{svolgimento}
+		Group the neighbors of a given atom $\alpha$ into pairs $(\beta,\beta')$ related by inversion, $\xb^{\alpha\beta'}=-\xb^{\alpha\beta}$; since $\phi$ depends only on distance, and distances are invariant under inversion, $\phi_{,r}(r^{\alpha\beta}) = \phi_{,r}(r^{\alpha\beta'})$, so the two central-force contributions $\phi_{,r}(r^{\alpha\beta})\,\xb^{\alpha\beta}/r^{\alpha\beta}$ and $\phi_{,r}(r^{\alpha\beta'})\,\xb^{\alpha\beta'}/r^{\alpha\beta'}$ are equal in magnitude and opposite in direction, and cancel in the sum defining the total force. Since $\xb^{[\ell]}=(\ell_i+\zeta_i)\ab_i$ for fractional coordinates $\zeta_i$ describes a centrosymmetric lattice whenever $\{\ab_i\}$ does, and the Cauchy--Born map $\xb\mapsto\Fb\xb$ carries $\ab_i\mapsto\Fb\ab_i$ while leaving the fractional coordinates unchanged, the deformed lattice $(\ell_i+\zeta_i)\Fb\ab_i$ is again centrosymmetric, and the argument above applies verbatim in the deformed configuration.
+	\end{svolgimento}
+\end{exercise}
+
+\section{Limits of Validity}\label{sec:CBlimits}
+
+The derivation above makes transparent the assumptions on which the Cauchy--Born rule rests, and hence the circumstances under which it must fail.
+
+\begin{enumerate}
+	\item \textit{Homogeneity of the local environment.} Formula \eqref{CB} requires every lattice site to be mapped by the \textit{same} $\Fb$. Near a free surface, a dislocation core, a grain boundary, a crack tip, or any other lattice defect, the true energy-minimizing atomic displacements are \textit{not} affine: atoms individually relax to positions that cannot be written as $\Fb\xb^{[\ell]}$ for any single $\Fb$. The Cauchy--Born rule is therefore, at best, a \textit{bulk} approximation, valid away from defects and boundaries, exactly where the RVE argument of Chapter~\ref{failureCM} would also have applied --- its value lies in removing the need for RVE-averaging \textit{within} that bulk region, not in extending continuum concepts to the defected region itself.
+	\item \textit{Multilattice crystals and internal relaxation.} For a crystal whose basis contains more than one atom, imposing $\Fb$ on the lattice vectors does not, in general, leave the sublattices in mechanical equilibrium: an additional \textit{shift vector} $\sb^\lambda$, internal to the unit cell, must be determined --- for each applied $\Fb$ --- by minimizing the energy with respect to $\sb^\lambda$ at fixed $\Fb$. Equation \eqref{CB} must then be replaced by $\yb^{[\ell\lambda]} = \Fb\xb^{[\ell\lambda]}+\sb^\lambda(\Fb)$; the derivation of $W(\Fb)$, $\Pb(\Fb)$, and $c_{ijkl}$ carries through with $\sb^\lambda$ eliminated in favor of $\Fb$ via this auxiliary equilibrium condition, but the resulting strain energy density is no longer given by the simple, explicit sum \eqref{Wcb} (see \cite{TadmorMiller}, Chapter~11, for the complete derivation). Centrosymmetric crystals (Exercise~\ref{ex:centrosym}) are the important exception in which $\sb^\lambda\equiv\bf 0$ solves the equilibrium condition identically, for every $\Fb$.
+	\item \textit{Zero temperature.} The derivation of this chapter identifies atomic positions with lattice sites, ignoring thermal vibration entirely. At finite temperature, atoms fluctuate about mean positions, and it is only these \textit{mean} positions that can be postulated to follow a Cauchy--Born-type kinematics; the free energy, rather than the bare potential energy, then enters in place of $V^{\rm int}$ in \eqref{Wcb}, and thermal expansion and temperature-dependent elastic constants emerge as genuine finite-temperature effects. This extension requires the statistical-mechanical machinery developed in the next chapter, and is deferred accordingly.
+	\item \textit{Lattice stability.} Even within the bulk, at fixed temperature, the affine deformed configuration $\Fb\xb^{[\ell]}$ need not be a stable equilibrium of the atomic system: beyond some critical deformation the Hessian of the energy can develop a negative eigenvalue associated with a non-affine (typically longer-wavelength, or symmetry-breaking) perturbation, signaling a phase transformation or a structural instability that the Cauchy--Born rule, by construction, cannot detect --- it only ever explores affine configurations, and is blind to lower-energy non-affine alternatives.
+\end{enumerate}
+
+\begin{remark}
+	Despite these limitations, the Cauchy--Born rule is the single most important bridge between atomistic and continuum descriptions of crystalline solids: it underlies essentially every multiscale coupling method used in computational materials science (see \cite{TadmorMiller}, Chapters~12--13), and it is the tool that will allow us, in the sequel, to compute an explicit constitutive equation $W(\Fb)$ for a nanostructured material directly from a chosen interatomic potential, wherever its assumptions apply.
+\end{remark}
