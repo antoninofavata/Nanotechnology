@@ -1,0 +1,204 @@
+\documentclass[11pt,a4paper]{scrartcl}
+%Analogo di KOMA Script
+% della classe article
+%\usepackage{classicthesis-preamble}
+\usepackage[nochapters,pdfspacing]{classicthesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{margin=2.5cm}
+\usepackage{setspace}
+\onehalfspace
+
+
+
+
+\definecolor{rossoSapienza}{RGB}{130,36,51}
+
+\titleformat{\section}{\large\bfseries\color{rossoSapienza}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{rossoSapienza}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\hypersetup{colorlinks=true, linkcolor=rossoSapienza, urlcolor=rossoSapienza}
+
+\begin{document}
+	\pagestyle{empty}
+	
+	% Title block
+	\begin{center}
+		{\LARGE\bfseries\color{rossoSapienza} Continuum Mechanics}\\[0.4em]
+		{\large MSc in Nanotechnology Engineering}\\[0.2em]
+		{\normalsize 6 CFU \quad|\quad English \quad|\quad 60 hours}
+	\end{center}
+	
+	\vspace{1em}
+	\hrule
+	\vspace{1.5em}
+	
+	% Course Description
+	\section{Course Description}
+	
+	The course provides a rigorous introduction to the foundations of Continuum Mechanics, structured around the four pillars of any continuum field theory: kinematics, stress, balance laws, and constitutive equations. These are developed with full mathematical rigor, then connected to the atomistic description of matter through two bridging frameworks: the Cauchy--Born rule, which shows how constitutive equations emerge from interatomic potentials, and the Irving--Kirkwood--Noll and Hardy formulations, which show how continuum fields such as stress and density emerge from a discrete atomic description.
+	
+%	The course serves as a formal foundation for the subsequent course in Molecular Dynamics and Atomistic Simulations, and connects directly to Surface Engineering, Nanomaterials, and Nanobiotechnology.
+	
+	% Prerequisites
+	\section{Prerequisites}
+	
+	\begin{enumerate}[leftmargin=1.5em]
+		\item Linear algebra and multivariable calculus
+		\item Basic mechanics of materials (undergraduate level)
+		\item Elements of classical physics
+	%	\item Familiarity with index notation is helpful but not required
+	\end{enumerate}
+	
+	% Module 1
+	\section{Module 1 --- Mathematical Toolkit \normalfont\normalsize\itshape (8 h)}
+	
+	A focused review to establish a common formal language across the mixed student background.
+	
+	\begin{enumerate}[leftmargin=1.5em]
+	%	\item Index notation and Einstein summation convention
+		\item Tensor algebra
+		\item Tensor calculus
+	\end{enumerate}
+	
+	% Module 2
+	\section{Module 2 --- Kinematics of Deformable Bodies \normalfont\normalsize\itshape (12 h)}
+	\begin{enumerate}
+		\item \textit{General Theory}. Deformation, displacement, deformation gradient. Change in  length, volume, and area. Homogeneous deformations. Rigid deformations. Strain measures. Polar decomposition.  Motion velocity, velocity gradient, stretching, and spin.
+		\item  \textit{Infinitesimal theory}. Infinitesimal strain tensor and rotation tensor. Geometric changes.
+	\end{enumerate}
+
+	
+	% Module 3
+	\section{Module 3 --- Basic Mechanical Principless \normalfont\normalsize\itshape (12 h)}
+	\begin{enumerate}
+		\item \textit{Mass balance}
+		\item  \textit{Force and moment balance}.  Internal actions: stress. Balance laws for linear and angular momentum. Ecternal power, kinetic energy, inertial power. Referential forms for the mechanical laws: Piola stress, expended power, second Piola stress. 
+		\item \textit{Frame indifference}. Frame of reference. Frame-indifference principle. 
+	%	\item \textit{Principle of Virtual Power}.  Force balance, stress, symmetry and frame-indifference.
+	%	\item \textit{Energy balance}. The first law: balance of energy. 
+	\end{enumerate}
+
+	
+	% Module 4
+	\section{Module 4 --- Constitutive Theory \normalfont\normalsize\itshape (8 h)}
+
+\begin{enumerate}
+	\item \textit{Constitutive theories}.   Basic hypotheses for developing physically meaningful constitutive theories.
+	\item \textit{Elastic Materials}. Consequence of frame-indifference, infinitesimal theory.
+\end{enumerate}	
+
+%		 Strain energy density function.
+%		 Objectivity and material frame indifference.
+%		 Neo-Hookean model as a worked example.
+%		 Linear elasticity.
+
+	
+% Module 5
+\section{Module 5 --- Atomistic-to-Continuum Bridging \normalfont\normalsize\itshape (17 h)}
+
+
+\begin{enumerate}
+	
+	\item \textit{Failure of Classical Continuum Mechanics at the Nanoscale} (1 h).
+	The continuum hypothesis and its length-scale assumptions. Surface-to-volume ratio
+	scaling and its mechanical consequences. Size effects in elastic moduli.
+	The Representative Volume Element (RVE) and its breakdown at the nanoscale.
+	
+	\item \textit{The Cauchy--Born Rule} (2 h).
+	Bravais lattices and crystal kinematics: unit cell, primitive vectors, lattice
+	deformation. The Cauchy--Born hypothesis: affine deformation of the lattice.
+	From interatomic potential to strain energy density. Linearization: recovery of elastic constants. Limits of validity.
+	
+	\item \textit{Statistical Mechanics Primer} (3 h).
+	Microstates and macrostates; phase space. Statistical ensembles: microcanonical,
+	canonical, grand canonical. Time averages vs.\ ensemble averages; ergodic hypothesis.
+	Liouville equation and conservation of phase space volume.
+	
+	\item \textit{Continuum Fields from Discrete Data} (11 h).
+	
+	\begin{enumerate}
+		
+		\item \textit{Irving--Kirkwood-Noll procedure} ($\sim$6 h).
+		The fundamental problem: defining density, momentum, stress, and energy flux
+		for a discrete set of atoms. Ensemble-averaged conservation equations derived
+		from the Liouville equation. Stress tensor from pairwise forces: kinetic
+		contribution and virial contribution.
+		Non-uniqueness of the pointwise stress field; limitations of ensemble averaging.
+		
+		\item \textit{Hardy procedure} ($\sim$5 h).
+		Localization function: from Dirac delta to smooth kernel.
+		Pointwise continuum fields: density, momentum density,
+		Hardy stress. Bond function and the geometric interpretation of stress
+		localization. 
+		
+	\end{enumerate}
+	
+\end{enumerate}
+	
+	% Hour Distribution
+%	\section{Hour Distribution}
+%	
+%	\begin{center}
+%		\begin{tabular}{clc}
+%			\toprule
+%			\textbf{Module} & \textbf{Title} & \textbf{Hours} \\
+%			\midrule
+%			1 & Mathematical Toolkit            & 8  \\
+%			2 & Kinematics of Deformable Bodies & 12 \\
+%			3 & Stress and Balance Laws         & 12 \\
+%			4 & Constitutive Theory             & 8  \\
+%			5 & Atomistic-to-Continuum Bridging & 20 \\
+%			\midrule
+%			& \textbf{Total}                  & \textbf{60} \\
+%			\bottomrule
+%		\end{tabular}
+%	\end{center}
+%	
+
+	
+%	% Assessment
+%	\section{Assessment}
+%	
+%	\begin{center}
+%		\begin{tabular}{lcp{7cm}}
+%			\toprule
+%			\textbf{Component} & \textbf{Weight} & \textbf{Notes} \\
+%			\midrule
+%			Written exam       & 60\% & Tensor derivations and analytical problems \\
+%			Take-home project  & 40\% & Analytical bridging problem --- e.g.\ Hardy stress
+%			computation on an assigned atomic configuration,
+%			or derivation of $W(\mathbf{F})$ via Cauchy--Born
+%			for a given potential \\
+%			\bottomrule
+%		\end{tabular}
+%	\end{center}
+	
+	% References
+	\section{References}
+	
+Lecture Notes. Additional references:	
+	
+	\begin{enumerate}
+		\item M.E. Gurtin, \textit{An Introduction to Continuum Mechanics}, Academic Press, 1982.
+		\item M.E. Gurtin, E. Fried, L. Anand, \textit{The Mechanics and Thermodynamics of Continua}, Cambridge University Press, 2010.
+		\item E.B. Tadmor, R.E. Miller, 	\textit{Modeling Materials}, Cambridge, 2011.
+		\item C. Truesdell, \textit{A First Course in Rational Continuum Mechanics}, Academic Press, 1977.
+	
+	\end{enumerate}
+	
+	
+\end{document}
