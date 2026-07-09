@@ -197,14 +197,38 @@ because swapping $\yb\leftrightarrow\yb'$ amounts to relabeling $\alpha\leftrigh
 	which is \eqref{noll_lemma} after dividing by $-2$.
 \end{proof}
 
-Applying Theorem~\ref{thm:noll} to \eqref{TptVsum2}, with $\yb^{\pm}(\zb,s)\coloneqq\yb\pm$ as in \eqref{noll_g}, i.e.\ $\yb^+\coloneqq\yb+s\zb$ (playing the role of $\yb^\alpha$) and $\yb^-\coloneqq\yb-(1-s)\zb$ (playing the role of $\yb^\beta$), we read off an \textit{explicit, closed-form} expression for the potential part of the pointwise stress:
+Applying Theorem~\ref{thm:noll} to \eqref{TptVsum2}, with $\yb^{\pm}(\zb,s)$ defined as in \eqref{noll_g}, i.e.\ $\yb^+\coloneqq\yb+s\zb$ (playing the role of $\yb^\alpha$) and $\yb^-\coloneqq\yb-(1-s)\zb$ (playing the role of $\yb^\beta$), we read off an \textit{explicit, closed-form} expression for the potential part of the pointwise stress:
 \begin{equation}\label{Nollstress}
 	\boxed{\;\Tb^{{\rm pt},V}(\yb;t) = \frac12\int_{\zb\in\mathbb R^3}\frac{\zb\otimes\zb}{|\zb|}\left[\int_0^1\left\langle\sum_{\substack{\alpha,\beta\\\alpha\neq\beta}}\phi'(r^{\alpha\beta})\,\delta(\yb^\alpha-\yb^+)\,\delta(\yb^\beta-\yb^-)\right\rangle\dd s\right]\dd\zb.\;}
 \end{equation}
 This is the \textit{Noll stress}. Its derivation involved no approximation of any kind --- no Taylor expansion, no truncation --- and it holds for any interatomic model whose force decomposes centrally as in \eqref{centralforce}.
 
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=1.05]
+		\coordinate (Beta) at (-1.6,0);
+		\coordinate (Y) at (0,0);
+		\coordinate (Alpha) at (2.4,0);
+		\draw[thick,black!70] (Beta) -- (Alpha);
+		\draw[-{Latex[length=2.2mm]},bluSapienza,thick] (Beta.center)++(0,0.65) -- ++(4.0,0) node[midway,above,font=\scriptsize,bluSapienza]{$\zb$};
+		\fill[black!80] (Beta) circle (2.2pt);
+		\fill[black!80] (Alpha) circle (2.2pt);
+		\node[below,font=\scriptsize] at ($(Beta)+(0,-0.05)$) {$\beta$};
+		\node[below,font=\scriptsize] at ($(Alpha)+(0,-0.05)$) {$\alpha$};
+		\node[above,font=\scriptsize] at ($(Beta)+(0,0.12)$) {$\yb^-=\yb^\beta$};
+		\node[above,font=\scriptsize] at ($(Alpha)+(0,0.12)$) {$\yb^+=\yb^\alpha$};
+		\draw[dashed,black!50] (Y) -- ++(0,-0.75);
+		\fill[rossoSapienza] (Y) circle (1.6pt);
+		\node[below,font=\scriptsize,rossoSapienza] at ($(Y)+(0,-0.75)$) {$\yb$};
+		\draw[decorate,decoration={brace,amplitude=4pt,mirror},thick] (Beta) -- (Y) node[midway,below=8pt,font=\scriptsize]{$(1-s)|\zb|$};
+		\draw[decorate,decoration={brace,amplitude=4pt,mirror},thick] (Y) -- (Alpha) node[midway,below=8pt,font=\scriptsize]{$s|\zb|$};
+	\end{tikzpicture}
+	\caption{The geometric content of the Noll stress \eqref{Nollstress}, in the style of \cite{TadmorMiller}, Fig.~8.6: the bond vector $\zb$ fixes a line through the field point $\yb$ (red), and the parameter $s\in[0,1]$ slides a bond of that length and direction along the line. At $s=0$, atom $\alpha$ sits exactly at $\yb$; at $s=1$, atom $\beta$ does; for intermediate $s$, shown here, $\yb$ lies strictly between the two atoms, splitting the bond into the two pieces $s|\zb|$ and $(1-s)|\zb|$. The integral in \eqref{Nollstress} sums the force $\phi'(r^{\alpha\beta})$ of every such bond --- over every length and direction $\zb$, and every position $s$ along it --- that happens to thread through $\yb$.}
+	\label{fig:nollbond}
+\end{figure}
+
 \begin{remark}[Physical interpretation]
-	Equation \eqref{Nollstress} says that the potential stress at a point $\yb$ is a superposition, over every possible bond length and direction $\zb$ and every position $s$ along that bond, of the expectation value of the force in a bond that happens to pass through $\yb$: the two delta functions pin atom $\alpha$ at $\yb^+=\yb+s\zb$ and atom $\beta$ at $\yb^-=\yb-(1-s)\zb$, which is to say, they pin the bond so that it threads exactly through the point $\yb$, at fractional position $s$ along its length. Although \eqref{Nollstress} looks formidable, this is its entire content: sum the force-times-direction of every bond through $\yb$, weighted appropriately.
+	Equation \eqref{Nollstress} says that the potential stress at a point $\yb$ is a superposition, over every possible bond length and direction $\zb$ and every position $s$ along that bond, of the expectation value of the force in a bond that happens to pass through $\yb$: the two delta functions pin atom $\alpha$ at $\yb^+=\yb+s\zb$ and atom $\beta$ at $\yb^-=\yb-(1-s)\zb$, which is to say, they pin the bond so that it threads exactly through the point $\yb$, at fractional position $s$ along its length (Figure~\ref{fig:nollbond}). Although \eqref{Nollstress} looks formidable, this is its entire content: sum the force-times-direction of every bond through $\yb$, weighted appropriately.
 \end{remark}
 
 \begin{remark}[Symmetry]
@@ -336,15 +360,27 @@ As a check, and as the source of a widely used special case, take $w$ to be the 
 the classical \textit{virial stress} of a finite atomic cluster --- the discrete analogue of the Cauchy stress formula \eqref{Pcb} of the Cauchy--Born chapter, now including the finite-temperature kinetic contribution. The neglected boundary bonds contribute a correction that scales with the surface area of $\Omega$, while the retained terms scale with its volume; as ${\rm Vol}(\Omega)\to\infty$ the surface-to-volume ratio vanishes (compare Section~\ref{surffrac}) and the virial stress and the full Hardy stress with uniform weighting coincide exactly. This is the thermodynamic-limit resolution, promised in Remark~\ref{rem:nonuniqueness}, of the pointwise stress's non-uniqueness: whichever admissible force decomposition or divergence-free field one starts from, the spatially averaged stress converges to the same limit as the averaging domain grows large compared to the potential's range (\cite{TadmorMiller}, Section~8.3.4).
 
 \begin{remark}[Why ``virial''?]\label{rem:virialname}
-	The name is not decorative: it names an actual, older theorem, of which \eqref{virial} is the tensorial descendant. In 1870, Rudolf Clausius defined the \textit{virial} of a system of $N$ atoms (from the Latin \textit{vis}, force) as the scalar
+	The name is not decorative: it names an actual, older theorem, of which \eqref{virial} is the tensorial descendant (see \cite{PodioGuidugli2019} for a compact, modern account of the theorem in its various forms, deterministic and statistical, discrete and continuum, on which this remark and the next one draw). In 1870, Rudolf Clausius defined the \textit{virial} of a system of $N$ atoms (from the Latin \textit{vis}, force) as the scalar
 	\begin{equation}
 		W \coloneqq \sum_{\alpha=1}^N \yb^\alpha\cdot\fb^\alpha,
 	\end{equation}
-	where $\fb^\alpha=-\partial V^{\rm int}/\partial\yb^\alpha$ is the total force on atom $\alpha$, and showed --- by an argument entirely analogous to the equipartition computation of Example~\ref{ex:einstein}, applied to the position, rather than the momentum, degrees of freedom --- that its ensemble (or long-time) average obeys $\langle W\rangle = -2\langle T^{\rm vib}\rangle$, twice the (negative of the) average vibrational kinetic energy. Splitting $\fb^\alpha$ into its external and internal parts as in \eqref{ikn_mombal}, this \textit{virial theorem} yields, for a system in a container of volume $V$, Clausius's original formula for the pressure,
+	where $\fb^\alpha=-\partial V^{\rm int}/\partial\yb^\alpha$ is the total force on atom $\alpha$. This is exactly the quantity of Corollary~\ref{cor:virial} of Chapter~\ref{statmech}, proved there as a consequence of the generalized equipartition theorem: $\langle W\rangle=-3Nk_B\vartheta$, equivalently $\langle W\rangle=-2\langle T^{\rm vib}\rangle$ once the kinetic energy is itself expressed, by ordinary equipartition, as $\langle T^{\rm vib}\rangle=\tfrac32Nk_B\vartheta$. Splitting $\fb^\alpha$ into its external and internal parts as in \eqref{ikn_mombal}, this \textit{virial theorem} yields, for a system in a container of volume $V$, Clausius's original formula for the pressure,
 	\begin{equation}\label{clausiuspressure}
 		pV = Nk_B\vartheta + \langle W^{\rm int}\rangle, \qquad W^{\rm int}\coloneqq\sum_{\alpha=1}^N \yb^\alpha\cdot\fb^{{\rm int},\alpha},
 	\end{equation}
-	an ideal-gas term $Nk_B\vartheta$ corrected by the internal virial $W^{\rm int}$ of the interatomic forces --- zero for a true ideal gas, recovering the ordinary gas law. A short computation (pairing each ordered pair $(\alpha,\beta)$ with $(\beta,\alpha)$ and using the central-force decomposition \eqref{centralforce}) shows that $W^{\rm int}=-\tfrac12\sum_{\alpha\neq\beta}\phi'(r^{\alpha\beta})\,r^{\alpha\beta}$, the same double sum, with the same compensating factor $\tfrac12$, that appears in the potential part of \eqref{virial}: indeed $W^{\rm int}=-\,{\rm Vol}(\Omega)\,{\rm tr}\,\Tb^V$ exactly. The trace of our tensorial stress formula thus reproduces, up to sign and a factor of the volume, Clausius's scalar pressure formula \eqref{clausiuspressure} for the special case of an isotropic state. This is the precise sense in which \eqref{virial} \textit{is} a virial: it is the natural tensor generalization, via the Irving--Kirkwood--Noll and Hardy machinery of this part of the course, of a relation Clausius obtained by much more elementary means --- and considerably before either statistical mechanics or continuum mechanics had reached the atomistic bridge built in these two chapters.
+	an ideal-gas term $Nk_B\vartheta$ corrected by the internal virial $W^{\rm int}$ of the interatomic forces --- zero for a true ideal gas, recovering the ordinary gas law. This was, historically, the entire point of introducing the virial in the first place: Clausius's formula \eqref{clausiuspressure} was the first microscopic explanation of why \textit{real} gases deviate from the ideal gas law, and, a few years later, of the empirical van der Waals correction $\big(p+\bar n^2\alpha/V^2\big)(V-\bar n\beta)=\bar nR\vartheta$ ($\bar n$ the number of moles) --- the internal virial $\langle W^{\rm int}\rangle$ being nothing but a first, systematic accounting of the intermolecular forces that an ideal gas, by definition, ignores. A short computation (pairing each ordered pair $(\alpha,\beta)$ with $(\beta,\alpha)$ and using the central-force decomposition \eqref{centralforce}) shows that $W^{\rm int}=-\tfrac12\sum_{\alpha\neq\beta}\phi'(r^{\alpha\beta})\,r^{\alpha\beta}$, the same double sum, with the same compensating factor $\tfrac12$, that appears in the potential part of \eqref{virial}: indeed $W^{\rm int}=-\,{\rm Vol}(\Omega)\,{\rm tr}\,\Tb^V$ exactly. The trace of our tensorial stress formula thus reproduces, up to sign and a factor of the volume, Clausius's scalar pressure formula \eqref{clausiuspressure} for the special case of an isotropic state. This is the precise sense in which \eqref{virial} \textit{is} a virial: it is the natural tensor generalization, via the Irving--Kirkwood--Noll and Hardy machinery of this part of the course, of a relation Clausius obtained by much more elementary means --- and considerably before either statistical mechanics or continuum mechanics had reached the atomistic bridge built in these two chapters.
+\end{remark}
+
+\begin{remark}[A purely continuum-mechanical virial stress]\label{rem:continuumvirial}
+	Remarkably, the virial theorem above has an exact continuum-mechanical counterpart, with no reference to atoms, ensembles, or statistical mechanics at all. Dot the dynamic momentum balance $\dive\Tb+\bb=\rho\dot\vb$ (the time-dependent generalization of \eqref{bDiv}) with the position field $\yb$ itself, and integrate over a body part $\Pi_t$. Using the product rule $\dive(\Tb^\top\yb)=(\dive\Tb)\cdot\yb+\Tb\cdot\grad\yb$ together with $\grad\yb=\Ib$ (so that $\Tb\cdot\grad\yb=\operatorname{tr}\Tb$), the divergence theorem, and the material-derivative identity $\big(\int_{\Pi}\rho\,\psi\big)^{\dotb}=\int_{\Pi}\rho\dot\psi$ of Chapter~1 applied to $\psi=\yb\cdot\vb$ together with $\yb\cdot\dot\vb=(\yb\cdot\vb)^{\dotb}-|\vb|^2$, one obtains what is essentially Signorini's lemma of classical continuum mechanics (\cite{PodioGuidugli2019}, Sect.~2.2):
+	\begin{equation}\label{signorini}
+		\int_{\partial\Pi_t}(\Tb\nb)\cdot\yb \;+\; \int_{\Pi_t}\yb\cdot\bb \;-\; \int_{\Pi_t}\operatorname{tr}\Tb \;=\; \left(\int_{\Pi_t}\rho\,\yb\cdot\vb\right)^{\dotb} - 2\int_{\Pi_t}\tfrac12\rho\,|\vb|^2.
+	\end{equation}
+	Reading the left-hand side as the virial of the continuum forces --- external and non-inertial on the left, internal, $-\int\operatorname{tr}\Tb$, on the right --- \eqref{signorini} is the instantaneous, continuum-field analogue of the atomistic virial theorem $\langle W\rangle=-3Nk_B\vartheta$ above: a system of forces distributed over a body, rather than concentrated at $N$ points, but the same identity in spirit. Comparing the trace term with the dynamic momentum balance rewritten in the flux form $\dive\widetilde{\Tb}+\bb=\partial_t(\rho\vb)$ (matching the pointwise balance \eqref{ikn_mombal} of Chapter~\ref{IKN}, with $\rho\vb=\pb$) identifies
+	\begin{equation}\label{contvirialstress}
+		\widetilde{\Tb} \;\coloneqq\; \Tb - \rho\,\vb\otimes\vb
+	\end{equation}
+	as the continuum, field-theoretic counterpart of the atomistic virial stress: the ordinary Cauchy stress, corrected by the momentum-flux term $\rho\vb\otimes\vb$ already familiar from the derivation of \eqref{ikn_mombal} --- the same object that appears, under the name \textit{Reynolds stress}, in the momentum balance of fluid mechanics. Two entirely different roads --- one atomistic and statistical, built up over three chapters from Hamilton's equations to the Hardy stress; the other purely continuum-mechanical, a single line of vector calculus applied to the balance laws of Chapter~1 --- arrive, in the macroscopic, time-averaged limit, at the same physical quantity.
 \end{remark}
 
 \section{Worked Example: Density and Stress of a Uniform One-Dimensional Chain}\label{ex:hardychain}
@@ -371,7 +407,7 @@ by the normalization \eqref{wnorm} --- \textit{exactly}, for every $y$, and for 
 \begin{equation}
 	\sigma^K(y) = -\sum_{n\in\mathbb Z} m\,\overline{\big(v^n_{\rm rel}\big)^2}\;w(y-na).
 \end{equation}
-By the equipartition theorem --- already established, for the closely related three-dimensional Einstein solid, in Example~\ref{ex:einstein} --- each atom's one-dimensional vibrational kinetic energy averages, at temperature $\vartheta$, to $\overline{\tfrac12m(v^n_{\rm rel})^2}=\tfrac12k_B\vartheta$, independent of $n$. Substituting $m\,\overline{(v^n_{\rm rel})^2}=k_B\vartheta$ and reusing exactly the periodization identity already exploited for the density above (any normalized $w$, summed over the lattice, averages to $1/a$),
+As it stands, this formula cannot be evaluated: it depends on the second moment of whatever velocity distribution the atoms happen to have, which we have not computed and, for a general system, would have no easy way of computing. This is exactly the gap the equipartition theorem of Chapter~\ref{statmech} was built to close. By that theorem --- already applied, for the closely related three-dimensional Einstein solid, in Example~\ref{ex:einstein} --- each atom's one-dimensional vibrational kinetic energy averages, at temperature $\vartheta$, to $\overline{\tfrac12m(v^n_{\rm rel})^2}=\tfrac12k_B\vartheta$, independent of $n$ and of any detail of the interatomic potential. Substituting $m\,\overline{(v^n_{\rm rel})^2}=k_B\vartheta$ and reusing exactly the periodization identity already exploited for the density above (any normalized $w$, summed over the lattice, averages to $1/a$),
 \begin{equation}\label{sigmaK1D}
 	\sigma^K(y) = -k_B\vartheta\sum_{n\in\mathbb Z}w(y-na) \;\longrightarrow\; -\frac{k_B\vartheta}{a} = -n_{\rm at}k_B\vartheta,
 \end{equation}

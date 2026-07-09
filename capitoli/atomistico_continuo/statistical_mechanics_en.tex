@@ -2,7 +2,7 @@
 
 The Cauchy--Born rule of the previous chapter bridges the atomistic and continuum descriptions in a single, restrictive regime: zero temperature, perfect affine deformation, no thermal motion whatsoever. Real crystals vibrate. To go beyond this restriction --- and, more importantly, to construct continuum fields such as density, momentum and stress for a \textit{general} atomistic system, not just a perfect crystal deforming affinely --- we need a rigorous notion of what it means to average over the erratic, thermally agitated motion of an enormous number of atoms. This is the business of statistical mechanics, and it is the necessary preparation for the Irving--Kirkwood--Noll and Hardy procedures of the next two chapters, both of which are, at bottom, prescriptions for computing a particular kind of average over atomic motion.
 
-\section{Microstates, Macrostates, and Phase Space}
+\section{Microstates, Macrostates, and Phase Space}\label{sec:microstates}
 
 Consider again a system of $N$ atoms, as in Chapter~\ref{atomdescr}, with instantaneous positions $\yb^1,\ldots,\yb^N$. Classically, a complete description of the mechanical state of the system requires, in addition to the positions, the momenta $\pb^\alpha = m^\alpha\vb^\alpha$ of every atom.
 
@@ -16,9 +16,23 @@ A \textit{macrostate}, by contrast, is specified by a handful of macroscopic, me
 	This enormous redundancy is not a nuisance to be eliminated; it is the very reason continuum mechanics works at all. A macroscopic observable, such as the ones appearing throughout these notes, is not associated with a single microstate, but is, in some precise sense to be made explicit in this chapter, an \textit{average} over the set of microstates compatible with the macrostate of interest. This is precisely the perspective that the Irving--Kirkwood--Noll and Hardy procedures will make operational: continuum fields are averages of phase functions --- functions of atomic positions and momenta --- not properties of any single, instantaneous atomic configuration.
 \end{remark}
 
-\section{Hamiltonian Dynamics and Liouville's Theorem}
+\section{Hamiltonian Dynamics and Liouville's Theorem}\label{sec:hamiltonian}
 
-For a conservative system, the time evolution of a microstate is governed by Hamilton's equations. Concatenating the $3N$ scalar components of $\{\yb^\alpha\}$ and $\{\pb^\alpha\}$ into a single point $\yb=(y_1,\ldots,y_{3N})$, $\pb=(p_1,\ldots,p_{3N})$ of the $6N$-dimensional phase space $\Gamma$, and letting
+The reader has certainly met Newton's second law in its familiar form, $m\ddot y = F(y)$: a \textit{second}-order differential equation for the position $y(t)$ alone. Hamiltonian mechanics rewrites the same physics as a system of \textit{first}-order equations, at the price of doubling the number of unknowns: instead of tracking position and velocity, one tracks position and \textit{momentum}, $p=m\dot y$, as two independent variables on equal footing, and packages the dynamics into a single scalar function, the \textit{Hamiltonian} $H(y,p)$, equal to the total mechanical energy expressed in terms of $y$ and $p$. This is more than a change of bookkeeping: a state of the system is now a \textit{point} $(y,p)$ in a state space --- phase space --- rather than a pair (position, velocity-as-a-derivative), and it is precisely this ``phase space as a set of points, evolving as a flow'' picture that statistical mechanics is built on, since it is this space that microstates and macrostates of Section~\ref{sec:microstates} above live in and range over.
+
+\begin{example}[Hamilton's equations for a single particle]\label{ex:hamilton1D}
+	Consider one particle of mass $m$, moving in one dimension under a force $F(y)=-V'(y)$ derived from a potential $V(y)$ (a spring, say, or --- closer to our purposes --- one atom in the interatomic potential well of its neighbors). Its Hamiltonian is the total energy, kinetic plus potential, written as a function of position $y$ and momentum $p$ (not velocity):
+	\begin{equation}
+		H(y,p) = \frac{p^2}{2m} + V(y).
+	\end{equation}
+	\textit{Postulating} that $y$ and $p$ evolve according to
+	\begin{equation}
+		\dot y = \frac{\partial H}{\partial p}, \qquad \dot p = -\frac{\partial H}{\partial y},
+	\end{equation}
+	and simply computing the two partial derivatives gives $\dot y = p/m$ and $\dot p = -V'(y)$. The first equation is nothing new --- it is just the definition of momentum, $p=m\dot y$, rearranged. Substituting it into the second, $m\ddot y = \dot p = -V'(y) = F(y)$: Newton's second law, recovered exactly. Hamilton's equations have not changed the physics; they have only recast one second-order equation in $y$ as two first-order equations in $(y,p)$, treating position and momentum as independent coordinates of a single, two-dimensional phase space --- the simplest possible instance of the phase space $\Gamma$ of Section~\ref{sec:microstates}. (We will see this pair of equations solved explicitly, for the harmonic potential $V(y)=\tfrac12ky^2$, in Section~\ref{sec:ho_example} of the next chapter.)
+\end{example}
+
+For a conservative system of $N$ atoms, exactly the same construction applies, with one canonical pair $(y_i,p_i)$ for every one of the $3N$ scalar degrees of freedom. Concatenating the $3N$ scalar components of $\{\yb^\alpha\}$ and $\{\pb^\alpha\}$ into a single point $\yb=(y_1,\ldots,y_{3N})$, $\pb=(p_1,\ldots,p_{3N})$ of the $6N$-dimensional phase space $\Gamma$, and letting
 \begin{equation}
 	H(\yb,\pb) = T(\pb) + V^{\rm int}(\yb), \qquad T(\pb) = \sum_{i=1}^{3N}\frac{p_i^2}{2m_i},
 \end{equation}
@@ -28,7 +42,7 @@ denote the Hamiltonian --- the total mechanical energy, kinetic $T$ plus potenti
 \end{equation}
 
 \begin{remark}
-	Equation \eqref{hameqs} is nothing but Newton's second law, $\dot p_i = -\partial V^{\rm int}/\partial y_i$ = force, rewritten in a form that treats positions and momenta symmetrically; this symmetry is what makes phase space, rather than the $3N$-dimensional configuration space of positions alone, the natural arena for statistical mechanics.
+	Equation \eqref{hameqs} is exactly Example~\ref{ex:hamilton1D}, one canonical pair at a time: as there, it is nothing but Newton's second law, $\dot p_i = -\partial V^{\rm int}/\partial y_i$ = force, rewritten in a form that treats positions and momenta symmetrically; this symmetry is what makes phase space, rather than the $3N$-dimensional configuration space of positions alone, the natural arena for statistical mechanics.
 \end{remark}
 
 Two elementary consequences of \eqref{hameqs} matter throughout the rest of this chapter. First, since $H$ has no explicit time dependence, $\dd H/\dd t = \sum_i(\partial H/\partial y_i)\dot y_i + (\partial H/\partial p_i)\dot p_i = \sum_i(-\dot p_i\dot y_i+\dot y_i\dot p_i)=0$: energy is conserved along every trajectory, which is therefore confined to the hypersurface $H(\yb,\pb)=E$ for some constant $E$. Second, and considerably less obvious, is the following.
@@ -102,7 +116,7 @@ a statement known as the \textit{ergodic hypothesis}.
 
 The simplest macroscopic constraint one can impose on a system is isolation: fixed number of atoms $N$, fixed volume $V$, fixed total energy $E$. The set of microstates compatible with this constraint is the \textit{microcanonical}, or $NVE$, ensemble.
 
-Since the trajectory of an isolated system is confined to the hypersurface $H=E$ (Section~2 above), and a stationary distribution function depends on $(\yb,\pb)$ only through $H$ (Liouville's equation), the only stationary distribution consistent with \textit{equal a priori probability} of every microstate of energy $E$ is uniform on this hypersurface. Because a probability density cannot be uniform and nonzero on a set of measure zero (a hypersurface has zero volume in the full $6N$-dimensional phase space), one instead spreads the distribution over a thin shell of energies between $E$ and $E+\Delta E$, for some small tolerance $\Delta E$ representing the unavoidable imprecision in specifying the energy of a system that is never, in practice, perfectly isolated:
+Since the trajectory of an isolated system is confined to the hypersurface $H=E$ (Section~\ref{sec:hamiltonian} above), and a stationary distribution function depends on $(\yb,\pb)$ only through $H$ (Liouville's equation), the only stationary distribution consistent with \textit{equal a priori probability} of every microstate of energy $E$ is uniform on this hypersurface. Because a probability density cannot be uniform and nonzero on a set of measure zero (a hypersurface has zero volume in the full $6N$-dimensional phase space), one instead spreads the distribution over a thin shell of energies between $E$ and $E+\Delta E$, for some small tolerance $\Delta E$ representing the unavoidable imprecision in specifying the energy of a system that is never, in practice, perfectly isolated:
 \begin{equation}\label{microdist}
 	f_{\rm mc}(\yb,\pb) = \begin{cases} 1/[D(E)\Delta E] & \text{if } E\leq H(\yb,\pb) \leq E+\Delta E, \\ 0 & \text{otherwise,}\end{cases} \qquad D(E)\coloneqq\frac{\dd V_\Gamma}{\dd E},
 \end{equation}
@@ -130,6 +144,73 @@ the celebrated \textit{Boltzmann entropy formula}, with $k_B=8.617\times10^{-5}\
 \begin{exercise}\label{ex:doscount}
 	Consider $N$ identical, noninteracting atoms confined to a volume, so that $H(\pb) = \sum_{i=1}^{3N}p_i^2/(2m)$ depends only on the momenta (an ideal gas). Show that the phase-space volume enclosed by $H\leq E$ is $V_\Gamma(E) = C_{3N}(2mE)^{3N/2}$ for some constant $C_{3N}$ depending only on the dimension $3N$ (the volume of a Euclidean ball of radius $r=\sqrt{2mE}$ in $3N$ dimensions is proportional to $r^{3N}$), and deduce that $D(E)\propto E^{3N/2-1}$. Conclude that, for $N\sim10^{23}$, $D(E)$ is an almost inconceivably rapidly increasing function of $E$ --- which is precisely the property invoked above to argue that $D^A(E^A)D^B(E-E^A)$ has an overwhelmingly sharp maximum.
 \end{exercise}
+
+\subsection*{The Generalized Equipartition Theorem and the Virial Theorem}
+
+Everything so far in this chapter stays at the level of counting microstates: entropy and temperature are defined without ever asking how fast, or how energetically, an individual atom actually moves. Yet that is exactly the question the rest of this part of the course needs answered. The Cauchy--Born rule of Chapter~\ref{CBrule} was built at zero temperature, where atoms sit motionless at their lattice sites; the Hardy stress of Chapter~\ref{Hardy} is not, and its kinetic part \eqref{hardyTK} is, as it stands, an average over the atomic velocity distribution --- a formula, not a number, until that distribution is related to $\vartheta$. The \textit{equipartition theorem} supplies exactly this missing link: a statement, independent of the details of the interatomic potential, of how much energy each mechanical degree of freedom carries at a given temperature. We use it three times in what follows: to compute the heat capacity of a solid (Example~\ref{ex:einstein}, via the canonical ensemble, right after this section); to prove the virial theorem below; and, most importantly for our purposes, to turn the kinetic part of the Hardy stress into an explicit, computable number in Section~\ref{ex:hardychain}. We prove it here in its most general, ensemble-independent form, valid already at the microcanonical level and for an arbitrary Hamiltonian --- of which the canonical, quadratic-Hamiltonian case of Example~\ref{ex:einstein} is a special case.
+
+Before generalizing to $N$ atoms and to ensemble averages, it is worth pausing to see the virial theorem in its most elementary form, entirely free of statistics --- following \cite{PodioGuidugli2019}.
+
+\begin{example}[The virial theorem for a single particle]\label{ex:virial1particle}
+	A single particle of mass $m$ moves under a force $\fb$, so that $m\ddot\yb=\fb$. Dotting with $\yb$ and using the identity $\ddot\yb\cdot\yb=\tfrac{\dd}{\dd t}(\dot\yb\cdot\yb)-\dot\yb\cdot\dot\yb$,
+	\begin{equation}
+		\fb\cdot\yb = \frac{\dd}{\dd t}\big(m\vb\cdot\yb\big) - 2\Big(\tfrac12m|\vb|^2\Big).
+	\end{equation}
+	If the motion is bounded, so that $\vb\cdot\yb$ stays bounded as $t\to\infty$, the time average of any total time-derivative of a bounded quantity vanishes, $\overline{\dd g/\dd t}=\lim_{\tau\to\infty}[g(\tau)-g(0)]/\tau=0$; applied here with $g=m\vb\cdot\yb$, this leaves
+	\begin{equation}\label{virial1particle}
+		\overline{\fb\cdot\yb} = -2\,\overline{\tfrac12m|\vb|^2}\,:
+	\end{equation}
+	the time-averaged virial of the force equals minus twice the time-averaged kinetic energy --- the virial theorem, for one particle, with no ensembles, no phase space, and no statistics whatsoever in sight. Everything that follows in this subsection is the same elementary fact, generalized to $N$ interacting atoms and recast as an \textit{ensemble} average in place of the time average \eqref{virial1particle} --- licensed, as always, by the ergodic hypothesis \eqref{ergodic}.
+\end{example}
+
+Let $a$ denote any one of the $6N$ phase-space coordinates $y_i$ or $p_i$.
+
+\begin{theorem}[Generalized equipartition theorem]\label{thm:equipartition}
+	In the microcanonical ensemble at energy $E$, for every phase-space coordinate $a\in\{y_1,\ldots,y_{3N},p_1,\ldots,p_{3N}\}$,
+	\begin{equation}\label{genequipartition}
+		\left\langle a\,\frac{\partial H}{\partial a}\right\rangle(E) = k_B\vartheta,
+	\end{equation}
+	up to relative corrections of order $1/N$, negligible for any macroscopic system.
+\end{theorem}
+
+\begin{proof}
+	In the limit $\Delta E\to0$, \eqref{microdist} becomes equivalent to a distribution concentrated, via a Dirac delta, exactly on the energy surface $H=E$ (recall $D(E)=\int_\Gamma\delta(E-H)\,\dd\yb\,\dd\pb$, an identity following directly from the definition $D(E)=V_\Gamma'(E)$), so that
+	\begin{equation}
+		\left\langle a\,\partial_aH\right\rangle(E) = \frac{1}{D(E)}\int_\Gamma a\,\partial_aH\,\delta(E-H)\,\dd\yb\,\dd\pb.
+	\end{equation}
+	Writing $\delta(E-H)=\partial_E\theta(E-H)$ ($\theta$ the Heaviside function) and $a\,\partial_aH=\partial_a\big[(H-E)a\big]-(H-E)$ (using $\partial_aa=1$), the integral becomes
+	\begin{equation}
+		\partial_E\int_\Gamma\Big\{\partial_a\big[(H-E)a\big] - (H-E)\Big\}\theta(E-H)\,\dd\yb\,\dd\pb.
+	\end{equation}
+	The first term is a total derivative in $a$; integrated, it produces a contribution on the boundary $H=E$ of the domain of integration, where the integrand $(H-E)a\,\theta(E-H)$ vanishes identically --- hence it contributes nothing. The second term is $-\partial_E\int_{H\leq E}(H-E)\,\dd\yb\,\dd\pb=\partial_E\int_{H\leq E}(E-H)\,\dd\yb\,\dd\pb$; differentiating under the integral sign, the moving boundary $H=E$ again contributes nothing (the integrand vanishes there), leaving only $\int_{H\leq E}\partial_E(E-H)\,\dd\yb\,\dd\pb=\int_{H\leq E}\dd\yb\,\dd\pb=V_\Gamma(E)$. Hence
+	\begin{equation}
+		\left\langle a\,\partial_aH\right\rangle(E) = \frac{V_\Gamma(E)}{D(E)} = \frac{V_\Gamma(E)}{V_\Gamma'(E)} = \big[\partial_E\ln V_\Gamma(E)\big]^{-1}.
+	\end{equation}
+	For a macroscopic system $V_\Gamma(E)$ grows as an enormous power of $E$ (Exercise~\ref{ex:doscount}: $V_\Gamma(E)\propto E^{3N/2}$ for the ideal gas, and comparably fast growth holds generally), so that $\partial_E\ln V_\Gamma(E)$ agrees with $\partial_E\ln D(E)=1/(k_B\vartheta)$ of \eqref{boltzmannS}--\eqref{statT} up to relative corrections of order $1/N$; identifying the two in the macroscopic limit gives \eqref{genequipartition}.
+\end{proof}
+
+\begin{remark}
+	Specializing \eqref{genequipartition} to $a=p_i$ recovers the familiar equipartition of kinetic energy, $p_i\partial H/\partial p_i=p_i^2/m_i$, hence $\langle p_i^2/(2m_i)\rangle=\tfrac12k_B\vartheta$ per momentum degree of freedom --- the same result obtained, via the different, canonical-ensemble route, in Example~\ref{ex:einstein} below. Specializing instead to $a=y_i$ gives a second, independent relation, with no kinetic-theory analogue since it involves the potential-energy landscape rather than the atomic masses --- the content of the following corollary.
+\end{remark}
+
+\begin{corollary}[The virial theorem]\label{cor:virial}
+	Let $\fb^\alpha\coloneqq-\partial V^{\rm int}/\partial\yb^\alpha$ denote the total interatomic force on atom $\alpha$, and define the \textit{virial} of the system as the scalar
+	\begin{equation}\label{virialdef}
+		W \coloneqq \sum_{\alpha=1}^N \yb^\alpha\cdot\fb^\alpha.
+	\end{equation}
+	Then, in the microcanonical ensemble, $\langle W\rangle(E) = -3Nk_B\vartheta$.
+\end{corollary}
+
+\begin{proof}
+	Since $\partial H/\partial y_i=\partial V^{\rm int}/\partial y_i$ (the kinetic part of $H$ is independent of $\yb$), summing \eqref{genequipartition} with $a=y_i$ over all $3N$ position coordinates gives $\sum_i\langle y_i\,\partial V^{\rm int}/\partial y_i\rangle=3Nk_B\vartheta$. Regrouping the sum over scalar coordinates into a sum over atoms (three coordinates each) and using $\partial V^{\rm int}/\partial\yb^\alpha=-\fb^\alpha$,
+	\begin{equation}
+		\sum_{\alpha=1}^N\Big\langle\yb^\alpha\cdot\frac{\partial V^{\rm int}}{\partial\yb^\alpha}\Big\rangle = -\sum_{\alpha=1}^N\langle\yb^\alpha\cdot\fb^\alpha\rangle = -\langle W\rangle = 3Nk_B\vartheta. \qedhere
+	\end{equation}
+\end{proof}
+
+\begin{remark}
+	The virial theorem, due to Clausius (1870) --- predating the general equipartition theorem of which it is here a corollary, first stated by Boltzmann the following year --- relates a purely mechanical quantity, the virial $W$ built from positions and forces alone, to the macroscopic temperature $\vartheta$. Splitting $\fb^\alpha$ into external and internal parts and specializing to the central-force decomposition \eqref{centralforce} of Chapter~\ref{IKN} turns $W$ into precisely the trace of the interatomic contribution to the pointwise stress tensor, up to sign and a volume normalization: see Remark~\ref{rem:virialname} of Chapter~\ref{Hardy}, where the connection is made explicit, together with a purely continuum-mechanical derivation of the same relation.
+\end{remark}
 
 \section{The Canonical Ensemble}
 
